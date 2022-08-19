@@ -1,0 +1,9 @@
+{
+  "name": "laboratory",
+  "description": "my personal monorepo",
+  "author": "Paul Couthouis",
+  "license": "MIT",
+  "devDependencies": {
+    "prettier": "^2.7.1"
+  }
+}
