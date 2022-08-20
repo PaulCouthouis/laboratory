@@ -1,6 +1,22 @@
-import { expect, test } from 'vitest'
-import { show } from '../countdown'
+import { test } from 'vitest'
+import { buildShowCountdownTestSteps } from './steps'
 
-test('This is a test', () => {
-  expect(show()).toBe('ok')
+test('Show the countdown', () => {
+  const steps = buildShowCountdownTestSteps()
+
+  steps.givenCountdownWithRemainingTimes({
+    days: 10,
+    hours: 7,
+    minutes: 44,
+    seconds: 12,
+  })
+
+  steps.whenUserShowsCountdown()
+
+  steps.thenRemainingTimesIs({
+    days: 10,
+    hours: 7,
+    minutes: 44,
+    seconds: 12,
+  })
 })
