@@ -1,8 +1,8 @@
 import { test } from 'vitest'
-import { buildShowCountdownTestSteps } from './steps'
+import { buildCountdownTestSteps } from './steps'
 
 test('Show the countdown', () => {
-  const steps = buildShowCountdownTestSteps()
+  const steps = buildCountdownTestSteps()
 
   steps.givenCountdownWithRemainingTimes({
     days: 10,
@@ -13,7 +13,7 @@ test('Show the countdown', () => {
 
   steps.whenUserShowsCountdown()
 
-  steps.thenRemainingTimesIs({
+  steps.thenDisplayedRemainingTimesIs({
     days: 10,
     hours: 7,
     minutes: 44,

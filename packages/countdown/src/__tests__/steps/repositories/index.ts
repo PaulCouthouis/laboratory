@@ -1,21 +1,25 @@
-import { CountdownRepository } from 'src/output'
-import { RemainingTimes } from 'src/values'
+import { buildCountdown, Countdown } from 'src/entities'
+import type { RemainingTimes } from 'src/values'
 
-export const buildFakeCountdownRepository: () => FakeCountdownRepository =
-  () => {
-    let remainingTimes: RemainingTimes
+export const buildFakeCountdownRepository = () => {
+  let countdown: Countdown
+  let remainingTimes: RemainingTimes
 
-    const initRemainingTimes = (initialRemainigTimes: RemainingTimes) => {
-      remainingTimes = initialRemainigTimes
-    }
-
-    const show = () => {
-      return remainingTimes
-    }
-
-    return { initRemainingTimes, show }
+  const initFinalTime = (initialFinalTime: Date) => {
+    countdown = buildCountdown(initialFinalTime)
   }
 
-type FakeCountdownRepository = CountdownRepository & {
-  readonly initRemainingTimes: (initialRemainigTimes: RemainingTimes) => void
+  const initRemainingTimes = (initialRemainigTimes: RemainingTimes) => {
+    remainingTimes = initialRemainigTimes
+  }
+
+  const refresh = (currentTime: Date) => {
+    remainingTimes = countdown.calculateRemainingTime(currentTime)
+  }
+
+  const show = () => {
+    return remainingTimes
+  }
+
+  return { initFinalTime, initRemainingTimes, show, refresh }
 }
