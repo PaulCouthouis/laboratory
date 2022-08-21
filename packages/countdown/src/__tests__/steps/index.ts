@@ -1,53 +1,28 @@
-import type { RemainingTimes } from 'src/values'
-
-import { expect } from 'vitest'
 import { buildCountdownActions } from 'src/ports/input'
-import { buildFakeCountdownRepository } from './output/repositories'
+import { Subscriber } from 'src/ports/output'
+import { expect } from 'vitest'
+import { buildFakeCountdownPublisher } from './output/publisher'
 
-export const buildCountdownTestSteps = () => {
-  const fakeCountdownRepository = buildFakeCountdownRepository()
-  const { refreshCountdown, showCountdown } = buildCountdownActions(
-    fakeCountdownRepository
-  )
+export const buildSteps = () => {
+  const fakeCountdownPublisher = buildFakeCountdownPublisher()
+  const { subscribeCountdown } = buildCountdownActions(fakeCountdownPublisher)
 
-  let receiptedRemainingTimes: RemainingTimes
-
-  const givenCountdownWithRemainingTimes = (
-    initialRemainingTimes: RemainingTimes
-  ) => {
-    fakeCountdownRepository.initRemainingTimes(initialRemainingTimes)
+  const givenCountdownWithSubscribers = (subscribers: Set<Subscriber>) => {
+    fakeCountdownPublisher.initSubscribers(subscribers)
   }
 
-  const givenFinalTimeIs = (initialFinalTime: Date) => {
-    fakeCountdownRepository.initFinalTime(initialFinalTime)
+  const whenUserSubscribesWith = (subscriber: Subscriber) => {
+    subscribeCountdown(subscriber)
   }
 
-  const whenUserShowsCountdown = () => {
-    receiptedRemainingTimes = showCountdown()
-  }
-
-  const whenCurrentTimeIs = (currentTime: Date) => {
-    refreshCountdown(currentTime)
-  }
-
-  const thenDisplayedRemainingTimesIs = (
-    expectedRemainigTimes: RemainingTimes
-  ) => {
-    expect(receiptedRemainingTimes).toEqual(expectedRemainigTimes)
-  }
-
-  const thenRemainingTimesIsUpdatedWith = (
-    expectedRemainigTimes: RemainingTimes
-  ) => {
-    expect(fakeCountdownRepository.show()).toEqual(expectedRemainigTimes)
+  const thenCountdownSubscribersSizeIs = (expectedSize: number) => {
+    const receiptedSize = fakeCountdownPublisher.getSubscribersSize()
+    expect(receiptedSize).toBe(expectedSize)
   }
 
   return {
-    givenFinalTimeIs,
-    givenCountdownWithRemainingTimes,
-    whenUserShowsCountdown,
-    whenCurrentTimeIs,
-    thenDisplayedRemainingTimesIs,
-    thenRemainingTimesIsUpdatedWith,
+    givenCountdownWithSubscribers,
+    whenUserSubscribesWith,
+    thenCountdownSubscribersSizeIs,
   }
 }
