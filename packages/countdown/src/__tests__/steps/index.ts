@@ -2,7 +2,7 @@ import type { RemainingTimes } from 'src/values'
 
 import { expect } from 'vitest'
 import { buildCountdownActions } from 'src/ports/input'
-import { buildFakeCountdownRepository } from './repositories'
+import { buildFakeCountdownRepository } from './output/repositories'
 
 export const buildCountdownTestSteps = () => {
   const fakeCountdownRepository = buildFakeCountdownRepository()
