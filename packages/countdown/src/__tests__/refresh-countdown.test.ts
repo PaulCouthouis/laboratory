@@ -1,3 +1,4 @@
+import { buildCountdownActions } from 'src/ports/input'
 import { RemainingTimes } from 'src/values'
 import { describe, expect, it } from 'vitest'
 import { buildFakeCountdownPublisher } from './steps/output/publisher'
@@ -15,21 +16,6 @@ describe('Refresh countdown', () => {
       hours: 0,
       minutes: 0,
       seconds: 0,
-    })
-  })
-
-  it('is still 1 second left', () => {
-    const steps = buildSteps()
-
-    steps.givenFinalTimeIs(new Date('2023-08-12T16:00:00'))
-
-    steps.whenCurrentTimeIs(new Date('2023-08-12T15:59:59'))
-
-    steps.thenCountdownNotifiesRemainingTimes({
-      days: 0,
-      hours: 0,
-      minutes: 0,
-      seconds: 1,
     })
   })
 
@@ -100,6 +86,8 @@ const buildSteps = () => {
     receiptedRemainingTimes = remainingTimes
   }
   const fakeCountdownPublisher = buildFakeCountdownPublisher()
+  const { refreshCountdown } = buildCountdownActions(fakeCountdownPublisher)
+
   fakeCountdownPublisher.subscribe({ update: fakeUpdate })
 
   const givenFinalTimeIs = (finalTime: Date) => {
@@ -107,7 +95,7 @@ const buildSteps = () => {
   }
 
   const whenCurrentTimeIs = (currentTime: Date) => {
-    fakeCountdownPublisher.refresh(currentTime)
+    refreshCountdown(currentTime)
   }
 
   const thenCountdownNotifiesRemainingTimes = (

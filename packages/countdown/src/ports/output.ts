@@ -1,6 +1,7 @@
 import { RemainingTimes } from 'src/values'
 
 export interface CountdownPublisher {
+  refresh: (currentTime: Date) => void
   subscribe: (subscriber: Subscriber) => void
 }
 
