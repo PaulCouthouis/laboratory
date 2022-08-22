@@ -1,5 +1,5 @@
-import { buildCountdownActions } from 'src/ports/input'
-import { Subscriber } from 'src/ports/output'
+import { buildCountdownActions } from 'src/domain/ports/input'
+import { Subscriber } from 'src/domain/ports/output'
 import { expect } from 'vitest'
 import { buildFakeCountdownPublisher } from './output/publisher'
 

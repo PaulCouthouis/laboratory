@@ -1,6 +1,6 @@
-import { buildCountdown, Countdown } from 'src/entities'
-import { Subscriber } from 'src/ports/output'
-import { RemainingTimes } from 'src/values'
+import { buildCountdown, Countdown } from 'src/domain/entities'
+import { Subscriber } from 'src/domain/ports/output'
+import { RemainingTimes } from 'src/domain/values'
 
 export const buildFakeCountdownPublisher = () => {
   const subscribers = new Array<Subscriber>()

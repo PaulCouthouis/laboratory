@@ -1,5 +1,5 @@
 import { test } from 'vitest'
-import { buildSteps } from './steps'
+import { buildSteps } from './steps/subscribe'
 
 test('Subscribe countdown', () => {
   const steps = buildSteps()
