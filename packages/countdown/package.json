@@ -7,13 +7,15 @@
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^5.33.1",
     "@typescript-eslint/parser": "^5.33.1",
+    "@vitest/coverage-istanbul": "^0.22.1",
     "eslint": "^8.22.0",
     "eslint-config-prettier": "^8.5.0",
     "typescript": "^4.7.4",
     "vitest": "^0.22.1"
   },
   "scripts": {
-    "test": "vitest",
-    "check:types": "tsc"
+    "check:types": "tsc",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage"
   }
 }
