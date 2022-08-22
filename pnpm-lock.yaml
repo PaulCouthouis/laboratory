@@ -15,6 +15,7 @@ importers:
       '@vitest/coverage-istanbul': ^0.22.1
       eslint: ^8.22.0
       eslint-config-prettier: ^8.5.0
+      nanostores: ^0.6.0
       typescript: ^4.7.4
       vitest: ^0.22.1
     devDependencies:
@@ -23,6 +24,7 @@ importers:
       '@vitest/coverage-istanbul': 0.22.1
       eslint: 8.22.0
       eslint-config-prettier: 8.5.0_eslint@8.22.0
+      nanostores: 0.6.0
       typescript: 4.7.4
       vitest: 0.22.1
 
@@ -1438,6 +1440,11 @@ packages:
     resolution: {integrity: sha512-MqBkQh/OHTS2egovRtLk45wEyNXwF+cokD+1YPf9u5VfJiRdAiRwB2froX5Co9Rh20xs4siNPm8naNotSD6RBw==}
     engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
     hasBin: true
+    dev: true
+
+  /nanostores/0.6.0:
+    resolution: {integrity: sha512-CQpKE8wtaJAr66hbg32t0MOAeybzLywU6UsLAX18kyQL/bME+xwhjWpmrvJRBp5kueFy6hs2oHlt3HFpNP+JaA==}
+    engines: {node: ^14.0.0 || ^16.0.0 || >=18.0.0}
     dev: true
 
   /natural-compare/1.4.0:

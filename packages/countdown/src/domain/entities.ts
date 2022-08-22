@@ -59,4 +59,4 @@ export const buildCountdown: BuildCountdown = (finalTime) => {
   return { calculateRemainingTime }
 }
 
-type BuildCountdown = (finaleTime: Date) => Countdown
+type BuildCountdown = (finalTime: Date) => Countdown

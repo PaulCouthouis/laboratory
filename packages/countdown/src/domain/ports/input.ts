@@ -1,4 +1,4 @@
-import { CountdownPublisher, Subscriber } from './output'
+import { CountdownPublisher, Update } from './output'
 
 export const buildCountdownActions = (
   countdownPublisher: CountdownPublisher
@@ -7,8 +7,8 @@ export const buildCountdownActions = (
     countdownPublisher.refresh(currentTime)
   }
 
-  const subscribeCountdown = (subscriber: Subscriber) => {
-    countdownPublisher.subscribe(subscriber)
+  const subscribeCountdown = (update: Update) => {
+    countdownPublisher.subscribe(update)
   }
 
   return { refreshCountdown, subscribeCountdown }
