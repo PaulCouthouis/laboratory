@@ -1,5 +1,3 @@
 {
-  "eslint.workingDirectories": [
-    "packages/countdown",
-  ]
+  "eslint.workingDirectories": ["packages/features/countdown"]
 }

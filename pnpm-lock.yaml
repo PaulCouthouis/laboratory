@@ -8,7 +8,7 @@ importers:
     devDependencies:
       prettier: 2.7.1
 
-  packages/countdown:
+  packages/features/countdown:
     specifiers:
       '@typescript-eslint/eslint-plugin': ^5.33.1
       '@typescript-eslint/parser': ^5.33.1
