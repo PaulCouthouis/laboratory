@@ -1,5 +1,5 @@
 import { buildCountdownActions } from 'src/domain/ports/input'
-import { Subscriber } from 'src/domain/ports/output'
+import { Update } from 'src/domain/ports/output'
 import { expect } from 'vitest'
 import { buildFakeCountdownPublisher } from './output/publisher'
 
@@ -7,12 +7,12 @@ export const buildSteps = () => {
   const fakeCountdownPublisher = buildFakeCountdownPublisher()
   const { subscribeCountdown } = buildCountdownActions(fakeCountdownPublisher)
 
-  const givenCountdownWithSubscribers = (subscribers: Array<Subscriber>) => {
-    fakeCountdownPublisher.initSubscribers(subscribers)
+  const givenCountdownWithSubscribers = (updates: Array<Update>) => {
+    fakeCountdownPublisher.initSubscribers(updates)
   }
 
-  const whenUserSubscribesWith = (subscriber: Subscriber) => {
-    subscribeCountdown(subscriber)
+  const whenUserSubscribesWith = (update: Update) => {
+    subscribeCountdown(update)
   }
 
   const thenCountdownSubscribersSizeIs = (expectedSize: number) => {

@@ -1,12 +1,12 @@
 import { buildCountdown, Countdown } from 'src/domain/entities'
-import { Subscriber } from 'src/domain/ports/output'
+import { Update } from 'src/domain/ports/output'
 import { RemainingTimes } from 'src/domain/values'
 
 export const buildFakeCountdownPublisher = () => {
-  const subscribers = new Array<Subscriber>()
+  const subscribers = new Array<Update>()
   let countdown: Countdown
 
-  const initSubscribers = (initialSubscribers: Array<Subscriber>) => {
+  const initSubscribers = (initialSubscribers: Array<Update>) => {
     subscribers.push(...initialSubscribers)
   }
 
@@ -15,8 +15,8 @@ export const buildFakeCountdownPublisher = () => {
   }
 
   const notify = (remainingTimes: RemainingTimes) => {
-    subscribers.forEach((subscriber) => {
-      subscriber.update(remainingTimes)
+    subscribers.forEach((update) => {
+      update(remainingTimes)
     })
   }
 
@@ -25,8 +25,8 @@ export const buildFakeCountdownPublisher = () => {
     notify(remainingTimes)
   }
 
-  const subscribe = (subscriber: Subscriber) => {
-    subscribers.push(subscriber)
+  const subscribe = (update: Update) => {
+    subscribers.push(update)
   }
 
   const getSubscribersSize = () => subscribers.length

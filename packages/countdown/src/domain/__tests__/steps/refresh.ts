@@ -11,7 +11,7 @@ export const buildSteps = () => {
   const fakeCountdownPublisher = buildFakeCountdownPublisher()
   const { refreshCountdown } = buildCountdownActions(fakeCountdownPublisher)
 
-  fakeCountdownPublisher.subscribe({ update: fakeUpdate })
+  fakeCountdownPublisher.subscribe(fakeUpdate)
 
   const givenFinalTimeIs = (finalTime: Date) => {
     fakeCountdownPublisher.initCountdown(finalTime)
