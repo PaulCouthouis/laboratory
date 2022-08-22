@@ -1,17 +1,41 @@
+import { buildCountdown, Countdown } from 'src/entities'
 import { Subscriber } from 'src/ports/output'
+import { RemainingTimes } from 'src/values'
 
 export const buildFakeCountdownPublisher = () => {
-  let subscribers: Set<Subscriber>
+  const subscribers = new Array<Subscriber>()
+  let countdown: Countdown
 
-  const initSubscribers = (initialSubscribers: Set<Subscriber>) => {
-    subscribers = initialSubscribers
+  const initSubscribers = (initialSubscribers: Array<Subscriber>) => {
+    subscribers.push(...initialSubscribers)
+  }
+
+  const initCountdown = (finalTime: Date) => {
+    countdown = buildCountdown(new Date(finalTime))
+  }
+
+  const notify = (remainingTimes: RemainingTimes) => {
+    subscribers.forEach((subscriber) => {
+      subscriber.update(remainingTimes)
+    })
+  }
+
+  const refresh = (currentTime: Date) => {
+    const remainingTimes = countdown.calculateRemainingTime(currentTime)
+    notify(remainingTimes)
   }
 
   const subscribe = (subscriber: Subscriber) => {
-    subscribers.add(subscriber)
+    subscribers.push(subscriber)
   }
 
-  const getSubscribersSize = () => subscribers.size
+  const getSubscribersSize = () => subscribers.length
 
-  return { initSubscribers, subscribe, getSubscribersSize }
+  return {
+    initSubscribers,
+    initCountdown,
+    refresh,
+    subscribe,
+    getSubscribersSize,
+  }
 }

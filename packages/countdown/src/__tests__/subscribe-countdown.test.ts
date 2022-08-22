@@ -19,7 +19,7 @@ test('Subscribe countdown', () => {
     },
   }
 
-  steps.givenCountdownWithSubscribers(new Set([subscriber1, subscriber2]))
+  steps.givenCountdownWithSubscribers([subscriber1, subscriber2])
 
   steps.whenUserSubscribesWith(subscriber3)
 

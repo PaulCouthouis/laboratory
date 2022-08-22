@@ -7,7 +7,7 @@ export const buildSteps = () => {
   const fakeCountdownPublisher = buildFakeCountdownPublisher()
   const { subscribeCountdown } = buildCountdownActions(fakeCountdownPublisher)
 
-  const givenCountdownWithSubscribers = (subscribers: Set<Subscriber>) => {
+  const givenCountdownWithSubscribers = (subscribers: Array<Subscriber>) => {
     fakeCountdownPublisher.initSubscribers(subscribers)
   }
 
