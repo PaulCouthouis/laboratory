@@ -1,9 +1,8 @@
 import { atom } from 'nanostores'
-
-import { buildCountdown } from 'src/domain/entities'
-import { buildCountdownActions } from 'src/domain/ports/input'
-import { CountdownPublisher, Update } from 'src/domain/ports/output'
-import { RemainingTimes } from 'src/domain/values'
+import { buildCountdown } from '../domain/entities'
+import { buildCountdownActions } from '../domain/ports/input'
+import { CountdownPublisher, Update } from '../domain/ports/output'
+import { RemainingTimes } from '../domain/values'
 
 const buildCountdownPublisher: (finalTime: Date) => CountdownPublisher = (
   finalTime
@@ -30,7 +29,7 @@ const buildCountdownPublisher: (finalTime: Date) => CountdownPublisher = (
 }
 
 export const init = (
-  loop: (cb: (startTime: Date) => void) => void,
+  loop: (callback: (startTime: Date) => void) => void,
   finalTime: Date
 ) => {
   const countdownPublisher = buildCountdownPublisher(finalTime)

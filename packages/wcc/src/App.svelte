@@ -7,6 +7,6 @@ import Countdown from "./components/Countdown.svelte";
 <main>
   <article class="border p-1 flex flex-col items-center">
     <h2 class="mt-0 mb-2">Countdown</h2>
-    <Countdown />
+    <Countdown finalTime={new Date('2023-08-12 16:00:00')} />
   </article>
 </main>

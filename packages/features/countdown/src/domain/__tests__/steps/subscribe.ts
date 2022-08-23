@@ -1,6 +1,6 @@
-import { buildCountdownActions } from 'src/domain/ports/input'
-import { Update } from 'src/domain/ports/output'
 import { expect } from 'vitest'
+import { buildCountdownActions } from '../../ports/input'
+import { Update } from '../../ports/output'
 import { buildFakeCountdownPublisher } from './output/publisher'
 
 export const buildSteps = () => {

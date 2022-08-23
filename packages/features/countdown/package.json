@@ -1,9 +1,10 @@
 {
   "name": "countdown",
-  "type": "module",
-  "description": "my personal monorepo",
   "author": "Paul Couthouis",
+  "description": "A simple countdown utilitary",
   "license": "MIT",
+  "type": "module",
+  "version": "1.0.0",
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^5.33.1",
     "@typescript-eslint/parser": "^5.33.1",
@@ -15,7 +16,9 @@
     "vitest": "^0.22.1"
   },
   "scripts": {
-    "check:types": "tsc",
+    "build": "tsc",
+    "check:types": "tsc --noEmit",
+    "test": "vitest run",
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage"
   }

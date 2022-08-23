@@ -1,4 +1,4 @@
-import { RemainingTimes } from 'src/domain/values'
+import { RemainingTimes } from '../values'
 
 export interface CountdownPublisher {
   refresh: (currentTime: Date) => void
