@@ -1,5 +1,7 @@
+import type { FamilyMembers, InvitationCardId } from '../../values'
+
 export const buildFakeInvitationCardRepository = () => {
-  const invitationCards: Map<string, Set<string>> = new Map()
+  const invitationCards: Map<InvitationCardId, FamilyMembers> = new Map()
 
   const initInvitationCards = (
     initialInvitationCards: Array<Array<string>>
@@ -9,15 +11,15 @@ export const buildFakeInvitationCardRepository = () => {
     })
   }
 
-  const getInvitationCardBy = (id: string) => {
-    const invitationCard = invitationCards.get(id)
+  const getFamilyMembers = (id: InvitationCardId) => {
+    const familyMembers = invitationCards.get(id)
 
-    if (!invitationCard) {
+    if (!familyMembers) {
       throw 'The invitation card does not exist'
     }
 
-    return invitationCard
+    return familyMembers
   }
 
-  return { initInvitationCards, getInvitationCardBy }
+  return { initInvitationCards, getFamilyMembers }
 }

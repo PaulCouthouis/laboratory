@@ -1,12 +1,14 @@
+import type { FamilyMembers } from '../../values'
+
 import { expect } from 'vitest'
-import { buildReadInvitationCard } from '../../ports/interactor'
+import { buildReadInvitationCard } from '../../ports/presenter'
 import { buildFakeInvitationCardRepository } from '../repositories/invitation-cards'
 
 export const buildSteps = () => {
   const fakeRepository = buildFakeInvitationCardRepository()
   const readInvitationCard = buildReadInvitationCard(fakeRepository)
 
-  let receivedFamilyMembers: Set<string>
+  let receivedFamilyMembers: FamilyMembers
 
   const givenInvitationCards = (
     initialInvitationCards: Array<Array<string>>
@@ -20,7 +22,7 @@ export const buildSteps = () => {
     receivedFamilyMembers = readInvitationCard(invitationCardId)
   }
 
-  const thenFamilyMembersReadedAre = (expectedFamilyMembers: Set<string>) => {
+  const thenFamilyMembersReadedAre = (expectedFamilyMembers: FamilyMembers) => {
     expect(receivedFamilyMembers).toEqual(expectedFamilyMembers)
   }
 
