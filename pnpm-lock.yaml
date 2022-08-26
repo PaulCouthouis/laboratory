@@ -15,12 +15,14 @@ importers:
       '@tailwindcss/typography': ^0.5.4
       astro: ^1.0.7
       tailwindcss: ^3.1.8
+      vitest: ^0.22.1
     devDependencies:
       '@astrojs/tailwind': 1.0.0
       '@fontsource/pacifico': 4.5.8
       '@tailwindcss/typography': 0.5.4_tailwindcss@3.1.8
       astro: 1.0.7
       tailwindcss: 3.1.8
+      vitest: 0.22.1
 
   packages/features/countdown:
     specifiers:
@@ -4386,7 +4388,7 @@ packages:
       local-pkg: 0.4.2
       tinypool: 0.2.4
       tinyspy: 1.0.2
-      vite: 3.0.8
+      vite: 3.0.9
     transitivePeerDependencies:
       - less
       - sass
