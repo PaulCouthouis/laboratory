@@ -1,5 +1,5 @@
 import { test } from 'vitest'
-import { buildSteps } from './steps'
+import { buildSteps } from './steps/reply'
 
 test('Reply invitation', () => {
   const steps = buildSteps()

@@ -1,6 +1,6 @@
 import { expect } from 'vitest'
 import { buildReplyToInvitation } from '../../ports/controller'
-import { buildReplyCardDeliveryService } from '../services/reply-card-delivery'
+import { buildReplyCardDeliveryService } from '../output/service'
 
 export const buildSteps = () => {
   const fakeDeliveryService = buildReplyCardDeliveryService()

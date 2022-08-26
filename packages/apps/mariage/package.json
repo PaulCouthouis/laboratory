@@ -5,6 +5,7 @@
   "scripts": {
     "astro": "astro",
     "build": "astro build",
+    "check:type": "tsc",
     "dev": "astro dev",
     "start": "astro dev",
     "preview": "astro preview",

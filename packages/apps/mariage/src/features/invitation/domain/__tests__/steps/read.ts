@@ -2,7 +2,7 @@ import type { FamilyMembers } from '../../values'
 
 import { expect } from 'vitest'
 import { buildReadInvitationCard } from '../../ports/presenter'
-import { buildFakeInvitationCardRepository } from '../repositories/invitation-cards'
+import { buildFakeInvitationCardRepository } from '../output/repository'
 
 export const buildSteps = () => {
   const fakeRepository = buildFakeInvitationCardRepository()
