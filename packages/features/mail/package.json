@@ -1,0 +1,24 @@
+{
+  "author": "Paul Couthouis",
+  "name": "mail",
+  "description": "A mail delivery utilitary",
+  "licence": "MIT",
+  "type": "module",
+  "version": "1.0.0",
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.33.1",
+    "@typescript-eslint/parser": "^5.33.1",
+    "@vitest/coverage-istanbul": "^0.22.1",
+    "eslint": "^8.22.0",
+    "eslint-config-prettier": "^8.5.0",
+    "typescript": "^4.8.2",
+    "vitest": "^0.22.1"
+  },
+  "scripts": {
+    "build": "tsc",
+    "check:types": "tsc --noEmit",
+    "test": "vitest run",
+    "test:w": "vitest",
+    "test:c": "vitest run --coverage"
+  }
+}

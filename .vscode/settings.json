@@ -1,3 +1,6 @@
 {
-  "eslint.workingDirectories": ["packages/features/countdown"]
+  "eslint.workingDirectories": [
+    "packages/features/countdown",
+    "packages/features/mail"
+  ]
 }
