@@ -1,0 +1,43 @@
+---
+  import "@fontsource/poppins"
+
+  const members = ['Loid Forger', 'Anya Forger', 'Yor Forger']
+---
+
+<section class="h-min-screen text-lg font-sans-serif">
+  <div class="h-full flex justify-center items-center">
+    <article class="m-2 font-['Poppins'] text-sm md:text-lg">
+      <header>
+        <h2 class="text-lg text-center pb-4 md:text-2xl">Chère famille Forger,</h2>
+        <p class="text-gray-500">
+          Nous serions heureux de votre présence à notre cérémonie de mariage. <br />
+          Pourriez-vous nous donner une réponse avant le <time>31 Mai 2023</time> ?
+        </p>
+      </header>
+      <form class="mt-4">
+        { members.map(member => 
+          <fieldset class="my-4">
+            <legend class="text-center">- {member} -</legend>
+            <div class="flex justify-between my-2">
+              <label>
+                <input type="radio" name={member}> Présent
+              </label>
+              <label>
+                <input type="radio" name={member}> Absent
+              </label>
+              <label>
+                <input type="radio" name={member}> Indécis
+              </label>
+            </div>
+            <input class="border p-2 w-full" placeholder='Régime alimentaire* (facultatif)' type="text" />
+          </fieldset>
+        )}
+        <textarea class="border h-20 p-2 w-full" placeholder="Message (facultatif)" />
+        <div class="text-right mt-4">
+          <button class="text-right bg-red-700 rounded p-4 text-gray-200" type="submit">Envoyer notre coupon-réponse</button>
+        </div>
+      </form>
+      <p class="text-xs text-gray-400 mt-2 text-right">* alergie, végétarien, raison religieuse, etc</p>
+    </article>
+  </div>
+</section>

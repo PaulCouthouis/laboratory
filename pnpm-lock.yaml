@@ -12,10 +12,13 @@ importers:
     specifiers:
       '@astrojs/tailwind': ^1.0.0
       '@fontsource/pacifico': ^4.5.8
+      '@fontsource/poppins': ^4.5.9
       '@tailwindcss/typography': ^0.5.4
       astro: ^1.0.7
       tailwindcss: ^3.1.8
       vitest: ^0.22.1
+    dependencies:
+      '@fontsource/poppins': 4.5.9
     devDependencies:
       '@astrojs/tailwind': 1.0.0
       '@fontsource/pacifico': 4.5.8
@@ -478,6 +481,10 @@ packages:
   /@fontsource/pacifico/4.5.8:
     resolution: {integrity: sha512-odEiWt6gDyW9Z9bgVXwv9Msd3teJ3ZZxYwS8l6onD0PSKoyjyo3NDAiEbZtftoe2zMGvpFLHSoHekJ6yDSCUFQ==}
     dev: true
+
+  /@fontsource/poppins/4.5.9:
+    resolution: {integrity: sha512-PMHOYeUpdmdN1xk13aGvhvZZrv9Zt3ubx2PmDvnROHgefm0ixpFd3ogAi0fY/aWtlkUdvgt0mSkGGbtt5i4MsQ==}
+    dev: false
 
   /@humanwhocodes/config-array/0.10.4:
     resolution: {integrity: sha512-mXAIHxZT3Vcpg83opl1wGlVZ9xydbfZO3r5YfRSH6Gpp2J/PfdBP0wbDa2sO6/qRbcalpoevVyW6A/fI6LfeMw==}
