@@ -1,5 +1,5 @@
 import { expect } from 'vitest'
-import { buildReplyToInvitation } from '../../ports/controller'
+import { buildReplyToInvitation } from '../../input/commands'
 import { buildReplyCardDeliveryService } from '../output/service'
 
 export const buildSteps = () => {
