@@ -6,11 +6,12 @@ export const buildFakeDeliveryService = () => {
     sender = initialSender
   }
 
-  const deliver = (mail: Record<'message' | 'title', string>) => {
+  const deliver = async (mail: Record<'message' | 'title', string>) => {
     receivedMail = {
       sender,
       ...mail,
     }
+    return Promise.resolve()
   }
 
   const getReceivedMail = () => receivedMail

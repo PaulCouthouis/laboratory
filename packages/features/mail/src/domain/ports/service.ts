@@ -1,5 +1,5 @@
 import { Mail } from '../entities'
 
 export interface DeliveryService {
-  deliver(mail: Mail): void
+  deliver(mail: Mail): Promise<void>
 }
