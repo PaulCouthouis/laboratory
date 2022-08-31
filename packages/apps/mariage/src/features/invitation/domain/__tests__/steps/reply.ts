@@ -13,7 +13,7 @@ export const buildSteps = () => {
     fakeDeliveryService.initInvitationCard(initialInvitationCard)
   }
 
-  const whenRepresentativeReplyToInvitation = (replyCard: {
+  const whenRepresentativeReplyToInvitation = async (replyCard: {
     members: Array<{
       diet?: string
       name: string
@@ -21,7 +21,7 @@ export const buildSteps = () => {
     }>
     message: string
   }) => {
-    replyToInvitation(replyCard)
+    await replyToInvitation(replyCard)
   }
 
   const thenOrganizerReceivesTheReply = (expectedReplyCard: {

@@ -4,4 +4,4 @@ export type ReadInvitationCard = (
   invitationCardId: InvitationCardId
 ) => FamilyMembers
 
-export type ReplyToInvitation = (replyCard: ReplyCard) => void
+export type ReplyToInvitation = (replyCard: ReplyCard) => Promise<void>

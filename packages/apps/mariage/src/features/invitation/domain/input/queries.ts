@@ -1,5 +1,5 @@
 import type { ReadInvitationCard } from '../interactor'
-import type { InvitationCardRepository } from './repositories'
+import type { InvitationCardRepository } from '../output/repositories'
 
 export const buildReadInvitationCard: BuildReadInvitationCard =
   (invitationCardRepository) => (id) => {

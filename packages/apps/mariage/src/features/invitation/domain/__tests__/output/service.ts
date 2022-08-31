@@ -41,6 +41,7 @@ export const buildReplyCardDeliveryService = () => {
       }),
       message: replyCard.message,
     }
+    return Promise.resolve()
   }
 
   const getDeliveredReplyCard = () => deliveredReplyCard

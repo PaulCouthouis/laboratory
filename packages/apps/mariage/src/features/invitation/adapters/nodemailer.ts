@@ -26,11 +26,13 @@ export const buildDeliveryService: <T>(
     return nodeMailDeliveryService.deliver({
       title: `Réponse de ${options.responsible}`,
       message: `
-        ${replyCard.members.map(memberSentence)}
+        ${replyCard.members.map(memberSentence).join('')}
         ${replyCard.message}  
       `,
     })
   }
 
-  return { deliver, isSuccess: nodeMailDeliveryService.isSuccess }
+  const isSuccess = () => nodeMailDeliveryService.isSuccess()
+
+  return { deliver, isSuccess }
 }

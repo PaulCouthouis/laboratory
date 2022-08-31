@@ -1,7 +1,7 @@
 import { test } from 'vitest'
 import { buildSteps } from './steps/reply'
 
-test('Reply invitation', () => {
+test('Reply invitation', async () => {
   const steps = buildSteps()
 
   steps.givenInvitationCard({
@@ -9,7 +9,7 @@ test('Reply invitation', () => {
     members: new Set(['Loid Forger', 'Yor Forger', 'Anya Forger']),
   })
 
-  steps.whenRepresentativeReplyToInvitation({
+  await steps.whenRepresentativeReplyToInvitation({
     members: [
       {
         diet: 'no pork',
