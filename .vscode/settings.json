@@ -2,6 +2,7 @@
   "eslint.workingDirectories": [
     "packages/features/countdown",
     "packages/features/mail",
-    "packages/apps/mariage"
+    "packages/apps/mariage",
+    "packages/apps/manabu"
   ]
 }
