@@ -1,16 +1,21 @@
 ---
 import Cover from '../sections/cover.astro'
+import Date from '../sections/date.astro';
+import Drawer from '../sections/drawer.astro';
 import Reply from '../sections/reply.astro'
 ---
 
-<html>
+<html data-theme="cupcake">
   <head>
     <meta charset="UTF-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>Moe & Paul: Ton Invitation au Mariage</title>
   </head>
   <body>
-    <!-- <Cover />
-    <Reply /> -->
+    <Cover />
+    <Drawer>
+      <Date />
+      <!-- <Reply /> -->
+    </Drawer>
   </body>
 </html>

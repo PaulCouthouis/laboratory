@@ -1,0 +1,20 @@
+---
+  import Countdown from '../components/Countdown/Countdown.svelte'
+
+  const finalTime = new Date('August 12, 2023 16:00:00 GMT+02:00');
+---
+
+<section class="bg-cover bg-bottom bg-[url('/images/date.jpeg')]">
+  <div class="py-4 lg:py-48 bg-black/30">
+    <article class="p-4 h-full flex flex-col justify-center items-center text-white text-2xl">
+      <h2 class="mb-2 text-4xl font-['Pacifico']">Save the Date!</h2>
+      <p class="text-lg lg:text-2xl text-center">
+        On vous attends le <time class="font-bold underline">Samedi 12 Août 2023 à 16h00</time><br />
+        au Moulin de Poincy
+      </p>
+      <div class="mt-12 max-w-full">
+        <Countdown client:visible finalTime={finalTime}></Countdown>
+      </div>
+    </article>
+  </div>
+</section>
