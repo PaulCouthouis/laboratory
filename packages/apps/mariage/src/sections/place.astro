@@ -1,0 +1,22 @@
+---
+  const maps = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2618.905215110349!2d2.9357386156784964!3d48.97432867929903!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e8a230fde6aff5%3A0xe24689af572d8f9!2sLe%20Moulin%20de%20Poincy!5e0!3m2!1sfr!2sjp!4v1662270590420!5m2!1sfr!2sjp"
+---
+
+<section>
+  <div class="py-4">
+    <article class="p-4 h-full flex flex-col justify-center items-center text-neutral text-2xl">
+      <h2 class="mb-4 text-4xl font-['Pacifico']">Moulin de Poincy</h2>
+      <p class="text-lg">
+        Cérémonie laïque, séance photo, cocktail et banquet, tout se fait dans cet unique endroit entouré de verdure.
+      </p>
+      <div class="w-full flex flex-col md:flex-row">
+        <div class="m-2 p-4 bg-white md:w-[50%] ">
+          <img src="./images/place.jpeg" alt="Photo du Moulin de Poincy">
+        </div>
+        <div class="m-2 p-4 bg-white md:w-[50%] ">
+          <iframe class="w-full h-full" src={maps} loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
