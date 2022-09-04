@@ -1,4 +1,4 @@
-import type { Question } from '../../../question'
+import type { Question } from '../../../question/values'
 import { markResult, Result } from '../../../question/answer/values'
 
 export const buildGrader = () => {
