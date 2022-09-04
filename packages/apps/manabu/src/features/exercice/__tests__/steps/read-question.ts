@@ -1,15 +1,15 @@
 import { expect } from 'vitest'
-import { createReadQuestion } from '../../question/query'
+import { createReadCurrentQuestion } from '../../question/query'
 import type { Question } from '../../question/values'
-import { createQuizz } from './output/quizz'
+import { createQuiz } from './output/quiz'
 
 export const buildStep = () => {
-  const quizz = createQuizz()
-  const readQuestion = createReadQuestion(quizz)
+  const quiz = createQuiz()
+  const readQuestion = createReadCurrentQuestion(quiz)
   let receivedQuestion: Question
 
   const givenQuizWithQuestions = (initialQuestions: Question[]) => {
-    quizz.initQuestions(initialQuestions)
+    quiz.initQuestions(initialQuestions)
   }
 
   const whenStudentReadQuestion = async (questionIndex: number) => {

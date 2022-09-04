@@ -1,5 +1,6 @@
 import type { Question } from './values'
 
-export interface Quizz {
+export interface Quiz {
   readQuestionBy(index: number): Promise<Question>
+  next(): Promise<void>
 }
