@@ -1,7 +1,7 @@
 import type { Quiz } from './repository'
 
-export const createReadCurrentQuestion = (quizz: Quiz) => {
+export const createReadCurrentQuestion = (quiz: Quiz) => {
   return (index: number) => {
-    return quizz.readQuestionBy(index)
+    return quiz.getQuestionBy(index)
   }
 }

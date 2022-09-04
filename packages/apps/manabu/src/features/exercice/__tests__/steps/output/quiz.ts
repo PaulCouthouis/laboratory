@@ -6,16 +6,16 @@ export const createQuiz = () => {
 
   const getCurrentIndex = () => currentIndex
 
+  const getQuestionBy = async (index: number) => {
+    return Promise.resolve(questions[index])
+  }
+
   const initQuestions = (initialQuestions: Question[]) => {
     questions = initialQuestions
   }
 
   const initCurrentIndex = (initialIndex: number) => {
     currentIndex = initialIndex
-  }
-
-  const readQuestionBy = async (index: number) => {
-    return Promise.resolve(questions[index])
   }
 
   const next = async () => {
@@ -25,9 +25,9 @@ export const createQuiz = () => {
 
   return {
     getCurrentIndex,
+    getQuestionBy,
     initCurrentIndex,
     initQuestions,
-    readQuestionBy,
     next,
   }
 }
