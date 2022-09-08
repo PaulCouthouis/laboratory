@@ -1,0 +1,18 @@
+---
+import ChapterLink from "./chapter-link.astro";
+---
+
+<h1 class="py-3 bg-neutral bg-opacity-60 font-bold text-2xl">
+  <span class="px-2">📚 Chapitres</span>
+</h1>
+<nav class="py-3 bg-primary bg-opacity-20 rounded">
+  <section class="py-2">
+    <h2 class="py-1 font-semibold uppercase text-xl">
+      <span class="px-2">Généralités ▼</span>
+    </h2>
+    <ul>
+      <ChapterLink href="./chapitres/generalites/01-les-champs-lexicaux" title="Les Champs Lexicaux" />
+      <ChapterLink href="./chapitres/generalites/02-l-ecriture" title="L'Écriture" />
+    </ul>
+  </section>
+</nav>
