@@ -1,3 +1,6 @@
+---
+layout: '../../../layouts/chapter.astro'
+---
 # L'Écriture
 
 Je pense que vous êtes au courant mais c'est toujours bon de le rappeller : les japonais n'écrivent pas avec notre alphabet latin mais avec un système d'écriture qui leur est propre.

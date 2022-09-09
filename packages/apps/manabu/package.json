@@ -20,6 +20,7 @@
   "devDependencies": {
     "@astrojs/tailwind": "^1.0.0",
     "@tailwindcss/typography": "^0.5.4",
+    "astro-icon": "^0.7.3",
     "autoprefixer": "^10.4.8",
     "daisyui": "^2.24.0",
     "postcss": "^8.4.16",

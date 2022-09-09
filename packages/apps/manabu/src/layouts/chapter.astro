@@ -1,11 +1,15 @@
 ---
+import Chapters from "../components/chapters/chapters.astro";
 import Base from "./base.astro"
 ---
 
 <Base>
-  <main>
+  <div class="lg:flex">
     <article class="p-5 prose lg:prose-lg">
       <slot />
     </article>
-  </main>
+    <div class="border-t-2 lg:border-none lg:fixed lg:right-0">
+      <Chapters />
+    </div>
+  </div>
 </Base>

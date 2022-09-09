@@ -1,4 +1,6 @@
 ---
+	import { Icon } from 'astro-icon'
+	
 	const { title } = Astro.props
 ---
 
@@ -10,15 +12,27 @@
 		<title>Manabu - Apprendre le japonais - {title}</title>
 	</head>
 	<body class="max-h-full">
-		<main class="max-h-[calc(100vh-64px)] overflow-auto">
-			<slot />
-		</main>
-		<nav class="navbar bg-primary bg-opacity-40">
-			<div class="flex-1">
-				<a href="/" class="btn btn-ghost normal-case text-xl">
-					Manabu
-				</a>
-			</div>
-		</nav>
+		<div class="p-1 flex justify-end">
+			<h1 class="mr-1 border-b-2 border-primary font-bold text-lg">
+				manabu
+			</h1>
+		</div>
+		<div class="flex flex-col lg:flex-row lg:justify-between">
+			<main class="w-full overflow-auto h-[calc(100vh-38px-64px)] lg:h-[calc(100vh-38px)]">
+				<slot />
+			</main>
+			<nav class="h-16 flex items-center bg-primary bg-opacity-40 lg:hidden">
+				<div class="flex-1">
+					<a href="/" class="btn btn-ghost normal-case text-xl">
+						<Icon class="w-10" name="mdi:home" />
+					</a>
+				</div>
+				<div>
+					<a href="/chapitres" class="btn btn-ghost normal-case text-xl">
+						<Icon class="w-10" name="mdi:bookshelf" />
+					</a>
+				</div>
+			</nav>
+		</div>
 	</body>
 </html>
