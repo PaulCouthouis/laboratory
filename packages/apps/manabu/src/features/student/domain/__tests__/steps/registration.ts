@@ -7,6 +7,7 @@ import { createStudentInteractor } from '../../interactor'
 export const createSteps = () => {
   const repository = createFakeStudentRepository()
   const interactor = createStudentInteractor(repository)
+  let receivedErrors: Error[]
 
   const givenRegisteredStudents = (initialStudents: Student[]) => {
     repository.init(initialStudents)
@@ -17,17 +18,27 @@ export const createSteps = () => {
     nickname: string,
     password: string
   ) => {
-    const student = createStudent(email, nickname, password)
-    await interactor.register(student)
+    try {
+      const student = createStudent(email, nickname, password)
+      await interactor.register(student)
+    } catch (errors) {
+      receivedErrors = errors as Error[]
+    }
   }
 
   const thenNewStudentIsRegistered = (expectedStudents: Student[]) => {
     expect(repository.getAll()).toEqual(expectedStudents)
   }
 
+  const thenCausedValidationErrorsAre = (expectedErrors: string[]) => {
+    const receivedStringErrors = receivedErrors.map((e) => e.toString())
+    expect(receivedStringErrors).toEqual(expectedErrors)
+  }
+
   return {
     givenRegisteredStudents,
     whenNewStudentRegister,
     thenNewStudentIsRegistered,
+    thenCausedValidationErrorsAre,
   }
 }

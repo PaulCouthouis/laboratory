@@ -1,22 +1,14 @@
-import isEmail from 'validator/lib/isEmail'
-import isEmpty from 'validator/lib/isEmpty'
-import isStrongPassword from 'validator/lib/isStrongPassword'
+import { createValidationErrors } from './validator'
 
 export const createStudent = (
   email: string,
   nickname: string,
   password: string
 ) => {
-  if (!isEmail(email)) {
-    throw 'Email is not valid'
-  }
+  const errors = createValidationErrors(email, nickname, password)
 
-  if (isEmpty(nickname)) {
-    throw 'Nickname is not valid'
-  }
-
-  if (!isStrongPassword(password)) {
-    throw 'Password is not valid'
+  if (errors.length > 0) {
+    throw errors
   }
 
   return { email, nickname, password }
