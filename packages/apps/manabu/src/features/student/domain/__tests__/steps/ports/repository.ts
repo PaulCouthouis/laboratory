@@ -1,18 +1,36 @@
 import type { Student } from '../../../entities'
 
 export const createFakeStudentRepository = () => {
-  let students: Student[]
-
-  const getAll = () => students
-
-  const init = (initialStudents: Student[]) => {
-    students = initialStudents
-  }
+  let _current: Student
+  let _students: Student[]
 
   const push = async (student: Student) => {
-    students = [...students, student]
+    _students = [..._students, student]
     await Promise.resolve()
   }
 
-  return { getAll, init, push }
+  const putCurrent = async (updateStudentDTO: Partial<Student>) => {
+    _current = {
+      ..._current,
+      ...updateStudentDTO,
+    }
+    await Promise.resolve()
+  }
+
+  return {
+    push,
+    putCurrent,
+    get current() {
+      return _current
+    },
+    get students() {
+      return _students
+    },
+    set current(newCurrent: Student) {
+      _current = newCurrent
+    },
+    set students(newStudents: Student[]) {
+      _students = newStudents
+    },
+  }
 }

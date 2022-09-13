@@ -10,7 +10,7 @@ export const createSteps = () => {
   let receivedErrors: Error[]
 
   const givenRegisteredStudents = (initialStudents: Student[]) => {
-    repository.init(initialStudents)
+    repository.students = initialStudents
   }
 
   const whenNewStudentRegister = async (
@@ -27,7 +27,7 @@ export const createSteps = () => {
   }
 
   const thenNewStudentIsRegistered = (expectedStudents: Student[]) => {
-    expect(repository.getAll()).toEqual(expectedStudents)
+    expect(repository.students).toEqual(expectedStudents)
   }
 
   const thenCausedValidationErrorsAre = (expectedErrors: string[]) => {

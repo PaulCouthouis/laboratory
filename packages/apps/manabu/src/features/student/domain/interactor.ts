@@ -6,5 +6,9 @@ export const createStudentInteractor = (repository: StudentRepository) => {
     await repository.push(student)
   }
 
-  return { register }
+  const updateProfile = async (updateStudentDTO: Partial<Student>) => {
+    await repository.putCurrent(updateStudentDTO)
+  }
+
+  return { register, updateProfile }
 }

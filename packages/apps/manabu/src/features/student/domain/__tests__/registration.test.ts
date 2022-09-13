@@ -1,4 +1,4 @@
-import { describe, it, test } from 'vitest'
+import { describe, it } from 'vitest'
 import { createSteps } from './steps/registration'
 
 describe('Registration', () => {
