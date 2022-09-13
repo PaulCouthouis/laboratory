@@ -5,7 +5,7 @@ export const createStudent = (
   nickname: string,
   password: string
 ) => {
-  const errors = createValidationErrors(email, nickname, password)
+  const errors = createValidationErrors({ email, nickname, password })
 
   if (errors.length > 0) {
     throw errors

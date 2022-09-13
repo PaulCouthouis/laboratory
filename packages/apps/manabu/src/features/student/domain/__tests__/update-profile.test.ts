@@ -2,7 +2,7 @@ import { describe, it } from 'vitest'
 import { createSteps } from './steps/update-profile'
 
 describe('Update Profile', () => {
-  it('updates password', () => {
+  it('updates password', async () => {
     const steps = createSteps()
 
     steps.givenProfileStudent({
@@ -11,7 +11,7 @@ describe('Update Profile', () => {
       password: '(hedwig2000)',
     })
 
-    steps.whenStudentUpdateProfile({
+    await steps.whenStudentUpdateProfile({
       password: '[HedWiG3642]',
     })
 
@@ -22,7 +22,7 @@ describe('Update Profile', () => {
     })
   })
 
-  it('updates nickname and email', () => {
+  it('updates nickname and email', async () => {
     const steps = createSteps()
 
     steps.givenProfileStudent({
@@ -31,7 +31,7 @@ describe('Update Profile', () => {
       password: '(hedwig2000)',
     })
 
-    steps.whenStudentUpdateProfile({
+    await steps.whenStudentUpdateProfile({
       email: 'hp@minister.com',
       nickname: 'Mr Potter',
     })
@@ -43,5 +43,21 @@ describe('Update Profile', () => {
     })
   })
 
-  it('fails with validation error', () => {})
+  it('fails password update with validation error', async () => {
+    const steps = createSteps()
+
+    steps.givenProfileStudent({
+      email: 'harry.potter@hogwarts.com',
+      nickname: 'Harry',
+      password: '(hedwig2000)',
+    })
+
+    await steps.whenStudentUpdateProfile({
+      password: 'badpassword',
+    })
+
+    steps.thenCausedValidationErrorsAre([
+      'PasswordFormatError: Password is not valid',
+    ])
+  })
 })

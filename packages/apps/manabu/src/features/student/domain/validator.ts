@@ -1,20 +1,10 @@
 import isEmail from 'validator/lib/isEmail'
 import isEmpty from 'validator/lib/isEmpty'
 import isStrongPassword from 'validator/lib/isStrongPassword'
+import type { Student } from './entities'
 
-export const createValidationErrors = (
-  email: string,
-  nickname: string,
-  password: string
-) => {
-  const studentValidationSteps = [
-    { createError: createEmailError, isValid: isEmail(email) },
-    { createError: createNicknameError, isValid: !isEmpty(nickname) },
-    {
-      createError: createPasswordFormatError,
-      isValid: isStrongPassword(password),
-    },
-  ]
+export const createValidationErrors = (partialStudent: Partial<Student>) => {
+  const studentValidationSteps = createValidationSteps(partialStudent)
 
   const pushErrorIfInvalid = (
     errorAccumulator: Error[],
@@ -24,6 +14,34 @@ export const createValidationErrors = (
   }
 
   return studentValidationSteps.reduce<Error[]>(pushErrorIfInvalid, [])
+}
+
+const createValidationSteps = (partialStudent: Partial<Student>) => {
+  const { email, nickname, password } = partialStudent
+  let steps = new Array<ValidationStep>()
+
+  if (email !== undefined) {
+    steps = [{ createError: createEmailError, isValid: isEmail(email) }]
+  }
+
+  if (nickname !== undefined) {
+    steps = [
+      ...steps,
+      { createError: createNicknameError, isValid: !isEmpty(nickname) },
+    ]
+  }
+
+  if (password !== undefined) {
+    steps = [
+      ...steps,
+      {
+        createError: createPasswordFormatError,
+        isValid: isStrongPassword(password),
+      },
+    ]
+  }
+
+  return steps
 }
 
 const errorFactory = (name: string, message: string) => {

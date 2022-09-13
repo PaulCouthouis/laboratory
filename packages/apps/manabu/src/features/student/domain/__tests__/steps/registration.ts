@@ -7,7 +7,7 @@ import { createStudentInteractor } from '../../interactor'
 export const createSteps = () => {
   const repository = createFakeStudentRepository()
   const interactor = createStudentInteractor(repository)
-  let receivedErrors: Error[]
+  let receivedErrors = new Array<Error>()
 
   const givenRegisteredStudents = (initialStudents: Student[]) => {
     repository.students = initialStudents
