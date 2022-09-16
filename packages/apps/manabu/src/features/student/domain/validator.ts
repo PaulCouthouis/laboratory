@@ -48,13 +48,14 @@ const errorFactory = (name: string, message: string) => {
   return () => {
     const error = Error(message)
     error.name = name
+
     return error
   }
 }
 
 const createEmailError = errorFactory('EmailFormatError', 'Email is not valid')
 const createNicknameError = errorFactory(
-  'RequiredError',
+  'NicknameRequiredError',
   'Nickname is required'
 )
 const createPasswordFormatError = errorFactory(

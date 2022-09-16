@@ -52,7 +52,7 @@ describe('Registration', () => {
 
     steps.thenCausedValidationErrorsAre([
       'EmailFormatError: Email is not valid',
-      'RequiredError: Nickname is required',
+      'NicknameRequiredError: Nickname is required',
       'PasswordFormatError: Password is not valid',
     ])
   })
