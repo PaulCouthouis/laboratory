@@ -14,7 +14,7 @@ test('Update email and nickname in supabase', async () => {
     nickname: 'Mr Potter',
   })
 
-  await interactor.updateProfile(updateStudentDTO)
+  await interactor.update(updateStudentDTO)
 
   expect(update).toBeCalledTimes(1)
   expect(update).toBeCalledWith({
@@ -33,7 +33,7 @@ test('Update password in supabase', async () => {
     password: '[HedWiG3642]',
   })
 
-  await interactor.updateProfile(updateStudentDTO)
+  await interactor.update(updateStudentDTO)
 
   expect(update).toBeCalledTimes(1)
   expect(update).toBeCalledWith({

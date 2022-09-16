@@ -6,7 +6,7 @@ type Auth = Pick<SupabaseAuthClient, 'signUp' | 'update'>
 type UpdatePayload = Pick<UserAttributes, 'email' | 'password' | 'data'>
 
 export const createStudentRepositoryInSupabase = (auth: Auth) => {
-  const push = async ({ email, password, nickname }: Student) => {
+  const signUp = async ({ email, password, nickname }: Student) => {
     const credentials = { email, password }
     const data = { nickname }
 
@@ -15,12 +15,12 @@ export const createStudentRepositoryInSupabase = (auth: Auth) => {
     })
   }
 
-  const putCurrent = async (updateStudentDTO: Partial<Student>) => {
+  const update = async (updateStudentDTO: Partial<Student>) => {
     const payload = createUpdatePayload(updateStudentDTO)
     await auth.update(payload)
   }
 
-  return { push, putCurrent }
+  return { signUp, update }
 }
 
 const createUpdatePayload = (updateStudentDTO: Partial<Student>) => {

@@ -4,12 +4,12 @@ export const createFakeStudentRepository = () => {
   let _current: Student
   let _students: Student[]
 
-  const push = async (student: Student) => {
+  const signUp = async (student: Student) => {
     _students = [..._students, student]
     await Promise.resolve()
   }
 
-  const putCurrent = async (updateStudentDTO: Partial<Student>) => {
+  const update = async (updateStudentDTO: Partial<Student>) => {
     _current = {
       ..._current,
       ...updateStudentDTO,
@@ -18,8 +18,8 @@ export const createFakeStudentRepository = () => {
   }
 
   return {
-    push,
-    putCurrent,
+    signUp,
+    update,
     get current() {
       return _current
     },

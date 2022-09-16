@@ -3,12 +3,12 @@ import type { StudentRepository } from './ports'
 
 export const createStudentInteractor = (repository: StudentRepository) => {
   const register = async (student: Student) => {
-    await repository.push(student)
+    await repository.signUp(student)
   }
 
-  const updateProfile = async (updateStudentDTO: Partial<Student>) => {
-    await repository.putCurrent(updateStudentDTO)
+  const update = async (updateStudentDTO: Partial<Student>) => {
+    await repository.update(updateStudentDTO)
   }
 
-  return { register, updateProfile }
+  return { register, update }
 }

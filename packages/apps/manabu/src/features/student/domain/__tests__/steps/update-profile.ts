@@ -16,7 +16,7 @@ export const createSteps = () => {
   const whenStudentUpdateProfile = async (partialStudent: Partial<Student>) => {
     try {
       const updateStudentDTO = createUpdateStudentDTO(partialStudent)
-      await interactor.updateProfile(updateStudentDTO)
+      await interactor.update(updateStudentDTO)
     } catch (errors) {
       receivedErrors = errors as Error[]
     }
