@@ -35,6 +35,36 @@ describe('Register Helper', () => {
 
     steps.thenFormValidityIs(false)
   })
+
+  it('alerts the password invalidity', () => {
+    const steps = createSteps()
+
+    steps.givenValidRegisterForm({
+      email: 'harry.potter@hogwarts.com',
+      nickname: 'Harry',
+      password: '[Hedwig2000]',
+    })
+
+    steps.whenInputInvalidPassword('Hedwig2000')
+
+    steps.thenPasswordValidityIs(false)
+  })
+
+  it('alerts the nickname and email invalidity', () => {
+    const steps = createSteps()
+
+    steps.givenValidRegisterForm({
+      email: 'harry.potter@hogwarts.com',
+      nickname: 'Harry',
+      password: '[Hedwig2000]',
+    })
+
+    steps.whenInputInvalidNickname('')
+    steps.whenInputInvalidEmail('harry.potter@hogwarts')
+
+    steps.thenNicknameValidityIs(false)
+    steps.thenEmailValidityIs(false)
+  })
 })
 
 const createSteps = () => {
@@ -53,6 +83,14 @@ const createSteps = () => {
     await helper.submit()
   }
 
+  const whenInputInvalidEmail = (email: string) => {
+    helper.input('email', email)
+  }
+
+  const whenInputInvalidNickname = (nickname: string) => {
+    helper.input('nickname', nickname)
+  }
+
   const whenInputInvalidPassword = (password: string) => {
     helper.input('password', password)
   }
@@ -63,14 +101,31 @@ const createSteps = () => {
   }
 
   const thenFormValidityIs = (expectedValidity: boolean) => {
-    expect(helper.validity.get()).toBe(expectedValidity)
+    expect(helper.isValidForm.get()).toBe(expectedValidity)
+  }
+
+  const thenPasswordValidityIs = (expectedValidity: boolean) => {
+    expect(helper.isValidPassword.get()).toBe(expectedValidity)
+  }
+
+  const thenNicknameValidityIs = (expectedValidity: boolean) => {
+    expect(helper.isValidNickname.get()).toBe(expectedValidity)
+  }
+
+  const thenEmailValidityIs = (expectedValidity: boolean) => {
+    expect(helper.isValidEmail.get()).toBe(expectedValidity)
   }
 
   return {
     givenValidRegisterForm,
     whenStudentSubmit,
+    whenInputInvalidEmail,
+    whenInputInvalidNickname,
     whenInputInvalidPassword,
     thenRegisteredStudentIs,
     thenFormValidityIs,
+    thenPasswordValidityIs,
+    thenNicknameValidityIs,
+    thenEmailValidityIs,
   }
 }
