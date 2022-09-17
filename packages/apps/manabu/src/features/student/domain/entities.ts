@@ -11,7 +11,7 @@ export const createStudent = (
     throw errors
   }
 
-  return { email, nickname, password }
+  return Object.freeze({ email, nickname, password })
 }
 
 export type Student = ReturnType<typeof createStudent>

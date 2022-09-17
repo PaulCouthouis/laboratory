@@ -1,85 +1,76 @@
-import { describe, expect, it } from 'vitest'
-import {
-  createStudent,
-  Student,
-} from '../../../../features/student/domain/entities'
+import type { Student } from '../../../../features/student/domain/entities'
+
+import { describe, expect, it, vitest } from 'vitest'
+import { createRegisterHelper } from '../helper'
 
 describe('Register Helper', () => {
-  it('validates the form', () => {
+  it('submits a valid new student', async () => {
     const steps = createSteps()
 
-    steps.givenEmptyRegisterForm()
+    steps.givenValidRegisterForm({
+      email: 'harry.potter@hogwarts.com',
+      nickname: 'Harry',
+      password: '[Hedwig2000]',
+    })
 
-    steps.whenInputNickname('Harry')
-    steps.whenInputEmail('harry.potter@hogwarts.com')
-    steps.whenInputPassword('[Hedwig2000]')
+    await steps.whenStudentSubmit()
 
-    steps.thenFormValidityIs(true)
-    steps.thenInputDataAre({
+    steps.thenRegisteredStudentIs({
       email: 'harry.potter@hogwarts.com',
       nickname: 'Harry',
       password: '[Hedwig2000]',
     })
   })
 
-  it('invalidates the nickname', () => {
+  it('alerts the form invalidity', () => {
     const steps = createSteps()
 
-    steps.givenEmptyRegisterForm()
+    steps.givenValidRegisterForm({
+      email: 'harry.potter@hogwarts.com',
+      nickname: 'Harry',
+      password: '[Hedwig2000]',
+    })
 
-    steps.whenInputNickname('')
-    steps.whenInputEmail('harry.potter@hogwarts.com')
-    steps.whenInputPassword('[Hedwig2000]')
+    steps.whenInputInvalidPassword('Hedwig2000')
 
     steps.thenFormValidityIs(false)
   })
 })
 
 const createSteps = () => {
-  const receivedInputData = new Map<keyof Student, string>()
+  const register = vitest.fn()
+  const helper = createRegisterHelper(register)
 
-  const givenEmptyRegisterForm = () => {
-    receivedInputData.clear()
+  const givenValidRegisterForm = (registerForm: Student) => {
+    const { email, nickname, password } = registerForm
+
+    helper.input('email', email)
+    helper.input('nickname', nickname)
+    helper.input('password', password)
   }
 
-  const whenInputNickname = (entryNickname: string) => {
-    receivedInputData.set('nickname', entryNickname)
+  const whenStudentSubmit = async () => {
+    await helper.submit()
   }
 
-  const whenInputEmail = (entryEmail: string) => {
-    receivedInputData.set('email', entryEmail)
+  const whenInputInvalidPassword = (password: string) => {
+    helper.input('password', password)
   }
 
-  const whenInputPassword = (entryPassword: string) => {
-    receivedInputData.set('password', entryPassword)
+  const thenRegisteredStudentIs = (expectedStudent: Student) => {
+    expect(register).toBeCalledTimes(1)
+    expect(register).toBeCalledWith(expectedStudent)
   }
 
   const thenFormValidityIs = (expectedValidity: boolean) => {
-    let receivedValidity: boolean
-    try {
-      createStudent(
-        receivedInputData.get('email') || '',
-        receivedInputData.get('nickname') || '',
-        receivedInputData.get('password') || ''
-      )
-      receivedValidity = true
-    } catch {
-      receivedValidity = false
-    }
-
-    expect(receivedValidity).toBe(expectedValidity)
-  }
-
-  const thenInputDataAre = (expectedInputData: Student) => {
-    expect(Object.fromEntries(receivedInputData)).toEqual(expectedInputData)
+    expect(helper.validity.get()).toBe(expectedValidity)
   }
 
   return {
-    givenEmptyRegisterForm,
-    whenInputNickname,
-    whenInputEmail,
-    whenInputPassword,
+    givenValidRegisterForm,
+    whenStudentSubmit,
+    whenInputInvalidPassword,
+    thenRegisteredStudentIs,
     thenFormValidityIs,
-    thenInputDataAre,
   }
 }

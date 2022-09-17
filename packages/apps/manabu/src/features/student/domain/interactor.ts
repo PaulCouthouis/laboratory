@@ -12,3 +12,7 @@ export const createStudentInteractor = (repository: StudentRepository) => {
 
   return { register, update }
 }
+
+type StudentInteractor = ReturnType<typeof createStudentInteractor>
+
+export type Register = StudentInteractor['register']
