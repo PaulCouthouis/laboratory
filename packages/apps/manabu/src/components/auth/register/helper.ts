@@ -9,6 +9,8 @@ import {
 export const createRegisterHelper = (register: Register) => {
   const formState = new Map<RegisterFormKey, string>()
 
+  const loading = atom(false)
+
   const student = atom<Student>({
     email: '',
     nickname: '',
@@ -65,7 +67,9 @@ export const createRegisterHelper = (register: Register) => {
 
   const submit = async () => {
     if (validity.get()) {
+      loading.set(true)
       await register(student.get())
+      loading.set(false)
     }
   }
 
@@ -79,6 +83,7 @@ export const createRegisterHelper = (register: Register) => {
 
   return {
     input,
+    loading,
     isValidForm,
     isValidEmail,
     isValidNickname,
