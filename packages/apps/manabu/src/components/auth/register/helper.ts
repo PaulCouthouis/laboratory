@@ -87,7 +87,8 @@ export const createRegisterHelper = (register: Register) => {
   }
 }
 
-type RegisterFormKey = keyof Student
+export type RegisterFormKey = keyof Student
+
 type Validities = {
   [k in RegisterFormKey]: boolean
 }

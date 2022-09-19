@@ -4,8 +4,8 @@ import { createStudentInteractor } from './domain/interactor'
 
 export const createStudentController = () => {
   const supabase = createClient(
-    process.env.SUPABASE_URL as string,
-    process.env.SUPABASE_KEY as string
+    import.meta.env.PUBLIC_SUPABASE_URL,
+    import.meta.env.PUBLIC_SUPABASE_KEY
   )
 
   const repository = createStudentRepositoryInSupabase(supabase.auth)

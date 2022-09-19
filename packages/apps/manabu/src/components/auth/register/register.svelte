@@ -1,6 +1,26 @@
-<script lang="ts"></script>
+<script lang="ts">
+  import { createStudentController } from "../../../features/student/controller"
+  import { createRegisterHelper, RegisterFormKey } from "./helper"
 
-<form>
+  const { register } = createStudentController()
+  const { 
+    isValidEmail, 
+    isValidForm, 
+    isValidNickname, 
+    isValidPassword, 
+    input,
+    submit
+  } = createRegisterHelper(register)
+
+  const inputByKey = (key: RegisterFormKey) => {
+    return (e: { currentTarget: EventTarget & HTMLInputElement; }) => {
+      input(key, e.currentTarget.value)
+    }
+  }
+  
+</script>
+
+<form on:submit|preventDefault={submit}>
   <div class="form-control">
     <label class="label" for="nickname">
       <span class="label-text">Pseudo / Surnom *</span>
@@ -13,6 +33,9 @@
       id="nickname" 
       placeholder="Pikachu" 
       type="text"
+      class:input-success={$isValidNickname}
+      class:input-warning={!$isValidNickname}
+      on:input={inputByKey('nickname')}
     />
   </div>
   <div class="form-control">
@@ -27,6 +50,9 @@
       id="email" 
       placeholder="pika@pi.ka" 
       type="email"
+      class:input-success={$isValidEmail}
+      class:input-warning={!$isValidEmail}
+      on:input={inputByKey('email')}
     />
   </div>
   <div class="form-control">
@@ -40,9 +66,12 @@
       class="input" 
       id="password"
       type="password"
+      class:input-success={$isValidPassword}
+      class:input-warning={!$isValidPassword}
+      on:input={inputByKey('password')}
     />
   </div>
   <div class="form-control mt-6">
-    <button class="btn btn-primary" type="submit">S'inscrire</button>
+    <button class="btn btn-primary" type="submit" disabled={!$isValidForm}>S'inscrire</button>
   </div>
 </form>
