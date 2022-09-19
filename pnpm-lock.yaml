@@ -12,6 +12,7 @@ importers:
     specifiers:
       '@astrojs/svelte': ^1.0.0
       '@astrojs/tailwind': ^1.0.0
+      '@fortawesome/fontawesome-free': ^6.2.0
       '@supabase/supabase-js': ^1.35.6
       '@tailwindcss/typography': ^0.5.4
       '@types/validator': ^13.7.6
@@ -37,6 +38,7 @@ importers:
     devDependencies:
       '@astrojs/svelte': 1.0.0_snqnsttluzgwj6kbxzouwakc4q
       '@astrojs/tailwind': 1.0.0
+      '@fortawesome/fontawesome-free': 6.2.0
       '@supabase/supabase-js': 1.35.6
       '@tailwindcss/typography': 0.5.4_tailwindcss@3.1.8
       '@types/validator': 13.7.6
@@ -645,6 +647,12 @@ packages:
 
   /@fontsource/poppins/4.5.9:
     resolution: {integrity: sha512-PMHOYeUpdmdN1xk13aGvhvZZrv9Zt3ubx2PmDvnROHgefm0ixpFd3ogAi0fY/aWtlkUdvgt0mSkGGbtt5i4MsQ==}
+    dev: true
+
+  /@fortawesome/fontawesome-free/6.2.0:
+    resolution: {integrity: sha512-CNR7qRIfCwWHNN7FnKUniva94edPdyQzil/zCwk3v6k4R6rR2Fr8i4s3PM7n/lyfPA6Zfko9z5WDzFxG9SW1uQ==}
+    engines: {node: '>=6'}
+    requiresBuild: true
     dev: true
 
   /@humanwhocodes/config-array/0.10.4:

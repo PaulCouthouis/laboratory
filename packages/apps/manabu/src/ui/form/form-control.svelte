@@ -6,9 +6,9 @@
   export let minlength: number
   export let maxlength: number
   export let placeholder = ''
-  export let type: 'text' | 'email' | 'password'
+  export let type: 'text' | 'email'
 
-  const dispatch = createEventDispatcher<{input: string}>(); 
+  const dispatch = createEventDispatcher<{input: string}>();
 
   const dispatchInput = (e: { currentTarget: EventTarget & HTMLInputElement; }) => {
     dispatch('input', e.currentTarget.value)

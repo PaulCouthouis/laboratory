@@ -1,6 +1,7 @@
 <script lang="ts">
   import { register } from "../../../features/student/controller"
   import FormControl from "../../../ui/form/form-control.svelte"
+  import PasswordFormControl from "../../../ui/form/password-form-control.svelte"
   import SubmitButton from "../../../ui/form/submit-button.svelte"
   import { createRegisterHelper, RegisterFormKey } from "./helper"
 
@@ -47,16 +48,12 @@
     Email *
   </FormControl>
 
-  <FormControl
-    id="password" 
-    type="password"
-    minlength={8}
-    maxlength={255} 
+  <PasswordFormControl
     isValid={$isValidPassword}
     on:input={inputByKey('password')}
   >
     Mot de passe *
-  </FormControl>
+  </PasswordFormControl>
 
   <SubmitButton 
     disabled={!$isValidForm} 
