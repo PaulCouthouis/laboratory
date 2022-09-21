@@ -8,5 +8,5 @@ export const createUpdateStudentDTO = (partialStudent: Partial<Student>) => {
     throw errors
   }
 
-  return partialStudent
+  return Object.freeze(partialStudent)
 }
