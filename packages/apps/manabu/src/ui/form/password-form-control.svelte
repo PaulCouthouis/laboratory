@@ -5,6 +5,7 @@
 	import '@fortawesome/fontawesome-free/css/solid.css'
 
   export let isValid: boolean
+
   let isVisiblePassword = false
   let type = 'password'
 

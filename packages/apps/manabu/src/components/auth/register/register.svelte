@@ -4,6 +4,9 @@
   import PasswordFormControl from "../../../ui/form/password-form-control.svelte"
   import SubmitButton from "../../../ui/form/submit-button.svelte"
   import { createRegisterHelper, RegisterFormKey } from "./helper"
+  import PasswordRules from "./password-rules/password-rules.svelte"
+
+  let password = ''
 
   const { 
     isValidEmail, 
@@ -18,6 +21,10 @@
   const inputByKey = (key: RegisterFormKey) => {
     return ({ detail }: CustomEvent<string>) => {
       input(key, detail)
+
+      if(key === 'password') {
+        password = detail
+      }
     }
   }
   
@@ -54,6 +61,7 @@
   >
     Mot de passe *
   </PasswordFormControl>
+  <PasswordRules {password} />
 
   <SubmitButton 
     disabled={!$isValidForm} 
