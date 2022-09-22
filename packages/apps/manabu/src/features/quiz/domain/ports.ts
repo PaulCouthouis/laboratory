@@ -1,4 +1,4 @@
-import type { Question } from './values'
+import type { Question, Result } from './values'
 
 export interface QuizRepository {
   getCurrentQuestion(): Question
@@ -13,4 +13,8 @@ export interface QuizPresenter {
 export type QuizState = {
   question: Question
   isDone: boolean
+}
+
+export interface ResultPresenter {
+  set(result: Result): void
 }

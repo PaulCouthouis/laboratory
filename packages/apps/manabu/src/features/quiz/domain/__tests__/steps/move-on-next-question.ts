@@ -1,9 +1,8 @@
 import type { Question } from '../../values'
 
 import { expect } from 'vitest'
-import { createQuizInteractor } from '../../interactor'
-import { createQuizPresenter } from './ports/presenter'
-import { createQuizRepository } from './ports/repository'
+import { createQuizInteractor } from '../../interactors'
+import type { QuizState } from '../../ports'
 
 export const createSteps = () => {
   const repository = createQuizRepository()
@@ -32,4 +31,37 @@ export const createSteps = () => {
     thenCurrentQuestionBecome,
     thenQuizzIsNotDone,
   }
+}
+
+const createQuizRepository = () => {
+  let iteratorQuestions: Iterator<Question, Question>
+  let currentQuestionState: IteratorResult<Question, Question>
+
+  const getCurrentQuestion = () => {
+    return currentQuestionState.value
+  }
+
+  const getIsDone = () => {
+    return currentQuestionState.done || false
+  }
+
+  const initQuestions = (questions: Set<Question>) => {
+    iteratorQuestions = questions.values()
+  }
+
+  const iterateOnNextQuestion = async () => {
+    currentQuestionState = iteratorQuestions.next()
+    return Promise.resolve()
+  }
+
+  return { initQuestions, iterateOnNextQuestion, getCurrentQuestion, getIsDone }
+}
+
+const createQuizPresenter = () => {
+  let state: QuizState
+  const get = () => state
+  const set = (newState: QuizState) => {
+    state = newState
+  }
+  return { get, set }
 }

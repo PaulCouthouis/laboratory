@@ -1,17 +1,21 @@
-import type { QuizRepository, QuizPresenter, QuizState } from '../domain/ports'
-import type { Question } from '../domain/values'
+import type { QuizState } from '../../domain/ports'
+import type { Question } from '../../domain/values'
 
-import { atom, WritableAtom } from 'nanostores'
-import { createQuizInteractor } from '../domain/interactor'
+import { atom, computed, WritableAtom } from 'nanostores'
+import { createQuizInteractor } from '../../domain/interactors'
 
-export const createQuizStore = (questions: Set<Question>) => {
+export const createQuizSlice = (questions: Set<Question>) => {
   const quizAtom = atom<QuizState>(INITIAL_STATE)
+  const state = {
+    solution: computed(quizAtom, ({ question }) => question.solution),
+    title: computed(quizAtom, ({ question }) => question.title),
+  }
 
   const repository = createQuizRepository(questions)
   const presenter = createQuizPresenter(quizAtom)
   const interactor = createQuizInteractor(repository, presenter)
 
-  return { state: quizAtom, actions: { ...interactor } }
+  return { state, actions: { ...interactor } }
 }
 
 const createQuizRepository = (questions: Set<Question>) => {
