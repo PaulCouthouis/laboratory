@@ -8,31 +8,59 @@ import StoryDate from "../components/StoryDate/StoryDate.astro"
     <article class="p-4 h-full flex flex-col justify-center items-center text-neutral text-2xl">
       <h2 class="text-4xl font-['Pacifico']">Notre Histoire</h2>
       <div class="text-base max-w-5xl my-4">
-        <div class="hidden absolute h-full border left-1/2 -z-10 lg:block" role="presentation" aria-hidden="true"></div>
+        <div class="hidden absolute h-[2500px] border left-1/2 -z-10 lg:block" role="presentation" aria-hidden="true"></div>
         <StoryDate>
-          <img src="./images/place.jpeg" alt="Premier café" slot='img'>
+          <img src="./images/first.jpeg" alt="Kyoto" slot='img'>
           <time slot='time'>23.12<br>2019</time>
           <span slot='title'>Notre premier café</span>
           <span slot='content'>  
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. 
-            Reiciendis quos provident incidunt nostrum molestias, 
-            iste facilis repudiandae porro maiores culpa expedita, 
-            quam impedit deserunt eaque quo atque minima dolore soluta.
+            Il fut en plein coeur de la ville de Kyoto, capitale de la région natale de Moe.
           </span>
         </StoryDate>
         <StoryDate reverse>
-          <img src="./images/place.jpeg" alt="Demande en mariage" slot='img'>
+          <img src="./images/hanami.jpeg" alt="Selfie sous les sakura" slot='img'>
+          <time slot='time'>05.04<br>2020</time>
+          <span slot='title'>Notre premier hanami</span>
+          <span slot='content'>  
+            Le "hanami" est la coutume traditionnelle japonaise d'apprécier la beauté des fleurs, ici les fleurs de sakura.
+          </span>
+        </StoryDate>
+        <StoryDate>
+          <img src="./images/engagement.jpeg" alt="Demande en mariage" slot='img'>
           <time slot='time'>10.08<br>2021</time>
           <span slot='title'>La demande en mariage</span>
           <span slot='content'>  
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. 
-            Reiciendis quos provident incidunt nostrum molestias, 
-            iste facilis repudiandae porro maiores culpa expedita, 
-            quam impedit deserunt eaque quo atque minima dolore soluta.
+            Effectuée sur la plage de Shirahama, accompagné par le son des vagues et d'un temps magnifique.
+          </span>
+        </StoryDate>
+        <StoryDate reverse>
+          <img src="./images/france.jpeg" alt="Château de Versaille" slot='img'>
+          <time slot='time'>23.12<br>2021</time>
+          <span slot='title'>Première fois en France</span>
+          <span slot='content'>  
+            Après quasiment 2 ans de vie de couple, on peut enfin aller en France. 
+            Moe rencontre la famille de Paul et visite divers monuments (Tour Eiffel, Mont St-Michel, Versaille...) pour la première fois.
+          </span>
+        </StoryDate>
+        <StoryDate>
+          <img src="./images/first.jpeg" alt="Kyoto" slot='img'>
+          <time slot='time'>01.02<br>2022</time>
+          <span slot='title'>Le mariage civil</span>
+          <span slot='content'>  
+            Au Japon le mariage civil se fait plusieurs mois avant la cérémonie. Chaque mairie propose sa propre décoration des papiers officielles.
+            Nous avons fait notre mariage dans la ville d'enfance de Moe, voisine de Kyoto, Nagaokakyô. 
+          </span>
+        </StoryDate>
+        <StoryDate reverse>
+          <img src="./images/first.jpeg" alt="Kyoto" slot='img'>
+          <time slot='time'>29.10<br>2022</time>
+          <span slot='title'>Le mariage traditionnel japonais</span>
+          <span slot='content'>  
+            Nous avons vécu un mariage traditionnel japonais en petite comité. Cérémonie au temple de Xxx, suivi d'un excellent repas.  
           </span>
         </StoryDate>
       </div>
-      <p class="relative p-8 top-8 uppercase bg-base-100">Ça vous dit de venir pour la suite ?</p>
+      <p class="relative p-8 top-8 bg-base-100 font-['Pacifico']">Et finalement ...</p>
     </article>
   </div>
 </section>
