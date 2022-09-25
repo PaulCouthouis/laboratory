@@ -4,15 +4,15 @@ import '@fontsource/poppins'
 const members = ['Loid Forger', 'Anya Forger', 'Yor Forger']
 ---
 
-<section class="h-min-screen text-lg font-sans-serif">
-  <div class="h-full flex justify-center items-center">
+<section class="h-min-screen text-lg font-sans-serif bg-cover bg-center bg-[url('/images/reply-vertical.jpeg')] landscape:bg-[url('/images/reply-horizontal.jpeg')]">
+  <div class="h-full flex justify-center items-center bg-black/40 text-white">
     <article class="m-2 font-['Poppins'] text-sm md:text-lg">
       <header>
         <h2 class="text-lg text-center pb-4 md:text-2xl">
           Chère famille Forger,
         </h2>
-        <p class="text-gray-500">
-          Nous serions heureux de votre présence à notre cérémonie de mariage. <br
+        <p class="text-gray-300">
+          Nous serions heureux de vous accueillir à notre cérémonie de mariage. <br
           />
           Pourriez-vous nous donner une réponse avant le <time>31 Mai 2023</time
           > ?
@@ -35,7 +35,7 @@ const members = ['Loid Forger', 'Anya Forger', 'Yor Forger']
                 </label>
               </div>
               <input
-                class="border p-2 w-full"
+                class="border p-2 w-full text-gray-700"
                 placeholder="Régime alimentaire* (facultatif)"
                 type="text"
               />
@@ -43,16 +43,17 @@ const members = ['Loid Forger', 'Anya Forger', 'Yor Forger']
           ))
         }
         <textarea
-          class="border h-20 p-2 w-full"
-          placeholder="Message (facultatif)"></textarea>
+          class="border h-28 p-2 w-full text-gray-700"
+          placeholder="Message (facultatif)"
+        />
         <div class="text-right mt-4">
           <button
-            class="text-right bg-red-700 rounded p-4 text-gray-200"
-            type="submit">Envoyer notre coupon-réponse</button
+            class="text-right bg-primary rounded p-4"
+            type="submit">Envoyer le coupon-réponse</button
           >
         </div>
       </form>
-      <p class="text-xs text-gray-400 mt-2 text-right">
+      <p class="text-xs text-gray-300 mt-2 text-right">
         * alergie, végétarien, raison religieuse, etc
       </p>
     </article>
