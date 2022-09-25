@@ -15,7 +15,10 @@ export const createResultSlice = (currentSolution: ReadableAtom<string>) => {
     examiner.solution = newSolution
   })
 
-  return { state: resultAtom, actions: { ...interactor } }
+  return {
+    state: resultAtom as ReadableAtom<Result>,
+    actions: { ...interactor },
+  }
 }
 
 const createExaminerPresenter = (resultAtom: WritableAtom<Result>) => {
