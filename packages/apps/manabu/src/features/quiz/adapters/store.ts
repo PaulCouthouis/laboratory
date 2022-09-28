@@ -8,7 +8,7 @@ export const createQuizStore = (questions: Set<Question>) => {
 
   return {
     state: {
-      quiz: quizSlice.state,
+      title: quizSlice.state.title,
       result: resultSlice.state,
     },
     actions: {

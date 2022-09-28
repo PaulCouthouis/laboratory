@@ -14,6 +14,7 @@
     <button class="btn btn-primary" on:click={start}>Commencer le questionnaire</button>
   </div>
 {:else}
+  <slot />
   <button class="btn btn-ghost" on:click={stop}>
     <i class="fa-solid fa-circle-arrow-left mr-2" />
     Revenir à la leçon

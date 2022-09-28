@@ -7,7 +7,7 @@ describe('Quizz feature with nanostores', () => {
 
     await actions.moveOnNextQuestion()
 
-    expect(state.quiz.title.get()).toBe('Title')
+    expect(state.title.get()).toBe('Title')
   })
 
   it('retrieves current result', async () => {
