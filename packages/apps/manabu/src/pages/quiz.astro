@@ -1,0 +1,13 @@
+---
+import Quiz from '../components/quiz/quiz.svelte'
+import App from '../layouts/app.astro';
+import Base from '../layouts/base.astro';
+---
+
+<Base>
+  <App>
+    <div class="w-full flex justify-center">
+      <Quiz client:idle />
+    </div>
+  </App>
+</Base>
