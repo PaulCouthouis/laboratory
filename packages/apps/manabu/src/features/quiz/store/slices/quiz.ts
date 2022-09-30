@@ -7,6 +7,7 @@ import { createQuizInteractor } from '../../domain/interactors'
 export const createQuizSlice = (questions: Set<Question>) => {
   const quizAtom = atom<QuizState>(INITIAL_STATE)
   const state = {
+    choices: computed(quizAtom, ({ question }) => question.choices),
     solution: computed(quizAtom, ({ question }) => question.solution),
     title: computed(quizAtom, ({ question }) => question.title),
   }
@@ -48,6 +49,7 @@ const createQuizPresenter = (quizState: WritableAtom<QuizState>) => {
 
 const INITIAL_STATE = {
   question: {
+    choices: [],
     title: '',
     solution: '',
   },

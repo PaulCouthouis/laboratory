@@ -14,7 +14,7 @@ export const createQuizStore = (
 
   const {
     actions: { moveOnNextQuestion },
-    state: { solution, title },
+    state: { choices, solution, title },
   } = createQuizSlice(questions)
 
   const {
@@ -36,6 +36,7 @@ export const createQuizStore = (
 
   return {
     state: {
+      choices,
       title,
       isStarted,
     },

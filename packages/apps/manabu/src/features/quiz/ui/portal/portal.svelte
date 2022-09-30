@@ -1,6 +1,7 @@
 <script lang="ts">
+  import type { QuizStore } from '../../store'
+  
   import { getContext } from 'svelte'
-  import type { QuizStore } from '../../../features/quiz/adapters/store'
 
   const { 
     actions: { start, stop },

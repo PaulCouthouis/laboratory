@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { createQuizStore } from '../store'
+import { createQuizStore } from '..'
 
 describe('Quizz feature with nanostores', () => {
   it('retrieves next question after right answer', async () => {
@@ -8,6 +8,7 @@ describe('Quizz feature with nanostores', () => {
     await actions.answer('solution 1')
 
     expect(state.title.get()).toBe('Title 2')
+    expect(state.choices.get()).toEqual(['A', 'B', 'C'])
   })
 
   it('starts the quiz', () => {
@@ -37,10 +38,12 @@ const setup = (
   return createQuizStore(
     new Set([
       {
+        choices: ['1', '2', '3'],
         title: 'Title 1',
         solution: 'solution 1',
       },
       {
+        choices: ['A', 'B', 'C'],
         title: 'Title 2',
         solution: 'solution 2',
       },

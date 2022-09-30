@@ -8,6 +8,7 @@
     "dev": "astro dev",
     "preview": "astro preview",
     "start": "astro dev",
+    "check:t": "tsc",
     "test:w": "vitest"
   },
   "dependencies": {
