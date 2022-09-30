@@ -1,5 +1,5 @@
-import type { QuizPresenter, QuizRepository, ResultPresenter } from './ports'
-import type { Examiner } from './services'
+import type { QuizPresenter, ResultPresenter } from './ports'
+import type { Examiner, Quiz } from './services'
 
 export const createAnswerInteractor = (
   examiner: Examiner,
@@ -13,17 +13,29 @@ export const createAnswerInteractor = (
   return { answer }
 }
 
-export const createQuizInteractor = (
-  repository: QuizRepository,
-  presenter: QuizPresenter
-) => {
-  const moveOnNextQuestion = () => {
-    repository.iterateOnNextQuestion()
+export const createQuizInteractor = (service: Quiz, presenter: QuizPresenter) => {
+  const refreshPresenter = () => {
     presenter.set({
-      question: repository.getCurrentQuestion(),
-      isDone: repository.getIsDone(),
+      question: service.getCurrentQuestion(),
+      isDone: service.getIsDone(),
+      isStarted: service.getIsStarted(),
     })
   }
 
-  return { moveOnNextQuestion }
+  const moveOnNextQuestion = () => {
+    service.iterateOnNextQuestion()
+    refreshPresenter()
+  }
+
+  const start = () => {
+    service.moveOnFirstQuestion()
+    refreshPresenter()
+  }
+
+  const stop = () => {
+    service.reset()
+    refreshPresenter()
+  }
+
+  return { moveOnNextQuestion, start, stop }
 }

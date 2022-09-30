@@ -10,28 +10,27 @@ export const createSteps = () => {
   const presenter = createQuizPresenter()
   const interactor = createQuizInteractor(quiz, presenter)
 
-  const givenQuizOnFirstQuestionOf = (questions: Set<Question>) => {
+  const givenQuizWithQuestions = (questions: Set<Question>) => {
     quiz.initQuestions(questions)
-    quiz.moveOnFirstQuestion()
   }
 
-  const whenMoveOnNextQuestion = () => {
-    return interactor.moveOnNextQuestion()
+  const whenStartQuiz = () => {
+    return interactor.start()
   }
 
   const thenCurrentQuestionBecome = (expectedQuestion: Question) => {
     expect(presenter.get().question).toEqual(expectedQuestion)
   }
 
-  const thenQuizzIsNotDone = () => {
-    expect(presenter.get().isDone).toBe(false)
+  const thenCurrentQuizIsStarted = () => {
+    expect(presenter.get().isStarted).toBe(true)
   }
 
   return {
-    givenQuizOnFirstQuestionOf,
-    whenMoveOnNextQuestion,
+    givenQuizWithQuestions,
+    whenStartQuiz,
     thenCurrentQuestionBecome,
-    thenQuizzIsNotDone,
+    thenCurrentQuizIsStarted,
   }
 }
 

@@ -1,4 +1,3 @@
-import type { Question } from '../../values'
 import type { QuizState } from '../../ports'
 
 import { expect } from 'vitest'
@@ -10,28 +9,23 @@ export const createSteps = () => {
   const presenter = createQuizPresenter()
   const interactor = createQuizInteractor(quiz, presenter)
 
-  const givenQuizOnFirstQuestionOf = (questions: Set<Question>) => {
-    quiz.initQuestions(questions)
+  const givenQuizStarted = () => {
+    quiz.initQuestions(new Set([]))
     quiz.moveOnFirstQuestion()
   }
 
-  const whenMoveOnNextQuestion = () => {
-    return interactor.moveOnNextQuestion()
+  const whenStopQuiz = () => {
+    interactor.stop()
   }
 
-  const thenCurrentQuestionBecome = (expectedQuestion: Question) => {
-    expect(presenter.get().question).toEqual(expectedQuestion)
-  }
-
-  const thenQuizzIsNotDone = () => {
-    expect(presenter.get().isDone).toBe(false)
+  const thenCurrentQuizIsNotStarted = () => {
+    expect(presenter.get().isStarted).toBe(false)
   }
 
   return {
-    givenQuizOnFirstQuestionOf,
-    whenMoveOnNextQuestion,
-    thenCurrentQuestionBecome,
-    thenQuizzIsNotDone,
+    givenQuizStarted,
+    whenStopQuiz,
+    thenCurrentQuizIsNotStarted,
   }
 }
 

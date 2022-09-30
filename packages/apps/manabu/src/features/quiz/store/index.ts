@@ -1,28 +1,17 @@
 import type { Question, Result } from '../domain/values'
 import { createQuizSlice } from './slices/quiz'
 import { createResultSlice } from './slices/result'
-import { createPowerSlice } from './slices/power'
 
-export const createQuizStore = (
-  questions: Set<Question>,
-  initiallyStarted = false
-) => {
+export const createQuizStore = (questions: Set<Question>) => {
   const {
-    actions: { start, stop },
-    state: isStarted,
-  } = createPowerSlice(initiallyStarted)
-
-  const {
-    actions: { moveOnNextQuestion },
-    state: { choices, solution, title },
+    actions: { moveOnNextQuestion, start, stop },
+    state: { choices, isStarted, solution, title },
   } = createQuizSlice(questions)
 
   const {
     actions: { answer },
     state: result,
   } = createResultSlice(solution)
-
-  const initQuiz = moveOnNextQuestion
 
   const resultListener = (result: Result) => {
     if (result === 'right') {
@@ -31,8 +20,6 @@ export const createQuizStore = (
   }
 
   result.subscribe(resultListener)
-
-  initQuiz()
 
   return {
     state: {

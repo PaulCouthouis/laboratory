@@ -4,14 +4,16 @@ import { atom, ReadableAtom, WritableAtom } from 'nanostores'
 import { createAnswerInteractor } from '../../domain/interactors'
 import { createExaminer } from '../../domain/services'
 
-export const createResultSlice = (currentSolution: ReadableAtom<string>) => {
+export const createResultSlice = (
+  currentSolution: ReadableAtom<string | undefined>
+) => {
   const resultAtom = atom<Result>('wrong')
 
   const examiner = createExaminer()
   const presenter = createExaminerPresenter(resultAtom)
   const interactor = createAnswerInteractor(examiner, presenter)
 
-  currentSolution.listen((newSolution) => {
+  currentSolution?.listen((newSolution) => {
     examiner.solution = newSolution
   })
 

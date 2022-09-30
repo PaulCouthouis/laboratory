@@ -1,12 +1,12 @@
 import type { Question } from '../values'
 
 import { test } from 'vitest'
-import { createSteps } from './steps/move-on-next-question'
+import { createSteps } from './steps/start'
 
-test('Move on next question', () => {
+test('Start quiz', () => {
   const steps = createSteps()
 
-  steps.givenQuizOnFirstQuestionOf(
+  steps.givenQuizWithQuestions(
     new Set<Question>([
       {
         choices: ['Solution 1', 'Solution 2'],
@@ -26,13 +26,13 @@ test('Move on next question', () => {
     ])
   )
 
-  steps.whenMoveOnNextQuestion()
+  steps.whenStartQuiz()
+
+  steps.thenCurrentQuizIsStarted()
 
   steps.thenCurrentQuestionBecome({
     choices: ['Solution 1', 'Solution 2'],
-    title: 'Title 2',
-    solution: 'Solution 2',
+    title: 'Title 1',
+    solution: 'Solution 1',
   })
-
-  steps.thenQuizzIsNotDone()
 })

@@ -3,40 +3,24 @@ import type { Question } from '../../domain/values'
 
 import { atom, computed, WritableAtom } from 'nanostores'
 import { createQuizInteractor } from '../../domain/interactors'
+import { createQuiz } from '../../domain/services'
 
 export const createQuizSlice = (questions: Set<Question>) => {
   const quizAtom = atom<QuizState>(INITIAL_STATE)
   const state = {
-    choices: computed(quizAtom, ({ question }) => question.choices),
-    solution: computed(quizAtom, ({ question }) => question.solution),
-    title: computed(quizAtom, ({ question }) => question.title),
+    choices: computed(quizAtom, ({ question }) => question?.choices),
+    solution: computed(quizAtom, ({ question }) => question?.solution),
+    title: computed(quizAtom, ({ question }) => question?.title),
+    isStarted: computed(quizAtom, ({ isStarted }) => isStarted),
   }
 
-  const repository = createQuizRepository(questions)
+  const service = createQuiz()
   const presenter = createQuizPresenter(quizAtom)
-  const interactor = createQuizInteractor(repository, presenter)
+  const interactor = createQuizInteractor(service, presenter)
+
+  service.initQuestions(questions)
 
   return { state, actions: { ...interactor } }
-}
-
-const createQuizRepository = (questions: Set<Question>) => {
-  const iteratorQuestions = questions.values()
-  let currentQuestionState: IteratorResult<Question, Question>
-
-  const getCurrentQuestion = () => {
-    return currentQuestionState.value
-  }
-
-  const getIsDone = () => {
-    return currentQuestionState.done || false
-  }
-
-  const iterateOnNextQuestion = async () => {
-    currentQuestionState = iteratorQuestions.next()
-    return Promise.resolve()
-  }
-
-  return { getCurrentQuestion, getIsDone, iterateOnNextQuestion }
 }
 
 const createQuizPresenter = (quizState: WritableAtom<QuizState>) => {
@@ -54,4 +38,5 @@ const INITIAL_STATE = {
     solution: '',
   },
   isDone: false,
+  isStarted: false,
 }

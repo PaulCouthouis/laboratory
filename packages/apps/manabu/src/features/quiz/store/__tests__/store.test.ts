@@ -5,6 +5,7 @@ describe('Quizz feature with nanostores', () => {
   it('retrieves next question after right answer', async () => {
     const { state, actions } = setup()
 
+    actions.start()
     await actions.answer('solution 1')
 
     expect(state.title.get()).toBe('Title 2')
@@ -20,21 +21,16 @@ describe('Quizz feature with nanostores', () => {
   })
 
   it('stops the quiz', () => {
-    const { state, actions } = setup({
-      initiallyStarted: true,
-    })
+    const { state, actions } = setup()
 
+    actions.start()
     actions.stop()
 
     expect(state.isStarted.get()).toBe(false)
   })
 })
 
-const setup = (
-  options = {
-    initiallyStarted: false,
-  }
-) => {
+const setup = () => {
   return createQuizStore(
     new Set([
       {
@@ -47,7 +43,6 @@ const setup = (
         title: 'Title 2',
         solution: 'solution 2',
       },
-    ]),
-    options.initiallyStarted
+    ])
   )
 }
