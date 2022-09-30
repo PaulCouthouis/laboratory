@@ -16,9 +16,9 @@ export const createAnswerInteractor = (
 export const createQuizInteractor = (service: Quiz, presenter: QuizPresenter) => {
   const refreshPresenter = () => {
     presenter.set({
-      question: service.getCurrentQuestion(),
-      isDone: service.getIsDone(),
-      isStarted: service.getIsStarted(),
+      question: service.currentQuestion,
+      isDone: service.isDone,
+      isStarted: service.isStarted,
     })
   }
 

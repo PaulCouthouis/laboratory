@@ -18,7 +18,7 @@ export const createQuizSlice = (questions: Set<Question>) => {
   const presenter = createQuizPresenter(quizAtom)
   const interactor = createQuizInteractor(service, presenter)
 
-  service.initQuestions(questions)
+  service.init(questions)
 
   return { state, actions: { ...interactor } }
 }

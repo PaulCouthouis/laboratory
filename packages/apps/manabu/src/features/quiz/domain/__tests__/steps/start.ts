@@ -11,7 +11,7 @@ export const createSteps = () => {
   const interactor = createQuizInteractor(quiz, presenter)
 
   const givenQuizWithQuestions = (questions: Set<Question>) => {
-    quiz.initQuestions(questions)
+    quiz.init(questions)
   }
 
   const whenStartQuiz = () => {

@@ -37,7 +37,7 @@ export const createQuiz = () => {
     return !!currentQuestionState
   }
 
-  const initQuestions = (initialQuestions: Set<Question>) => {
+  const init = (initialQuestions: Set<Question>) => {
     questions = initialQuestions
   }
 
@@ -55,11 +55,18 @@ export const createQuiz = () => {
   }
 
   return {
-    initQuestions,
+    get currentQuestion() {
+      return currentQuestionState?.value
+    },
+    get isDone() {
+      return currentQuestionState?.done || false
+    },
+    get isStarted() {
+      return !!currentQuestionState
+    },
+
+    init,
     iterateOnNextQuestion,
-    getCurrentQuestion,
-    getIsDone,
-    getIsStarted,
     moveOnFirstQuestion,
     reset,
   }
