@@ -3,7 +3,7 @@ import type { Question } from '../values'
 import { test } from 'vitest'
 import { createSteps } from './steps/move-on-next-question'
 
-test('Move on next question', async () => {
+test('Move on next question', () => {
   const steps = createSteps()
 
   steps.givenQuizWithQuestions(
@@ -23,7 +23,7 @@ test('Move on next question', async () => {
     ])
   )
 
-  await steps.whenMoveOnNextQuestion()
+  steps.whenMoveOnNextQuestion()
 
   steps.thenCurrentQuestionBecome({
     title: 'Title 1',

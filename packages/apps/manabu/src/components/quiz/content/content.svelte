@@ -1,15 +1,11 @@
 <script lang='ts'>
-  import { createQuizStore } from "../../../features/quiz/adapters/store"
+  import type { QuizStore } from "../../../features/quiz/adapters/store"
+  
+  import { getContext } from "svelte"
 
-  const { state, actions } = createQuizStore(new Set([{
-    title: 'Title A',
-    solution: '1'
-  }]))
-
-  const { title } = state
-  const { moveOnNextQuestion } = actions
-
-  moveOnNextQuestion()
+  const {
+    state: { title }
+  } = getContext<QuizStore>('quizStore')
 
 </script>
 

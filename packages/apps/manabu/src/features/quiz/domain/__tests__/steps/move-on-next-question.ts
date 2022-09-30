@@ -13,7 +13,7 @@ export const createSteps = () => {
     repository.initQuestions(questions)
   }
 
-  const whenMoveOnNextQuestion = async () => {
+  const whenMoveOnNextQuestion = () => {
     return interactor.moveOnNextQuestion()
   }
 

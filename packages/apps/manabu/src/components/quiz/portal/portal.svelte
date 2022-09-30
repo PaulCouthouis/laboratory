@@ -1,8 +1,11 @@
 <script lang="ts">
-  import { createQuizPortal } from "./portal"
-  import { atom } from 'nanostores'
+  import { getContext } from 'svelte'
+  import type { QuizStore } from '../../../features/quiz/adapters/store'
 
-  const { isStarted, start, stop } = createQuizPortal(atom(false))
+  const { 
+    actions: { start, stop },
+    state: {isStarted}, 
+  } = getContext<QuizStore>('quizStore')
 </script>
 
 {#if !$isStarted}

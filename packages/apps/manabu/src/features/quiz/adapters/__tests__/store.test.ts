@@ -2,31 +2,49 @@ import { describe, expect, it } from 'vitest'
 import { createQuizStore } from '../store'
 
 describe('Quizz feature with nanostores', () => {
-  it('retrieves current question title', async () => {
+  it('retrieves next question after right answer', async () => {
     const { state, actions } = setup()
 
-    await actions.moveOnNextQuestion()
+    await actions.answer('solution 1')
 
-    expect(state.title.get()).toBe('Title')
+    expect(state.title.get()).toBe('Title 2')
   })
 
-  it('retrieves current result', async () => {
+  it('starts the quiz', () => {
     const { state, actions } = setup()
 
-    await actions.moveOnNextQuestion()
-    await actions.answer('solution')
+    actions.start()
 
-    expect(state.result.get()).toBe('right')
+    expect(state.isStarted.get()).toBe(true)
+  })
+
+  it('stops the quiz', () => {
+    const { state, actions } = setup({
+      initiallyStarted: true,
+    })
+
+    actions.stop()
+
+    expect(state.isStarted.get()).toBe(false)
   })
 })
 
-const setup = () => {
+const setup = (
+  options = {
+    initiallyStarted: false,
+  }
+) => {
   return createQuizStore(
     new Set([
       {
-        title: 'Title',
-        solution: 'solution',
+        title: 'Title 1',
+        solution: 'solution 1',
       },
-    ])
+      {
+        title: 'Title 2',
+        solution: 'solution 2',
+      },
+    ]),
+    options.initiallyStarted
   )
 }

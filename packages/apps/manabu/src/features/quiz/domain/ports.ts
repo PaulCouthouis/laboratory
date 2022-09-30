@@ -3,7 +3,7 @@ import type { Question, Result } from './values'
 export interface QuizRepository {
   getCurrentQuestion(): Question
   getIsDone(): boolean
-  iterateOnNextQuestion(): Promise<void>
+  iterateOnNextQuestion(): void
 }
 
 export interface QuizPresenter {

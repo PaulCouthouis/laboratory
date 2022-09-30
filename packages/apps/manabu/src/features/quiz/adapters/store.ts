@@ -1,19 +1,50 @@
-import type { Question } from '../domain/values'
+import type { Question, Result } from '../domain/values'
 import { createQuizSlice } from './slices/quiz'
 import { createResultSlice } from './slices/result'
+import { createPowerSlice } from './slices/power'
 
-export const createQuizStore = (questions: Set<Question>) => {
-  const quizSlice = createQuizSlice(questions)
-  const resultSlice = createResultSlice(quizSlice.state.solution)
+export const createQuizStore = (
+  questions: Set<Question>,
+  initiallyStarted = false
+) => {
+  const {
+    actions: { start, stop },
+    state: isStarted,
+  } = createPowerSlice(initiallyStarted)
+
+  const {
+    actions: { moveOnNextQuestion },
+    state: { solution, title },
+  } = createQuizSlice(questions)
+
+  const {
+    actions: { answer },
+    state: result,
+  } = createResultSlice(solution)
+
+  const initQuiz = moveOnNextQuestion
+
+  const resultListener = (result: Result) => {
+    if (result === 'right') {
+      moveOnNextQuestion()
+    }
+  }
+
+  result.subscribe(resultListener)
+
+  initQuiz()
 
   return {
     state: {
-      title: quizSlice.state.title,
-      result: resultSlice.state,
+      title,
+      isStarted,
     },
     actions: {
-      ...quizSlice.actions,
-      ...resultSlice.actions,
+      answer,
+      start,
+      stop,
     },
   }
 }
+
+export type QuizStore = ReturnType<typeof createQuizStore>
