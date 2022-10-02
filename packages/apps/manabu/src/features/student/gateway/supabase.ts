@@ -14,9 +14,13 @@ export const createStudentRepositoryInSupabase = (auth: Auth) => {
       const credentials = { email, password }
       const data = { nickname }
 
-      await auth.signUp(credentials, {
-        data,
-      })
+      try {
+        await auth.signUp(credentials, {
+          data,
+        })
+      } catch (e) {
+        throw Error('Request to Supabase failed', { cause: e })
+      }
 
       return
     }
@@ -28,10 +32,16 @@ export const createStudentRepositoryInSupabase = (auth: Auth) => {
     if (updateStudentDTO.isRight()) {
       const payload = createUpdatePayload(updateStudentDTO.extract())
 
-      await auth.update(payload)
+      try {
+        await auth.update(payload)
+      } catch (e) {
+        throw Error('Request to Supabase failed', { cause: e })
+      }
 
       return
     }
+
+    throw 'Invalid Update Student DTO format'
   }
 
   return { signUp, update }

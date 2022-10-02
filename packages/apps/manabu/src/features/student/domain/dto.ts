@@ -31,7 +31,10 @@ export const createUpdateStudentDTO = (partialStudent: Partial<Student>) => {
   const newNickname = Maybe.fromNullable(partialStudent.nickname)
   const newPassword = Maybe.fromNullable(partialStudent.password)
 
-  const updateDTOMap = new Map<keyof Student, Either<string, string>>()
+  const updateDTOMap = new Map<
+    keyof Student,
+    Either<ValidationErrors, string>
+  >()
 
   if (newEmail.isJust()) {
     updateDTOMap.set('email', createEmail(newEmail.extract()))
@@ -62,15 +65,17 @@ export const createUpdateStudentDTO = (partialStudent: Partial<Student>) => {
 }
 
 const createEmail = (s: string) => {
-  return !isEmail(s) ? Left('EmailFormatError') : Right(s)
+  return !isEmail(s) ? Left<ValidationErrors>('EmailFormatError') : Right(s)
 }
 
 const createNickname = (s: string) => {
-  return isEmpty(s) ? Left('NicknameRequiredError') : Right(s)
+  return isEmpty(s) ? Left<ValidationErrors>('NicknameRequiredError') : Right(s)
 }
 
 const createPassword = (s: string) => {
-  return !isStrongPassword(s) ? Left('PasswordFormatError') : Right(s)
+  return !isStrongPassword(s)
+    ? Left<ValidationErrors>('PasswordFormatError')
+    : Right(s)
 }
 
 const buildObjectFrom = (keys: string[], values: string[]) => {
@@ -83,6 +88,11 @@ const buildObjectFrom = (keys: string[], values: string[]) => {
 
   return keys.reduce<Partial<Student>>(toKeyValue, {})
 }
+
+type ValidationErrors =
+  | 'EmailFormatError'
+  | 'NicknameRequiredError'
+  | 'PasswordFormatError'
 
 export type RegisterDTO = ReturnType<typeof createRegisterDTO>
 export type UpdateStudentDTO = ReturnType<typeof createUpdateStudentDTO>
