@@ -1,6 +1,6 @@
 import type { UserAttributes } from '@supabase/supabase-js'
 import type { SupabaseAuthClient } from '@supabase/supabase-js/dist/module/lib/SupabaseAuthClient'
-import type { RegisterDTO } from '../domain/dto'
+import type { RegisterDTO, UpdateStudentDTO } from '../domain/dto'
 import type { Student } from '../domain/entities'
 
 type Auth = Pick<SupabaseAuthClient, 'signUp' | 'update'>
@@ -24,9 +24,14 @@ export const createStudentRepositoryInSupabase = (auth: Auth) => {
     throw 'Invalid Register DTO format'
   }
 
-  const update = async (updateStudentDTO: Partial<Student>) => {
-    const payload = createUpdatePayload(updateStudentDTO)
-    await auth.update(payload)
+  const update = async (updateStudentDTO: UpdateStudentDTO) => {
+    if (updateStudentDTO.isRight()) {
+      const payload = createUpdatePayload(updateStudentDTO.extract())
+
+      await auth.update(payload)
+
+      return
+    }
   }
 
   return { signUp, update }

@@ -42,22 +42,4 @@ describe('Update Profile', () => {
       password: '(hedwig2000)',
     })
   })
-
-  it('fails password update with validation error', async () => {
-    const steps = createSteps()
-
-    steps.givenProfileStudent({
-      email: 'harry.potter@hogwarts.com',
-      nickname: 'Harry',
-      password: '(hedwig2000)',
-    })
-
-    await steps.whenStudentUpdateProfile({
-      password: 'badpassword',
-    })
-
-    steps.thenCausedValidationErrorsAre([
-      'PasswordFormatError: Password is not valid',
-    ])
-  })
 })

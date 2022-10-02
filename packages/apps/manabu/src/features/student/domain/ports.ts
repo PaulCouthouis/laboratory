@@ -1,7 +1,6 @@
-import type { RegisterDTO } from './dto'
-import type { Student } from './entities'
+import type { RegisterDTO, UpdateStudentDTO } from './dto'
 
 export interface StudentRepository {
   signUp(createStudentDTO: RegisterDTO): Promise<void>
-  update(updateStudentDTO: Partial<Student>): Promise<void>
+  update(updateStudentDTO: UpdateStudentDTO): Promise<void>
 }
