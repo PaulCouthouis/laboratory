@@ -2,6 +2,10 @@ import type { Student } from '../../../../features/student/domain/entities'
 
 import { describe, expect, it, vitest } from 'vitest'
 import { createRegisterHelper } from '../helper'
+import {
+  createRegisterDTO,
+  RegisterDTO,
+} from '../../../../features/student/domain/dto'
 
 describe('Register Helper', () => {
   it('submits a valid new student', async () => {
@@ -15,11 +19,9 @@ describe('Register Helper', () => {
 
     await steps.whenStudentSubmit()
 
-    steps.thenRegisteredStudentIs({
-      email: 'harry.potter@hogwarts.com',
-      nickname: 'Harry',
-      password: '[Hedwig2000]',
-    })
+    steps.thenRegisteredStudentIs(
+      createRegisterDTO('harry.potter@hogwarts.com', 'Harry', '[Hedwig2000]')
+    )
   })
 
   it('alerts the form invalidity', () => {
@@ -95,7 +97,7 @@ const createSteps = () => {
     helper.input('password', password)
   }
 
-  const thenRegisteredStudentIs = (expectedStudent: Student) => {
+  const thenRegisteredStudentIs = (expectedStudent: RegisterDTO) => {
     expect(register).toBeCalledTimes(1)
     expect(register).toBeCalledWith(expectedStudent)
   }

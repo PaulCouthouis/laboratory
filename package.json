@@ -8,5 +8,8 @@
   },
   "scripts": {
     "w": "pnpm --filter"
+  },
+  "dependencies": {
+    "pnpm": "^7.12.2"
   }
 }

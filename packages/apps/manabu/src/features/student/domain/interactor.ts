@@ -1,9 +1,10 @@
+import type { RegisterDTO } from './dto'
 import type { Student } from './entities'
 import type { StudentRepository } from './ports'
 
 export const createStudentInteractor = (repository: StudentRepository) => {
-  const register = async (student: Student) => {
-    await repository.signUp(student)
+  const register = async (registerDTO: RegisterDTO) => {
+    await repository.signUp(registerDTO)
   }
 
   const update = async (updateStudentDTO: Partial<Student>) => {

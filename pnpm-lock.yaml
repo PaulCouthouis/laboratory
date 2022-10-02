@@ -4,7 +4,10 @@ importers:
 
   .:
     specifiers:
+      pnpm: ^7.12.2
       prettier: ^2.7.1
+    dependencies:
+      pnpm: 7.12.2
     devDependencies:
       prettier: 2.7.1
 
@@ -24,6 +27,7 @@ importers:
       eslint-plugin-astro: ^0.17.1
       eslint-plugin-jsx-a11y: ^6.6.1
       postcss: ^8.4.16
+      purify-ts: ^1.3.0
       svelte: ^3.50.1
       tailwindcss: ^3.1.8
       typescript: ^4.8.3
@@ -34,6 +38,7 @@ importers:
       eslint: 8.22.0
       eslint-plugin-astro: 0.17.1_eslint@8.22.0
       eslint-plugin-jsx-a11y: 6.6.1_eslint@8.22.0
+      purify-ts: 1.3.0
       vitest: 0.22.1
     devDependencies:
       '@astrojs/svelte': 1.0.0_snqnsttluzgwj6kbxzouwakc4q
@@ -946,7 +951,6 @@ packages:
 
   /@types/json-schema/7.0.11:
     resolution: {integrity: sha512-wOuvG1SN4Us4rez+tylwwwCV1psiNVOkJeM3AUWUNWg/jDQY2+HE/444y5gc+jBmRqASOm2Oeh5c1axHobwRKQ==}
-    dev: true
 
   /@types/json5/0.0.30:
     resolution: {integrity: sha512-sqm9g7mHlPY/43fcSNrCYfOeX9zkTTK+euO5E6+CVijSMm5tTjkVdwdqRkY3ljjIAf8679vps5jKUoJBCLsMDA==}
@@ -4099,6 +4103,12 @@ packages:
     dependencies:
       find-up: 4.1.0
 
+  /pnpm/7.12.2:
+    resolution: {integrity: sha512-8QvnKANKN+YZXDmVYGI7zRJysdKldZI+w3AYnxu9IwtnLv1x6WuzrJr0nxMcTeuUAT908RjDqK+/6KJB9wNqxA==}
+    engines: {node: '>=14.6'}
+    hasBin: true
+    dev: false
+
   /postcss-import/14.1.0_postcss@8.4.16:
     resolution: {integrity: sha512-flwI+Vgm4SElObFVPpTIT7SU7R3qk2L7PyduMcokiaVKuWv9d/U+Gm/QAd8NDLuykTWTkcrjOeD2Pp1rMeBTGw==}
     engines: {node: '>=10.0.0'}
@@ -4210,6 +4220,12 @@ packages:
   /punycode/2.1.1:
     resolution: {integrity: sha512-XRsRjdf+j5ml+y/6GKHPZbrF/8p2Yga0JPtdqTIY2Xe5ohJPD9saDJJLPvp9+NSBprVvevdXZybnj2cv8OEd0A==}
     engines: {node: '>=6'}
+
+  /purify-ts/1.3.0:
+    resolution: {integrity: sha512-pKz8zg03wkBBw3C+CJm9sTp32ATbMkug3c940VzV7NWOt7MEbHi+quI8FWxU3d7vdfCjKaVDsRibobhj3NwH/w==}
+    dependencies:
+      '@types/json-schema': 7.0.11
+    dev: false
 
   /queue-microtask/1.2.3:
     resolution: {integrity: sha512-NuaNSa6flKT5JaSYQzJok04JzTL1CA6aGhv5rfLW3PgqA+M2ChpZQnAC8h8i4ZFkBS8X5RqkDBHA7r4hej3K9A==}

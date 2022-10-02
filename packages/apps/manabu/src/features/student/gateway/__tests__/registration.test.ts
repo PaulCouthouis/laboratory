@@ -1,5 +1,5 @@
 import { expect, test, vitest } from 'vitest'
-import { createStudent } from '../../domain/entities'
+import { createRegisterDTO } from '../../domain/dto'
 import { createStudentInteractor } from '../../domain/interactor'
 import { createStudentRepositoryInSupabase } from '../supabase'
 
@@ -9,13 +9,13 @@ test('Registration in supabase', async () => {
 
   const repository = createStudentRepositoryInSupabase({ signUp, update })
   const interactor = createStudentInteractor(repository)
-  const student = createStudent(
+  const registerDTO = createRegisterDTO(
     'harry.potter@hogwarts.com',
     'Harry',
     '[Hedwig2000]'
   )
 
-  await interactor.register(student)
+  await interactor.register(registerDTO)
 
   expect(signUp).toBeCalledTimes(1)
   expect(signUp).toBeCalledWith(

@@ -1,12 +1,16 @@
+import type { RegisterDTO } from '../../../dto'
 import type { Student } from '../../../entities'
 
 export const createFakeStudentRepository = () => {
   let _current: Student
   let _students: Student[]
 
-  const signUp = async (student: Student) => {
-    _students = [..._students, student]
-    await Promise.resolve()
+  const signUp = async (registerDTO: RegisterDTO) => {
+    if (registerDTO.isRight()) {
+      const newStudent = registerDTO.extract()
+      _students = [..._students, newStudent]
+      await Promise.resolve()
+    }
   }
 
   const update = async (updateStudentDTO: Partial<Student>) => {

@@ -1,21 +1,18 @@
+import type { Student } from '../../../features/student/domain/entities'
 import type { Register } from '../../../features/student/domain/interactor'
 
 import { atom, computed } from 'nanostores'
 import {
-  createStudent,
-  Student,
-} from '../../../features/student/domain/entities'
+  createRegisterDTO,
+  RegisterDTO,
+} from '../../../features/student/domain/dto'
 
 export const createRegisterHelper = (register: Register) => {
   const formState = new Map<RegisterFormKey, string>()
 
   const loading = atom(false)
 
-  const student = atom<Student>({
-    email: '',
-    nickname: '',
-    password: '',
-  })
+  const registerDTOAtom = atom<RegisterDTO>(createRegisterDTO('', '', ''))
 
   const validity = atom({
     email: false,
@@ -42,33 +39,34 @@ export const createRegisterHelper = (register: Register) => {
     tryCreateStudent()
   }
 
-  const invalidByErrors = (errors: Error[]) => {
-    const errorNames = errors.map(({ name }) => name)
+  const invalidByErrors = (errors: string[]) => {
     validity.set({
-      email: !errorNames.includes('EmailFormatError'),
-      nickname: !errorNames.includes('NicknameRequiredError'),
-      password: !errorNames.includes('PasswordFormatError'),
+      email: !errors.includes('EmailFormatError'),
+      nickname: !errors.includes('NicknameRequiredError'),
+      password: !errors.includes('PasswordFormatError'),
     })
   }
 
   const tryCreateStudent = () => {
-    try {
-      const newStudent = createStudent(
-        formState.get('email') || '',
-        formState.get('nickname') || '',
-        formState.get('password') || ''
-      )
-      student.set(newStudent)
+    const registerDTO = createRegisterDTO(
+      formState.get('email') || '',
+      formState.get('nickname') || '',
+      formState.get('password') || ''
+    )
+
+    if (registerDTO.isRight()) {
+      registerDTOAtom.set(registerDTO)
       validAll()
-    } catch (e) {
-      invalidByErrors(e as Error[])
+      return
     }
+
+    invalidByErrors(registerDTO.extract())
   }
 
   const submit = async () => {
     if (validity.get()) {
       loading.set(true)
-      await register(student.get())
+      await register(registerDTOAtom.get())
       loading.set(false)
     }
   }

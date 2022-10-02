@@ -32,28 +32,4 @@ describe('Registration', () => {
       },
     ])
   })
-
-  it('fails with validation errors', async () => {
-    const steps = createSteps()
-
-    steps.givenRegisteredStudents([
-      {
-        email: 'harry.potter@hogwarts.com',
-        nickname: 'Harry',
-        password: 'Hedwig2000',
-      },
-    ])
-
-    await steps.whenNewStudentRegister(
-      'hermione.granger@hogwarts',
-      '',
-      'badpassword'
-    )
-
-    steps.thenCausedValidationErrorsAre([
-      'EmailFormatError: Email is not valid',
-      'NicknameRequiredError: Nickname is required',
-      'PasswordFormatError: Password is not valid',
-    ])
-  })
 })
