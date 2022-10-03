@@ -1,8 +1,9 @@
 <script lang='ts'>
-  import { signIn } from "../../../auth/controller"
-  import FormControl from "../../../ui/form/form-control.svelte"
-  import PasswordFormControl from "../../../ui/form/password-form-control.svelte"
-  import SubmitButton from "../../../ui/form/submit-button.svelte"
+  import FormControl from "../../ui/form/form-control.svelte"
+  import PasswordFormControl from "../../ui/form/password-form-control.svelte"
+  import SubmitButton from "../../ui/form/submit-button.svelte"
+  
+  import { signIn } from "../controller"
 
   let email = ''
   let password = ''

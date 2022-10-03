@@ -6,7 +6,7 @@ describe('Registration store', () => {
   it('submits a valid new student', async () => {
     const steps = createSteps()
 
-    steps.givenValidRegisterForm(
+    steps.givenRegisterForm(
       'harry.potter@hogwarts.com',
       'Harry',
       '[Hedwig2000]'
@@ -24,13 +24,13 @@ describe('Registration store', () => {
   it('alerts the password invalidity', () => {
     const steps = createSteps()
 
-    steps.givenValidRegisterForm(
+    steps.givenRegisterForm(
       'harry.potter@hogwarts.com',
       'Harry',
       '[Hedwig2000]'
     )
 
-    steps.whenInputInvalidPassword('Hedwig2000')
+    steps.whenInputPassword('Hedwig2000')
 
     steps.thenPasswordValidityIs(false)
     steps.thenFormValidityIs(false)
@@ -39,17 +39,69 @@ describe('Registration store', () => {
   it('alerts the nickname and email invalidity', () => {
     const steps = createSteps()
 
-    steps.givenValidRegisterForm(
+    steps.givenRegisterForm(
       'harry.potter@hogwarts.com',
       'Harry',
       '[Hedwig2000]'
     )
 
-    steps.whenInputInvalidNickname('')
-    steps.whenInputInvalidEmail('harry.potter@hogwarts')
+    steps.whenInputNickname('')
+    steps.whenInputEmail('harry.potter@hogwarts')
 
     steps.thenNicknameValidityIs(false)
     steps.thenEmailValidityIs(false)
+  })
+
+  describe('Password check rules', () => {
+    it('checks that the password has more than 8 characters', () => {
+      const steps = createSteps()
+
+      steps.givenRegisterForm('harry.potter@hogwarts.com', 'Harry', '')
+
+      steps.whenInputPassword('12345678')
+
+      steps.thenPasswordGoodLengthIs(true)
+    })
+
+    it('checks that the password has lower case', () => {
+      const steps = createSteps()
+
+      steps.givenRegisterForm('harry.potter@hogwarts.com', 'Harry', '')
+
+      steps.whenInputPassword('q')
+
+      steps.thenPasswordLowerCaseIs(true)
+    })
+
+    it('checks that the password has upper case', () => {
+      const steps = createSteps()
+
+      steps.givenRegisterForm('harry.potter@hogwarts.com', 'Harry', '')
+
+      steps.whenInputPassword('M')
+
+      steps.thenPasswordUpperCaseIs(true)
+    })
+
+    it('checks that the password has figure', () => {
+      const steps = createSteps()
+
+      steps.givenRegisterForm('harry.potter@hogwarts.com', 'Harry', '')
+
+      steps.whenInputPassword('9')
+
+      steps.thenPasswordFigureIs(true)
+    })
+
+    it('checks that the password has special char', () => {
+      const steps = createSteps()
+
+      steps.givenRegisterForm('harry.potter@hogwarts.com', 'Harry', '')
+
+      steps.whenInputPassword('[')
+
+      steps.thenPasswordSpecialCharIs(true)
+    })
   })
 })
 
@@ -57,10 +109,20 @@ const createSteps = () => {
   const register = vitest.fn()
   const {
     actions: { input, submit },
-    state: { isValidForm, isValidPassword, isValidEmail, isValidNickname },
+    state: {
+      hasFigure,
+      hasGoodLength,
+      hasLowerCase,
+      hasSpecialChar,
+      hasUpperCase,
+      isValidForm,
+      isValidPassword,
+      isValidEmail,
+      isValidNickname,
+    },
   } = createRegistrationStore(register)
 
-  const givenValidRegisterForm = (
+  const givenRegisterForm = (
     email: string,
     nickname: string,
     password: string
@@ -70,15 +132,15 @@ const createSteps = () => {
     input('password', password)
   }
 
-  const whenInputInvalidEmail = (email: string) => {
+  const whenInputEmail = (email: string) => {
     input('email', email)
   }
 
-  const whenInputInvalidNickname = (nickname: string) => {
+  const whenInputNickname = (nickname: string) => {
     input('nickname', nickname)
   }
 
-  const whenInputInvalidPassword = (password: string) => {
+  const whenInputPassword = (password: string) => {
     input('password', password)
   }
 
@@ -102,6 +164,26 @@ const createSteps = () => {
     expect(isValidPassword.get()).toBe(expectedValidity)
   }
 
+  const thenPasswordGoodLengthIs = (expectedValidity: boolean) => {
+    expect(hasGoodLength.get()).toBe(expectedValidity)
+  }
+
+  const thenPasswordLowerCaseIs = (expectedValidity: boolean) => {
+    expect(hasLowerCase.get()).toBe(expectedValidity)
+  }
+
+  const thenPasswordUpperCaseIs = (expectedValidity: boolean) => {
+    expect(hasUpperCase.get()).toBe(expectedValidity)
+  }
+
+  const thenPasswordFigureIs = (expectedValidity: boolean) => {
+    expect(hasFigure.get()).toBe(expectedValidity)
+  }
+
+  const thenPasswordSpecialCharIs = (expectedValidity: boolean) => {
+    expect(hasSpecialChar.get()).toBe(expectedValidity)
+  }
+
   const thenRegisteredStudentIs = (
     expectedEmail: string,
     expectedNickname: string,
@@ -118,15 +200,20 @@ const createSteps = () => {
   }
 
   return {
-    givenValidRegisterForm,
-    whenInputInvalidEmail,
-    whenInputInvalidNickname,
-    whenInputInvalidPassword,
+    givenRegisterForm,
+    whenInputEmail,
+    whenInputNickname,
+    whenInputPassword,
     whenStudentSubmit,
     thenRegisteredStudentIs,
     thenEmailValidityIs,
     thenFormValidityIs,
     thenNicknameValidityIs,
     thenPasswordValidityIs,
+    thenPasswordGoodLengthIs,
+    thenPasswordFigureIs,
+    thenPasswordLowerCaseIs,
+    thenPasswordUpperCaseIs,
+    thenPasswordSpecialCharIs,
   }
 }

@@ -1,21 +1,12 @@
 <script lang='ts'>
+  import type { ReadableAtom } from 'nanostores'
   import CheckListItem from "./check-list-item.svelte"
-  import { createPasswordRulesChecker } from "./checker"
 
-  export let password: string
-
-  const { 
-    hasFigure, 
-    hasGoodLength, 
-    hasLowerCase, 
-    hasSpecialChar, 
-    hasUpperCase,
-    input
-  } = createPasswordRulesChecker()
-
-  $: {
-    input(password)
-  }
+  export let hasLowerCase: ReadableAtom<boolean>
+  export let hasUpperCase: ReadableAtom<boolean>
+  export let hasFigure: ReadableAtom<boolean>
+  export let hasSpecialChar: ReadableAtom<boolean>
+  export let hasGoodLength: ReadableAtom<boolean>
 </script>
 
 <ul class="my-2 mx-1 text-xs">

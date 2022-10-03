@@ -1,19 +1,40 @@
 import type { Register } from '../domain/interactor'
 
 import { createRegisterDTO } from '../domain/dto'
-import { computed, map } from 'nanostores'
+import { atom, computed, map } from 'nanostores'
 import type { Student } from '../domain/entities'
 
 export const createRegistrationStore = (register: Register) => {
-  const formMap = map<{ [k in RegistrationFormKey]: string }>()
+  const formMap = map<{ [k in RegistrationFormKey]: string }>({
+    email: '',
+    nickname: '',
+    password: '',
+  })
 
   const dtoAtom = computed(formMap, ({ email, nickname, password }) => {
     return createRegisterDTO(email, nickname, password)
   })
 
+  const loading = atom(false)
+
+  const password = computed(formMap, ({ password }) => password)
+
   const validationErrors = computed(dtoAtom, (dtoAtom) => {
     return dtoAtom.isRight() ? [] : dtoAtom.extract()
   })
+
+  const hasFigure = computed(password, (p) => p.search(/[0-9]/) > -1)
+
+  const hasGoodLength = computed(password, (p) => p.length >= 8)
+
+  const hasLowerCase = computed(password, (p) => p.search(/[a-z]/) > -1)
+
+  const hasSpecialChar = computed(
+    password,
+    (p) => p.search(/[-#!$@%^&*()_+|~=`{}[\]:";'<>?,./ ]/) > -1
+  )
+
+  const hasUpperCase = computed(password, (p) => p.search(/[A-Z]/) > -1)
 
   const isValidForm = computed(validationErrors, (validationErrors) => {
     return validationErrors.length === 0
@@ -36,13 +57,26 @@ export const createRegistrationStore = (register: Register) => {
   }
 
   const submit = async () => {
+    loading.set(true)
     await register(dtoAtom.get())
+    loading.set(false)
   }
 
   return {
     actions: { input, submit },
-    state: { isValidForm, isValidEmail, isValidNickname, isValidPassword },
+    state: {
+      hasFigure,
+      hasGoodLength,
+      hasLowerCase,
+      hasSpecialChar,
+      hasUpperCase,
+      loading,
+      isValidForm,
+      isValidEmail,
+      isValidNickname,
+      isValidPassword,
+    },
   }
 }
 
-type RegistrationFormKey = keyof Student
+export type RegistrationFormKey = keyof Student

@@ -1,33 +1,20 @@
 <script lang="ts">
-  import { register } from "../../../features/student/controller"
   import FormControl from "../../../ui/form/form-control.svelte"
   import PasswordFormControl from "../../../ui/form/password-form-control.svelte"
   import SubmitButton from "../../../ui/form/submit-button.svelte"
-  import { createRegisterHelper, RegisterFormKey } from "./helper"
-  import PasswordRules from "./password-rules/password-rules.svelte"
+  import { register } from "../controller"
+  import { createRegistrationStore, RegistrationFormKey } from "../store/registration"
+  import PasswordRules from "./password-rules.svelte"
 
-  let password = ''
+  const { actions, state } = createRegistrationStore(register)
+  const { input, submit } = actions
+  const { isValidEmail, isValidForm, isValidNickname, isValidPassword, loading, ...passwordRules } = state
 
-  const { 
-    isValidEmail, 
-    isValidForm, 
-    isValidNickname, 
-    isValidPassword, 
-    input,
-    loading,
-    submit
-  } = createRegisterHelper(register)
-
-  const inputByKey = (key: RegisterFormKey) => {
+  const inputByKey = (key: RegistrationFormKey) => {
     return ({ detail }: CustomEvent<string>) => {
       input(key, detail)
-
-      if(key === 'password') {
-        password = detail
-      }
     }
   }
-  
 </script>
 
 <form on:submit|preventDefault={submit}>
@@ -61,7 +48,7 @@
   >
     Mot de passe *
   </PasswordFormControl>
-  <PasswordRules {password} />
+  <PasswordRules {...passwordRules} />
 
   <SubmitButton 
     disabled={!$isValidForm} 
