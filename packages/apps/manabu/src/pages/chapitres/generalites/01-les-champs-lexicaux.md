@@ -1,5 +1,5 @@
 ---
-layout: '../../../layouts/chapter.astro'
+layout: '../../../layouts/chapter/chapter.astro'
 ---
 
 # Les Champs Lexicaux
