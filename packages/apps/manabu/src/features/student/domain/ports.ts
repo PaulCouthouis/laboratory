@@ -4,3 +4,7 @@ export interface StudentRepository {
   signUp(createStudentDTO: RegisterDTO): Promise<void>
   update(updateStudentDTO: UpdateStudentDTO): Promise<void>
 }
+
+export interface RegistrationResolved {
+  set(isResolved: boolean): void
+}

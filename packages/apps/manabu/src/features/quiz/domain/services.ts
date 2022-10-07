@@ -25,18 +25,6 @@ export const createQuiz = () => {
   let iteratorQuestions: Iterator<Question, Question>
   let currentQuestionState: IteratorResult<Question, Question> | undefined
 
-  const getCurrentQuestion = () => {
-    return currentQuestionState?.value
-  }
-
-  const getIsDone = () => {
-    return currentQuestionState?.done || false
-  }
-
-  const getIsStarted = () => {
-    return !!currentQuestionState
-  }
-
   const init = (initialQuestions: Set<Question>) => {
     questions = initialQuestions
   }

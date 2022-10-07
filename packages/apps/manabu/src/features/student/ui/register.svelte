@@ -2,7 +2,7 @@
   import FormControl from "../../../ui/form/form-control.svelte"
   import PasswordFormControl from "../../../ui/form/password-form-control.svelte"
   import SubmitButton from "../../../ui/form/submit-button.svelte"
-  import { register } from "../controller"
+  import { register, isResolved } from "../controller"
   import { createRegistrationStore, RegistrationFormKey } from "../store/registration"
   import PasswordRules from "./password-rules.svelte"
 
@@ -15,6 +15,13 @@
       input(key, detail)
     }
   }
+
+  isResolved.listen(ok => {
+    if(ok) {
+      location.replace('./inscription/bravo')
+    }
+  })
+
 </script>
 
 <form on:submit|preventDefault={submit}>

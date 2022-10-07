@@ -1,9 +1,13 @@
 import type { RegisterDTO, UpdateStudentDTO } from './dto'
-import type { StudentRepository } from './ports'
+import type { RegistrationResolved, StudentRepository } from './ports'
 
-export const createStudentInteractor = (repository: StudentRepository) => {
+export const createStudentInteractor = (
+  repository: StudentRepository,
+  registrationResolved: RegistrationResolved
+) => {
   const register = async (registerDTO: RegisterDTO) => {
     await repository.signUp(registerDTO)
+    registrationResolved.set(true)
   }
 
   const update = async (updateStudentDTO: UpdateStudentDTO) => {
