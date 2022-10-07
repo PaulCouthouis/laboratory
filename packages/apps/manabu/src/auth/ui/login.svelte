@@ -1,30 +1,17 @@
 <script lang='ts'>
+  import { supabase } from '../../database/supabase'
   import FormControl from "../../ui/form/form-control.svelte"
   import PasswordFormControl from "../../ui/form/password-form-control.svelte"
   import SubmitButton from "../../ui/form/submit-button.svelte"
+  import { createLoginStore, SignInPayloadKey } from '../login'
   
-  import { signIn } from "../controller"
+  const { input, submit } = createLoginStore(supabase.auth)
 
-  let email = ''
-  let password = ''
-
-  const onInputEmail = ({ detail }: CustomEvent<string>) => {
-    email = detail
+  const inputByKey = (key: SignInPayloadKey) => {
+    return ({ detail }: CustomEvent<string>) => {
+      input(key, detail)
+    }
   }
-
-  const onInputPassword = ({ detail }: CustomEvent<string>) => {
-    password = detail
-  }
-
-  const submit = () => {
-    signIn({
-      email, password
-    })
-  }
-
-  $: isValidEmail = email.length > 0
-  $: isValidPassword = password.length > 0
-  $: isValidForm = isValidEmail && isValidPassword
 </script>
 
 <form on:submit|preventDefault={submit}>
@@ -34,19 +21,19 @@
     type="email"
     minlength={1}
     maxlength={255} 
-    isValid={isValidEmail}
-    on:input={onInputEmail}
+    isValid={true}
+    on:input={inputByKey('email')}
   >
     Email *
   </FormControl>
   <PasswordFormControl
-    isValid={isValidPassword}
-    on:input={onInputPassword}
+    isValid={true}
+    on:input={inputByKey('password')}
   >
     Mot de passe *
   </PasswordFormControl>
   <SubmitButton
-    disabled={!isValidForm} 
+    disabled={false} 
     loading={false}
   >
     S'identifier

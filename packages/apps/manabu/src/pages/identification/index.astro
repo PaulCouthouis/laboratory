@@ -5,15 +5,12 @@ import Base from "../../layouts/base.astro"
 
 <Base title="Identification">
   <div class="hero min-h-screen bg-[url('/backgrounds/login.jpg')]">
-    <div class="hero-content flex-col lg:flex-row">
+    <div class="hero-content flex-col lg:flex-row w-screen">
       <div class="card flex-shrink-0 w-full max-w-sm bg-base-100 shadow-2xl">
         <div class="card-body">
+          <h2 class="card-title">Connexion</h2>
           <Login client:load />
         </div>
-      </div>
-      <div class="bg-neutral/25 p-4 text-center lg:text-left lg:ml-10">
-        <h1 class="text-5xl font-bold">Connectez-vous !</h1>
-        <p class="py-6">Prêt pour une nouvelle session de japonais ?</p>
       </div>
     </div>
   </div>
