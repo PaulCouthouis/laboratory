@@ -9,8 +9,9 @@ export const createFakeStudentRepository = () => {
     if (registerDTO.isRight()) {
       const newStudent = registerDTO.extract()
       students = [...students, newStudent]
-      await Promise.resolve()
+      return await Promise.resolve({ ok: true })
     }
+    return Promise.reject()
   }
 
   const update = async (updateStudentDTO: UpdateStudentDTO) => {

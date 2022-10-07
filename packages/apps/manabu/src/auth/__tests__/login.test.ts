@@ -4,7 +4,7 @@ import { createLoginStore } from '../login'
 test('Login with supabase', async () => {
   const signIn = vitest.fn()
 
-  const { input, submit } = createLoginStore(signIn)
+  const { input, submit } = createLoginStore({ signIn })
 
   input('email', 'harry.potter@hogwarts.com')
   input('password', '[Hedwig2000]')

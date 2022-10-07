@@ -1,5 +1,6 @@
-import type { UserAttributes } from '@supabase/supabase-js'
+import type { ApiError, UserAttributes } from '@supabase/supabase-js'
 import type { SupabaseAuthClient } from '@supabase/supabase-js/dist/module/lib/SupabaseAuthClient'
+import { Maybe, MaybeAsync } from 'purify-ts'
 import type { RegisterDTO, UpdateStudentDTO } from '../domain/dto'
 import type { Student } from '../domain/entities'
 
@@ -15,14 +16,18 @@ export const createStudentRepositoryInSupabase = (auth: Auth) => {
       const data = { nickname }
 
       try {
-        await auth.signUp(credentials, {
-          data,
-        })
+        const response = await MaybeAsync(() =>
+          auth.signUp(credentials, {
+            data,
+          })
+        )
+        const error = response.chain(({ error }) => Maybe.fromNullable(error))
+        const hasNoError = error.isNothing()
+
+        return { ok: hasNoError }
       } catch (e) {
         throw Error('Request to Supabase failed', { cause: e })
       }
-
-      return
     }
 
     throw 'Invalid Register DTO format'

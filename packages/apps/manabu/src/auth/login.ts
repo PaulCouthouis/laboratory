@@ -25,6 +25,6 @@ type SignInPayload = {
   email: string
   password: string
 }
-type Auth = SupabaseAuthClient
+type Auth = Pick<SupabaseAuthClient, 'signIn'>
 
 export type SignInPayloadKey = keyof SignInPayload

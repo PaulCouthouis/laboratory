@@ -1,14 +1,15 @@
 ---
-import Register from '../../features/student/ui/register.svelte';
 import Base from '../../layouts/base.astro';
 ---
 
 <Base title="Inscription">
   <div class="hero min-h-screen bg-[url('/backgrounds/registration.jpg')]">
-    <div class="hero-content flex-col lg:flex-row">
-      <div class="bg-neutral/25 p-4 text-center text-base-200 lg:text-left lg:ml-10">
-        <h1 class="text-5xl font-bold">Félicitation&nbsp;!</h1>
-        <p class="py-6">Tu es désormais inscrit, check ta boite mail puis clique sur le lien de confirmation.</p>
+    <div class="hero-content flex-col lg:flex-row w-screen">
+      <div class="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+        <div class="card-body">
+          <h2 class="card-title text-success text-2xl">Félicitation&nbsp;!</h2>
+          <p class="text-xl">Tu es désormais inscrit, check ta boite mail puis clique sur le lien de confirmation.</p>
+        </div>
       </div>
     </div>
   </div>

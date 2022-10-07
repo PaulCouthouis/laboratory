@@ -2,13 +2,22 @@
   import FormControl from "../../../ui/form/form-control.svelte"
   import PasswordFormControl from "../../../ui/form/password-form-control.svelte"
   import SubmitButton from "../../../ui/form/submit-button.svelte"
-  import { register, isResolved } from "../controller"
+  import { register,  } from "../controller"
   import { createRegistrationStore, RegistrationFormKey } from "../store/registration"
   import PasswordRules from "./password-rules.svelte"
 
   const { actions, state } = createRegistrationStore(register)
   const { input, submit } = actions
-  const { isValidEmail, isValidForm, isValidNickname, isValidPassword, loading, ...passwordRules } = state
+  const { 
+    isRejected,
+    isResolved,
+    isValidEmail, 
+    isValidForm, 
+    isValidNickname, 
+    isValidPassword, 
+    loading, 
+    ...passwordRules 
+  } = state
 
   const inputByKey = (key: RegistrationFormKey) => {
     return ({ detail }: CustomEvent<string>) => {
@@ -18,7 +27,7 @@
 
   isResolved.listen(ok => {
     if(ok) {
-      location.replace('./inscription/bravo')
+      // location.replace('./inscription/bravo')
     }
   })
 
@@ -63,4 +72,10 @@
   >
     S'inscrire
   </SubmitButton>
+
+  {#if $isRejected}
+		<p class="mt-2 text-xs text-error" role="status">
+			Une erreur s'est produite, veuillez réessayer ultérieurement ou nous contacter si le problème persiste
+		</p>
+	{/if}
 </form>

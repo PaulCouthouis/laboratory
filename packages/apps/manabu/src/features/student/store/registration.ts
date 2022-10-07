@@ -15,6 +15,9 @@ export const createRegistrationStore = (register: Register) => {
     return createRegisterDTO(email, nickname, password)
   })
 
+  const isRejected = atom(false)
+  const isResolved = atom(false)
+
   const loading = atom(false)
 
   const password = computed(formMap, ({ password }) => password)
@@ -58,7 +61,11 @@ export const createRegistrationStore = (register: Register) => {
 
   const submit = async () => {
     loading.set(true)
-    await register(dtoAtom.get())
+    const { ok } = await register(dtoAtom.get())
+
+    isResolved.set(ok)
+    isRejected.set(!ok)
+
     loading.set(false)
   }
 
@@ -71,6 +78,8 @@ export const createRegistrationStore = (register: Register) => {
       hasSpecialChar,
       hasUpperCase,
       loading,
+      isRejected,
+      isResolved,
       isValidForm,
       isValidEmail,
       isValidNickname,

@@ -1,7 +1,7 @@
 import type { RegisterDTO, UpdateStudentDTO } from './dto'
 
 export interface StudentRepository {
-  signUp(createStudentDTO: RegisterDTO): Promise<void>
+  signUp(createStudentDTO: RegisterDTO): Promise<{ ok: boolean }>
   update(updateStudentDTO: UpdateStudentDTO): Promise<void>
 }
 
