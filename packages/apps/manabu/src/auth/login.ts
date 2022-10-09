@@ -13,9 +13,11 @@ export const createLoginStore = (auth: Auth) => {
 
   const submit = async () => {
     const payload = formMap.get()
-
-    const test = await auth.signIn(payload)
-    console.log('fire', test)
+    // await auth.signIn(payload)
+    await fetch('http://127.0.0.1:3000/api/login', {
+      method: 'POST',
+      body: JSON.stringify(payload),
+    })
   }
 
   return { input, submit }
