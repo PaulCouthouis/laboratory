@@ -1,17 +1,21 @@
-import type { QuizState } from '../../ports'
-
 import { expect } from 'vitest'
-import { createQuizInteractor } from '../../interactors'
-import { createQuiz } from '../../services'
+import { QuizInteractor, QuizInteractorConstructor } from '../../interactors'
+import type { QuizState } from '../../ports'
+import { QuizConstructor } from '../../quiz'
 
 export const createSteps = () => {
-  const quiz = createQuiz()
   const presenter = createQuizPresenter()
-  const interactor = createQuizInteractor(quiz, presenter)
+  let interactor: QuizInteractor
 
   const givenQuizStarted = () => {
-    quiz.init(new Set([]))
-    quiz.moveOnFirstQuestion()
+    const quiz = QuizConstructor.with([
+      {
+        choices: [],
+        title: 'Title A',
+        solution: 'Solution A',
+      },
+    ])
+    interactor = QuizInteractorConstructor.with(quiz, presenter)
   }
 
   const whenStopQuiz = () => {
@@ -22,11 +26,7 @@ export const createSteps = () => {
     expect(presenter.get().isStarted).toBe(false)
   }
 
-  return {
-    givenQuizStarted,
-    whenStopQuiz,
-    thenCurrentQuizIsNotStarted,
-  }
+  return { givenQuizStarted, whenStopQuiz, thenCurrentQuizIsNotStarted }
 }
 
 const createQuizPresenter = () => {

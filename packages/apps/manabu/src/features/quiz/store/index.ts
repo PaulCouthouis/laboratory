@@ -2,7 +2,7 @@ import type { Question, Result } from '../domain/values'
 import { createQuizSlice } from './slices/quiz'
 import { createResultSlice } from './slices/result'
 
-export const createQuizStore = (questions: Set<Question>) => {
+export const createQuizStore = (questions: Question[]) => {
   const {
     actions: { moveOnNextQuestion, start, stop },
     state: { choices, isStarted, solution, title },

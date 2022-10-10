@@ -1,7 +1,7 @@
 import { test } from 'vitest'
 import { createSteps } from './steps/stop'
 
-test('Start quiz', () => {
+test('Stop quiz', () => {
   const steps = createSteps()
 
   steps.givenQuizStarted()

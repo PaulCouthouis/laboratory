@@ -1,5 +1,6 @@
 import type { QuizPresenter, ResultPresenter } from './ports'
-import type { Examiner, Quiz } from './services'
+import type { Quiz } from './quiz'
+import type { Examiner } from './services'
 
 export const createAnswerInteractor = (
   examiner: Examiner,
@@ -13,29 +14,36 @@ export const createAnswerInteractor = (
   return { answer }
 }
 
-export const createQuizInteractor = (service: Quiz, presenter: QuizPresenter) => {
+const construct = (quiz: Quiz, presenter: QuizPresenter) => {
   const refreshPresenter = () => {
     presenter.set({
-      question: service.currentQuestion,
-      isDone: service.isDone,
-      isStarted: service.isStarted,
+      question: quiz.started ? quiz.current : undefined,
+      isDone: quiz.done,
+      isStarted: quiz.started,
     })
   }
 
   const moveOnNextQuestion = () => {
-    service.iterateOnNextQuestion()
+    quiz = quiz.next()
     refreshPresenter()
   }
 
   const start = () => {
-    service.moveOnFirstQuestion()
+    quiz = quiz.reset()
     refreshPresenter()
   }
 
   const stop = () => {
-    service.reset()
+    quiz = quiz.clear()
     refreshPresenter()
   }
 
   return { moveOnNextQuestion, start, stop }
 }
+
+export const QuizInteractorConstructor = {
+  with: construct,
+}
+export type QuizInteractor = ReturnType<
+  typeof QuizInteractorConstructor['with']
+>

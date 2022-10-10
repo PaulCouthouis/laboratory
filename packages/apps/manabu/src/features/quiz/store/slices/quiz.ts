@@ -2,10 +2,10 @@ import type { QuizState } from '../../domain/ports'
 import type { Question } from '../../domain/values'
 
 import { atom, computed, WritableAtom } from 'nanostores'
-import { createQuizInteractor } from '../../domain/interactors'
-import { createQuiz } from '../../domain/services'
+import { QuizInteractorConstructor } from '../../domain/interactors'
+import { QuizConstructor } from '../../domain/quiz'
 
-export const createQuizSlice = (questions: Set<Question>) => {
+export const createQuizSlice = (questions: Question[]) => {
   const quizAtom = atom<QuizState>(INITIAL_STATE)
   const state = {
     choices: computed(quizAtom, ({ question }) => question?.choices),
@@ -14,11 +14,9 @@ export const createQuizSlice = (questions: Set<Question>) => {
     isStarted: computed(quizAtom, ({ isStarted }) => isStarted),
   }
 
-  const service = createQuiz()
+  const quiz = QuizConstructor.with(questions)
   const presenter = createQuizPresenter(quizAtom)
-  const interactor = createQuizInteractor(service, presenter)
-
-  service.init(questions)
+  const interactor = QuizInteractorConstructor.with(quiz, presenter)
 
   return { state, actions: { ...interactor } }
 }

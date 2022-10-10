@@ -1,36 +1,35 @@
-import type { Question } from '../../values'
-import type { QuizState } from '../../ports'
-
 import { expect } from 'vitest'
-import { createQuizInteractor } from '../../interactors'
-import { createQuiz } from '../../services'
+import { QuizInteractor, QuizInteractorConstructor } from '../../interactors'
+import type { QuizState } from '../../ports'
+import { QuizConstructor } from '../../quiz'
+import type { Question } from '../../values'
 
 export const createSteps = () => {
-  const quiz = createQuiz()
   const presenter = createQuizPresenter()
-  const interactor = createQuizInteractor(quiz, presenter)
+  let interactor: QuizInteractor
 
-  const givenQuizWithQuestions = (questions: Set<Question>) => {
-    quiz.init(questions)
+  const givenQuizWithQuestions = (questions: Question[]) => {
+    const quiz = QuizConstructor.with(questions)
+    interactor = QuizInteractorConstructor.with(quiz, presenter)
   }
 
   const whenStartQuiz = () => {
-    return interactor.start()
+    interactor.start()
+  }
+
+  const thenCurrentQuizIsStarted = () => {
+    expect(presenter.get().isStarted).toEqual(true)
   }
 
   const thenCurrentQuestionBecome = (expectedQuestion: Question) => {
     expect(presenter.get().question).toEqual(expectedQuestion)
   }
 
-  const thenCurrentQuizIsStarted = () => {
-    expect(presenter.get().isStarted).toBe(true)
-  }
-
   return {
     givenQuizWithQuestions,
     whenStartQuiz,
-    thenCurrentQuestionBecome,
     thenCurrentQuizIsStarted,
+    thenCurrentQuestionBecome,
   }
 }
 

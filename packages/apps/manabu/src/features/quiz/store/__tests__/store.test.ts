@@ -15,6 +15,7 @@ describe('Quizz feature with nanostores', () => {
   it('starts the quiz', () => {
     const { state, actions } = setup()
 
+    actions.stop()
     actions.start()
 
     expect(state.isStarted.get()).toBe(true)
@@ -31,18 +32,16 @@ describe('Quizz feature with nanostores', () => {
 })
 
 const setup = () => {
-  return createQuizStore(
-    new Set([
-      {
-        choices: ['1', '2', '3'],
-        title: 'Title 1',
-        solution: 'solution 1',
-      },
-      {
-        choices: ['A', 'B', 'C'],
-        title: 'Title 2',
-        solution: 'solution 2',
-      },
-    ])
-  )
+  return createQuizStore([
+    {
+      choices: ['1', '2', '3'],
+      title: 'Title 1',
+      solution: 'solution 1',
+    },
+    {
+      choices: ['A', 'B', 'C'],
+      title: 'Title 2',
+      solution: 'solution 2',
+    },
+  ])
 }
