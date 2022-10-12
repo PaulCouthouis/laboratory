@@ -1,0 +1,42 @@
+---
+import { buildInvitationCardRepository } from '../../features/invitation/adapters/jwt';
+import { buildReadInvitationCard } from '../../features/invitation/domain/input/queries';
+
+import Cover from '../../sections/cover.astro'
+import Date from '../../sections/date.astro';
+// import Drawer from '../sections/drawer.astro';
+import Place from '../../sections/place.astro';
+import Reply from '../../sections/reply.astro'
+import Story from '../../sections/story.astro';
+
+const { jwt } = Astro.params
+
+const repository = buildInvitationCardRepository()
+const readInvitationCard = buildReadInvitationCard(repository)
+
+let members = new Array<string>()
+
+try {
+  const membersSet = readInvitationCard(jwt as string)
+  members = Array.from(membersSet)
+} catch {
+  return Astro.redirect('/404')
+}
+---
+
+<html data-theme="cupcake">
+  <head>
+    <meta charset="UTF-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Moe & Paul: Ton Invitation au Mariage</title>
+  </head>
+  <body>
+    <Cover />
+    <!-- <Drawer> -->
+      <Story />
+      <Date />
+      <Place />
+      <Reply {members} />
+    <!-- </Drawer> -->
+  </body>
+</html>
