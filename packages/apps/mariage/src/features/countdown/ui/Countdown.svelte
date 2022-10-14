@@ -1,5 +1,5 @@
 <script lang='ts'>
-  import { init } from 'countdown/src/adapters/nanostores'
+  import { init } from '../adapters/nanostores'
   import TimeBlock from './child/TimeBlock.svelte'
   
   export let finalTime: Date
@@ -15,8 +15,10 @@
 </script>
 
 <p class="flex flex-wrap justify-around">
-  <TimeBlock labelTime={$countdown.days} description='Jours' />
-  <TimeBlock labelTime={$countdown.hours} description='Heures' />
-  <TimeBlock labelTime={$countdown.minutes} description='Minutes' />
-  <TimeBlock labelTime={$countdown.seconds} description='Secondes' />
+  {#if $countdown}
+    <TimeBlock labelTime={$countdown.days} description='Jours' />
+    <TimeBlock labelTime={$countdown.hours} description='Heures' />
+    <TimeBlock labelTime={$countdown.minutes} description='Minutes' />
+    <TimeBlock labelTime={$countdown.seconds} description='Secondes' />
+  {/if}
 </p>
