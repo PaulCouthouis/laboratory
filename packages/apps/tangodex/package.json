@@ -6,11 +6,18 @@
   "scripts": {
     "astro": "astro",
     "build": "astro build",
+    "check:lint": "eslint",
+    "check:type": "tsc",
     "dev": "astro dev",
     "preview": "astro preview",
     "start": "astro dev"
   },
   "dependencies": {
-    "astro": "^1.5.0"
+    "@typescript-eslint/parser": "^5.33.1",
+    "astro": "^1.5.0",
+    "eslint": "^8.22.0",
+    "eslint-plugin-functional": "^4.4.1",
+    "tsutils": "^3.21.0",
+    "typescript": "^4.8.4"
   }
 }
