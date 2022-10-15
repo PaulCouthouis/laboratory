@@ -1,0 +1,16 @@
+{
+  "name": "tangodex",
+  "type": "module",
+  "version": "0.0",
+  "private": true,
+  "scripts": {
+    "astro": "astro",
+    "build": "astro build",
+    "dev": "astro dev",
+    "preview": "astro preview",
+    "start": "astro dev"
+  },
+  "dependencies": {
+    "astro": "^1.5.0"
+  }
+}
