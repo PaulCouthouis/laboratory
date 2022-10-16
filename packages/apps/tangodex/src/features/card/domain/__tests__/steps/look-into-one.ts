@@ -1,6 +1,5 @@
 import { Card } from '../../card'
 
-import { Maybe } from 'purify-ts'
 import { expect } from 'vitest'
 import { findInArrayById } from '../../../../../functions/find'
 import { CardInteractor } from '../../interactor'
