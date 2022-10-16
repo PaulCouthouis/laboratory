@@ -8,21 +8,17 @@ module.exports = {
     sourceType: 'module',
     project: './tsconfig.json',
   },
-  plugins: ['@typescript-eslint', 'functional'],
+  plugins: ['@typescript-eslint'],
   extends: [
     'eslint:recommended',
     'plugin:@typescript-eslint/eslint-recommended',
     'plugin:@typescript-eslint/recommended',
     'plugin:@typescript-eslint/recommended-requiring-type-checking',
     'plugin:astro/recommended',
-    'plugin:functional/external-recommended',
-    'plugin:functional/recommended',
-    'plugin:functional/stylistic',
   ],
   ignorePatterns: ['*.cjs'],
   rules: {
     'linebreak-style': ['error', 'unix'],
-    quotes: ['error', 'single'],
     semi: ['error', 'never'],
   },
   overrides: [
