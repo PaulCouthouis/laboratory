@@ -110,10 +110,12 @@ importers:
 
   packages/apps/tangodex:
     specifiers:
+      '@faker-js/faker': ^7.6.0
       '@typescript-eslint/parser': ^5.33.1
       astro: ^1.5.0
       eslint: ^8.22.0
       purify-ts: ^1.3.0
+      rxjs: ^7.5.7
       tsutils: ^3.21.0
       typescript: ^4.8.4
       vitest: ^0.24.3
@@ -122,9 +124,12 @@ importers:
       astro: 1.5.0
       eslint: 8.22.0
       purify-ts: 1.3.0
+      rxjs: 7.5.7
       tsutils: 3.21.0_typescript@4.8.4
       typescript: 4.8.4
       vitest: 0.24.3
+    devDependencies:
+      '@faker-js/faker': 7.6.0
 
 packages:
 
@@ -601,6 +606,11 @@ packages:
       strip-json-comments: 3.1.1
     transitivePeerDependencies:
       - supports-color
+
+  /@faker-js/faker/7.6.0:
+    resolution: {integrity: sha512-XK6BTq1NDMo9Xqw/YkYyGjSsg44fbNwYRx7QK2CuoQgyy+f1rrTDHoExVM5PsyXCtfl2vs2vVJ0MN0yN6LppRw==}
+    engines: {node: '>=14.0.0', npm: '>=6.0.0'}
+    dev: true
 
   /@fontsource/pacifico/4.5.8:
     resolution: {integrity: sha512-odEiWt6gDyW9Z9bgVXwv9Msd3teJ3ZZxYwS8l6onD0PSKoyjyo3NDAiEbZtftoe2zMGvpFLHSoHekJ6yDSCUFQ==}
@@ -4826,6 +4836,12 @@ packages:
     resolution: {integrity: sha512-5l4VyZR86LZ/lDxZTR6jqL8AFE2S0IFLMP26AbjsLVADxHdhB/c0GUsH+y39UfCi3dzz8OlQuPmnaJOMoDHQBA==}
     dependencies:
       queue-microtask: 1.2.3
+
+  /rxjs/7.5.7:
+    resolution: {integrity: sha512-z9MzKh/UcOqB3i20H6rtrlaE/CgjLOvheWK/9ILrbhROGTweAi1BaFsTT9FbwZi5Trr1qNRs+MXkhmR06awzQA==}
+    dependencies:
+      tslib: 2.4.0
+    dev: false
 
   /s.color/0.0.15:
     resolution: {integrity: sha512-AUNrbEUHeKY8XsYr/DYpl+qk5+aM+DChopnWOPEzn8YKzOhv4l2zH6LzZms3tOZP3wwdOyc0RmTciyi46HLIuA==}

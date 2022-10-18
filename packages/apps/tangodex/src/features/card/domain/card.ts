@@ -1,9 +1,9 @@
 import { Codec, exactly, GetType, maybe, string } from 'purify-ts'
 
 export const Card = Codec.interface({
-  category: exactly('hiragana'),
+  category: exactly('kandoushi'),
   description: string,
-  formal: maybe(string),
+  variant: maybe(string),
   id: string,
   name: string,
   translation: string,
