@@ -19,7 +19,7 @@ const { members } = Astro.props as { members: string[] }
           > ?
         </p>
       </header>
-      <Reply members={members} />
+      <Reply client:load members={members} />
       <p class="text-xs text-gray-300 mt-2 text-right">
         * alergie, végétarien, raison religieuse, etc
       </p>

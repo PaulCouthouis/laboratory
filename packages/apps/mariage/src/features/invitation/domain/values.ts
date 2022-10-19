@@ -12,4 +12,4 @@ export type ReplyCardMember = {
   status: ReplyStatus
 }
 
-type ReplyStatus = 'accept' | 'decline' | 'wait'
+export type ReplyStatus = 'accept' | 'decline' | 'wait'

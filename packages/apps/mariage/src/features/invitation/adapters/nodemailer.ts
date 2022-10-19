@@ -3,7 +3,7 @@ import type { ReplyCard, ReplyCardMember } from '../domain/values'
 import { createTransport } from 'nodemailer'
 import type * as SMTPTransport from 'nodemailer/lib/smtp-transport'
 
-interface NodeMailerDeliveryService extends DeliveryService {
+export interface NodeMailerDeliveryService extends DeliveryService {
   isSuccess(): boolean
 }
 
@@ -17,7 +17,7 @@ type NodeMailerDeliveryServiceOptions<T> = T & {
 
 export const buildDeliveryService: <T>(
   options: NodeMailerDeliveryServiceOptions<T>
-) => NodeMailerDeliveryService = (options) => {
+) => NodeMailerDeliveryService = ({ responsible, ...options }) => {
   const transporter = createTransport(options)
   let sendedMail: SMTPTransport.SentMessageInfo
 
@@ -27,8 +27,8 @@ export const buildDeliveryService: <T>(
 
     const mailOption = {
       from: options.auth.user,
-      to: options.auth.user,
-      subject: `Réponse de ${options.responsible}`,
+      to: 'moepaul812@gmail.com',
+      subject: `Réponse de ${responsible}`,
       text: `
         ${replyCard.members.map(memberSentence).join('')}
         ${replyCard.message}  
