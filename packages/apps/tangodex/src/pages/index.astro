@@ -1,4 +1,5 @@
 ---
+import { Just } from "purify-ts";
 import { CardUI } from "../features/card/ui";
 ---
 
@@ -11,6 +12,18 @@ import { CardUI } from "../features/card/ui";
 		<title>Astro</title>
 	</head>
 	<body class="bg-neutral h-screen flex justify-center items-center">
-		<CardUI />
+		<CardUI 
+			category="kandoushi" 
+			description={`はい est la version la plus fréquente.\nIl existe aussi ええ qui doit être cependant suivi par une phrase.`}
+			id="KDS-0001"
+			illustrator="stampo.fun"
+			name="はい"
+			sentences={[
+				'山本：「田中さんですか？」田中：「はい」',
+				'山本：「田中さんですか？」田中：「ええ、そうです」',
+			]}
+			translation="Oui"
+			variant={Just('ええ')}
+		/>
 	</body>
 </html>
