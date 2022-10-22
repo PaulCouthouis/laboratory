@@ -12,7 +12,13 @@ const createFakeCard = () =>
     category: 'kandoushi',
     description: faker.lorem.sentences(3),
     id: faker.datatype.uuid(),
+    illustrator: faker.name.fullName(),
     name: faker.word.interjection(),
+    sentences: [
+      faker.lorem.sentence(),
+      faker.lorem.sentence(),
+      faker.lorem.sentence(),
+    ],
     translation: faker.word.interjection(),
     variant: Maybe.fromNullable(
       faker.helpers.maybe(() => faker.word.interjection())
