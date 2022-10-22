@@ -13,10 +13,8 @@ const { members } = Astro.props as { members: string[] }
           Chère(s) Invité(es),
         </h2>
         <p class="text-gray-300">
-          Nous serions heureux de vous accueillir à notre cérémonie de mariage. <br
-          />
-          Pourriez-vous nous donner une réponse avant le <time>31 Mai 2023</time
-          > ?
+          Nous serions heureux de vous accueillir à notre cérémonie de mariage. <br />
+          Pourriez-vous nous donner une réponse rapidement ?
         </p>
       </header>
       <Reply client:load members={members} />
