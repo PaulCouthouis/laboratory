@@ -5,7 +5,7 @@ export const CardDescription: Component<Pick<Card, 'description'>> = ({
   description,
 }) => {
   return (
-    <p class="bg-neutral border-y border-black border-opacity-40 w-full p-4 m-4 leading-10 whitespace-pre-wrap">
+    <p class="bg-neutral border-y border-black border-opacity-40 w-full p-4 m-4 whitespace-pre-wrap text-xs leading-5 sm:text-base sm:leading-10">
       {description}
     </p>
   )

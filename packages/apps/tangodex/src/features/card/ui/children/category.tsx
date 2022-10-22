@@ -7,7 +7,7 @@ export const CardCategory: Component<Pick<Card, 'category'>> = ({
   const label = CARD_CATEGORY_LABELS[category]
 
   return (
-    <p class="bg-primary flex justify-center items-center rounded-2xl text-sm text-white w-16">
+    <p class="bg-primary flex justify-center items-center rounded-2xl text-xs sm:text-sm text-white w-16">
       {label}
     </p>
   )

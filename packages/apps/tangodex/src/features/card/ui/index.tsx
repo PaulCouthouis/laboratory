@@ -25,7 +25,7 @@ export const CardUI: Component<Card> = ({
   variant,
 }) => {
   return (
-    <article class="bg-white rounded-2xl p-2 w-[600px] h-[800px]">
+    <article class="bg-white rounded-2xl p-2 max-w-[600px] max-h-[800px]">
       <div class="border border-black border-opacity-40 rounded-2xl h-full flex flex-col justify-between">
         <header class="p-2 flex justify-between">
           <CardCategory category={category} />
