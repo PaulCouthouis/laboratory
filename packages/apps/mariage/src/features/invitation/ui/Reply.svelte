@@ -1,19 +1,18 @@
 <script lang='ts'>
-  import type { ReplyCard, ReplyStatus } from "../domain/values"
+  import type { ReplyCard, ReplyCardMember } from "../domain/values"
 
   export let members: string[]
-
-  let available: ReplyStatus = 'wait'
-  let diet = ''
+  
   let message = ''
+  let cardMembers = members.map<ReplyCardMember>(member => ({
+    diet: '',
+    name: member,
+    status: 'wait'
+  }))
 
   const handleSubmit = () => {
     const body: ReplyCard = {
-      members: [{
-        name: members[0],
-        status: available,
-        diet
-      }],
+      members: cardMembers,
       message
     }
     console.log(body)
@@ -26,25 +25,25 @@
 </script>
 
 <form class="mt-4" on:submit|preventDefault={handleSubmit}>
-  {#each members as member }
+  {#each cardMembers as card }
     <fieldset class="my-4">
-      <legend class="text-center">- {member} -</legend>
+      <legend class="text-center">- {card.name} -</legend>
       <div class="flex justify-between my-2">
         <label>
-          <input type="radio" bind:group={available} name={member} value={'accept'}  /> Présent
+          <input type="radio" bind:group={card.status} name={card.name} value={'accept'}  /> Présent
         </label>
         <label>
-          <input type="radio" bind:group={available} name={member} value={'decline'} /> Absent
+          <input type="radio" bind:group={card.status} name={card.name} value={'decline'} /> Absent
         </label>
         <label>
-          <input type="radio" bind:group={available} name={member} value={'wait'} /> Indécis
+          <input type="radio" bind:group={card.status} name={card.name} value={'wait'} /> Indécis
         </label>
       </div>
       <input
         class="border p-2 w-full text-gray-700"
         placeholder="Régime alimentaire* (facultatif)"
         type="text"
-        bind:value={diet}
+        bind:value={card.diet}
       />
     </fieldset>
   {/each}
