@@ -17,7 +17,7 @@ const { members } = Astro.props as { members: string[] }
           Pourriez-vous nous donner une réponse rapidement ?
         </p>
       </header>
-      <Reply client:load members={members} />
+      <Reply client:visible members={members} />
       
     </article>
   </div>
