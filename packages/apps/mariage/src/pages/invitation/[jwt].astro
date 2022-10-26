@@ -30,9 +30,10 @@ try {
     <meta charset="UTF-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>Moe & Paul: Ton Invitation au Mariage</title>
+    <link rel="preload" href="/images/cover-vertical.jpeg" as="image">
   </head>
-  <body>
-    <Loader client:load>
+  <body class="hidden">
+    <!-- <Loader client:load> -->
       <Cover />
       <!-- <Drawer> -->
         <Story />
@@ -40,6 +41,13 @@ try {
         <Place />
         <Reply {members} />
       <!-- </Drawer> -->
-    </Loader>
+    <!-- </Loader> -->
   </body>
 </html>
+
+<script>
+  window.onload = () => {
+    const body = document.getElementsByTagName('body')[0]
+    body.classList.remove("hidden");
+  };
+</script>
