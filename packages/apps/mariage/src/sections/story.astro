@@ -1,5 +1,11 @@
 ---
 import StoryDate from "./childs/story-date.astro"
+import { Image } from '@astrojs/image/components';
+import first from '../images/first.jpeg'
+import hanami from '../images/hanami.jpeg'
+import engagement from '../images/engagement.jpeg'
+import france from '../images/france.jpeg'
+import paper from '../images/paper.jpg'
 
 ---
 
@@ -10,7 +16,7 @@ import StoryDate from "./childs/story-date.astro"
       <div class="text-base max-w-5xl my-4">
         <div class="hidden absolute h-[2500px] border left-1/2 -z-10 lg:block" role="presentation" aria-hidden="true"></div>
         <StoryDate>
-          <img src="../images/first.jpeg" alt="Kyoto" slot='img'>
+          <Image src={first} alt="Kyoto" slot='img' loading="lazy"/>
           <time slot='time'>23.12<br>2019</time>
           <span slot='title'>Notre premier café</span>
           <span slot='content'>  
@@ -18,7 +24,7 @@ import StoryDate from "./childs/story-date.astro"
           </span>
         </StoryDate>
         <StoryDate reverse>
-          <img src="../images/hanami.jpeg" alt="Selfie sous les sakura" slot='img'>
+          <Image src={hanami} alt="Selfie sous les sakura" slot='img' loading="lazy"/>
           <time slot='time'>05.04<br>2020</time>
           <span slot='title'>Notre premier hanami</span>
           <span slot='content'>  
@@ -26,7 +32,7 @@ import StoryDate from "./childs/story-date.astro"
           </span>
         </StoryDate>
         <StoryDate>
-          <img src="../images/engagement.jpeg" alt="Demande en mariage" slot='img'>
+          <Image src={engagement} alt="Demande en mariage" slot='img' loading="lazy"/>
           <time slot='time'>10.08<br>2021</time>
           <span slot='title'>La demande en mariage</span>
           <span slot='content'>  
@@ -34,7 +40,7 @@ import StoryDate from "./childs/story-date.astro"
           </span>
         </StoryDate>
         <StoryDate reverse>
-          <img src="../images/france.jpeg" alt="Château de Versaille" slot='img'>
+          <Image src={france} alt="Château de Versaille" slot='img' loading="lazy"/>
           <time slot='time'>23.12<br>2021</time>
           <span slot='title'>Première fois en France</span>
           <span slot='content'>  
@@ -43,7 +49,7 @@ import StoryDate from "./childs/story-date.astro"
           </span>
         </StoryDate>
         <StoryDate>
-          <img src="../images/paper.jpg" alt="Kyoto" slot='img'>
+          <Image src={paper} alt="Papier de mariage" slot='img' loading="lazy"/>
           <time slot='time'>01.02<br>2022</time>
           <span slot='title'>Le mariage civil</span>
           <span slot='content'>  
@@ -52,7 +58,7 @@ import StoryDate from "./childs/story-date.astro"
           </span>
         </StoryDate>
         <StoryDate reverse>
-          <img src="../images/first.jpeg" alt="Kyoto" slot='img'>
+          <Image src={first} alt="Kyoto" slot='img' loading="lazy"/>
           <time slot='time'>29.10<br>2022</time>
           <span slot='title'>Le mariage traditionnel japonais</span>
           <span slot='content'>  

@@ -1,7 +1,6 @@
 ---
 import { buildInvitationCardRepository } from '../../features/invitation/adapters/jwt';
 import { buildReadInvitationCard } from '../../features/invitation/domain/input/queries';
-import Loader from '../../loader/loader.svelte';
 
 import Cover from '../../sections/cover.astro'
 import Date from '../../sections/date.astro';
@@ -30,7 +29,6 @@ try {
     <meta charset="UTF-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>Moe & Paul: Ton Invitation au Mariage</title>
-    <link rel="preload" href="/images/cover-vertical.jpeg" as="image">
   </head>
   <body class="hidden">
     <!-- <Loader client:load> -->
