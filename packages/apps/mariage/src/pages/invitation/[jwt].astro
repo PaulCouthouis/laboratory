@@ -1,6 +1,7 @@
 ---
 import { buildInvitationCardRepository } from '../../features/invitation/adapters/jwt';
 import { buildReadInvitationCard } from '../../features/invitation/domain/input/queries';
+import Loader from '../../loader/loader.svelte';
 
 import Cover from '../../sections/cover.astro'
 import Date from '../../sections/date.astro';
@@ -31,12 +32,14 @@ try {
     <title>Moe & Paul: Ton Invitation au Mariage</title>
   </head>
   <body>
-    <Cover />
-    <!-- <Drawer> -->
-      <Story />
-      <Date />
-      <Place />
-      <Reply {members} />
-    <!-- </Drawer> -->
+    <Loader client:load>
+      <Cover />
+      <!-- <Drawer> -->
+        <Story />
+        <Date />
+        <Place />
+        <Reply {members} />
+      <!-- </Drawer> -->
+    </Loader>
   </body>
 </html>
