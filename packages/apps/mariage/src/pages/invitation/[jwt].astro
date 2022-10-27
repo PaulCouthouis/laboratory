@@ -2,6 +2,12 @@
 import { buildInvitationCardRepository } from '../../features/invitation/adapters/jwt';
 import { buildReadInvitationCard } from '../../features/invitation/domain/input/queries';
 
+import '@fontsource/pacifico'
+import '@fontsource/poppins'
+
+import pacifico from '../../fonts/pacifico-latin-400-normal.woff2'
+import poppins from '../../fonts/poppins-latin-400-normal.woff2'
+
 import Cover from '../../sections/cover.astro'
 import Date from '../../sections/date.astro';
 // import Drawer from '../sections/drawer.astro';
@@ -29,10 +35,8 @@ try {
     <meta charset="UTF-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>Moe & Paul: Ton Invitation au Mariage</title>
-    <link rel="preload" href="/assets/pacifico-latin-400-normal.50488656.woff2" as="font" type="font/woff2" />
-    <link rel="preload" href="/assets/poppins-latin-400-normal.7d93459d.woff2" as="font" type="font/woff2" />
   </head>
-  <body class="hidden">
+  <body class="opacity-0 transition-opacity duration-1000">
     <!-- <Loader client:load> -->
       <Cover />
       <!-- <Drawer> -->
@@ -46,8 +50,9 @@ try {
 </html>
 
 <script>
-  window.onload = () => {
+  document.fonts.ready.then(() => {
     const body = document.getElementsByTagName('body')[0]
-    body.classList.remove("hidden");
-  };
+    // body.classList.remove("hidden");
+    body.style.opacity = 100
+  })
 </script>
