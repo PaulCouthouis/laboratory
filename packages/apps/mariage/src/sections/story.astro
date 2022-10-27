@@ -9,14 +9,14 @@ import paper from '../images/paper.jpg'
 
 ---
 
-<section>
+<section class="snap-start">
   <div class="py-4">
     <article class="p-4 h-full flex flex-col justify-center items-center text-neutral text-2xl">
       <h2 class="text-4xl font-['Pacifico']">Notre Histoire</h2>
       <div class="text-base max-w-5xl my-4">
         <div class="hidden absolute h-[2500px] border left-1/2 -z-10 lg:block" role="presentation" aria-hidden="true"></div>
         <StoryDate>
-          <Image src={first} alt="Kyoto" slot='img' loading="lazy" class="transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-150 z-10"/>
+          <Image src={first} alt="Kyoto" slot='img' loading="lazy"/>
           <time slot='time'>23.12<br>2019</time>
           <span slot='title'>Notre premier café</span>
           <span slot='content'>  
@@ -24,7 +24,7 @@ import paper from '../images/paper.jpg'
           </span>
         </StoryDate>
         <StoryDate reverse>
-          <Image src={hanami} alt="Selfie sous les sakura" slot='img' loading="lazy" class="transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-150 z-10"/>
+          <Image src={hanami} alt="Selfie sous les sakura" slot='img' loading="lazy"/>
           <time slot='time'>05.04<br>2020</time>
           <span slot='title'>Notre premier hanami</span>
           <span slot='content'>  
@@ -32,7 +32,7 @@ import paper from '../images/paper.jpg'
           </span>
         </StoryDate>
         <StoryDate>
-          <Image src={engagement} alt="Demande en mariage" slot='img' loading="lazy" class="transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-150 z-10"/>
+          <Image src={engagement} alt="Demande en mariage" slot='img' loading="lazy"/>
           <time slot='time'>10.08<br>2021</time>
           <span slot='title'>La demande en mariage</span>
           <span slot='content'>  
@@ -40,7 +40,7 @@ import paper from '../images/paper.jpg'
           </span>
         </StoryDate>
         <StoryDate reverse>
-          <Image src={france} alt="Château de Versaille" slot='img' loading="lazy" class="transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-150 z-10"/>
+          <Image src={france} alt="Château de Versaille" slot='img' loading="lazy"/>
           <time slot='time'>23.12<br>2021</time>
           <span slot='title'>Première fois en France</span>
           <span slot='content'>  
@@ -49,7 +49,7 @@ import paper from '../images/paper.jpg'
           </span>
         </StoryDate>
         <StoryDate>
-          <Image src={paper} alt="Papier de mariage" slot='img' loading="lazy" class="transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-150 z-10"/>
+          <Image src={paper} alt="Papier de mariage" slot='img' loading="lazy"/>
           <time slot='time'>01.02<br>2022</time>
           <span slot='title'>Le mariage civil</span>
           <span slot='content'>  
@@ -58,7 +58,7 @@ import paper from '../images/paper.jpg'
           </span>
         </StoryDate>
         <StoryDate reverse>
-          <Image src={first} alt="Kyoto" slot='img' loading="lazy" class="transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-150 z-10"/>
+          <Image src={first} alt="Kyoto" slot='img' loading="lazy"/>
           <time slot='time'>29.10<br>2022</time>
           <span slot='title'>Le mariage traditionnel japonais</span>
           <span slot='content'>  

@@ -4,7 +4,7 @@ import Reply from '../features/invitation/ui/Reply.svelte'
 const { members } = Astro.props as { members: string[] }
 ---
 
-<section class="h-min-screen text-lg font-sans-serif bg-cover bg-center bg-[url('/images/reply-vertical.jpeg')] landscape:bg-[url('/images/reply-horizontal.jpeg')]">
+<section class="h-min-screen text-lg font-sans-serif bg-cover bg-center bg-[url('/images/reply-vertical.jpeg')] landscape:bg-[url('/images/reply-horizontal.jpeg')] snap-start">
   <div class="h-full flex justify-center items-center bg-black/40 text-white">
     <article class="mx-2 my-8 font-['Poppins'] text-sm md:text-lg">
       <header>
