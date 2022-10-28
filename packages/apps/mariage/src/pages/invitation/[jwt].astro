@@ -5,12 +5,8 @@ import { buildReadInvitationCard } from '../../features/invitation/domain/input/
 import '@fontsource/pacifico'
 import '@fontsource/poppins'
 
-import pacifico from '../../fonts/pacifico-latin-400-normal.woff2'
-import poppins from '../../fonts/poppins-latin-400-normal.woff2'
-
 import Cover from '../../sections/cover.astro'
 import Date from '../../sections/date.astro';
-// import Drawer from '../sections/drawer.astro';
 import Place from '../../sections/place.astro';
 import Reply from '../../sections/reply.astro'
 import Story from '../../sections/story.astro';
@@ -37,22 +33,17 @@ try {
     <title>Moe & Paul: Ton Invitation au Mariage</title>
   </head>
   <body class="opacity-0 transition-opacity duration-1000">
-    <!-- <Loader client:load> -->
       <Cover />
-      <!-- <Drawer> -->
         <Story />
         <Date />
         <Place />
         <Reply {members} />
-      <!-- </Drawer> -->
-    <!-- </Loader> -->
   </body>
 </html>
 
 <script>
   document.fonts.ready.then(() => {
     const body = document.getElementsByTagName('body')[0]
-    // body.classList.remove("hidden");
-    body.style.opacity = 100
+    body.style.opacity = '100'
   })
 </script>
