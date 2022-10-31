@@ -1,12 +1,14 @@
 ---
 import StoryDate from "./childs/story-date.astro"
 import { Image } from '@astrojs/image/components';
+
 import first from '../images/first.jpeg'
 import hanami from '../images/hanami.jpeg'
 import engagement from '../images/engagement.jpeg'
 import france from '../images/france.jpeg'
 import paper from '../images/paper.jpg'
-
+import webm from '../video/mariage-kyoto.webm'
+import mp4 from '../video/mariage-kyoto.mp4'
 ---
 
 <section class="snap-start">
@@ -14,7 +16,7 @@ import paper from '../images/paper.jpg'
     <article class="p-4 h-full flex flex-col justify-center items-center text-neutral text-2xl">
       <h2 class="text-4xl font-['Pacifico']">Notre Histoire</h2>
       <div class="text-base max-w-5xl my-4">
-        <div class="hidden absolute h-[2500px] border left-1/2 -z-10 lg:block" role="presentation" aria-hidden="true"></div>
+        <div class="hidden absolute h-[3000px] border left-1/2 -z-10 lg:block" role="presentation" aria-hidden="true"></div>
         <StoryDate>
           <Image src={first} alt="Kyoto" slot='img' loading="lazy"/>
           <time slot='time'>23.12<br>2019</time>
@@ -58,7 +60,10 @@ import paper from '../images/paper.jpg'
           </span>
         </StoryDate>
         <StoryDate reverse>
-          <Image src={first} alt="Kyoto" slot='img' loading="lazy"/>
+          <video controls slot='img'>
+            <source src={webm} type="video/webm">
+            <source src={mp4} type="video/mp4">
+          </video>
           <time slot='time'>29.10<br>2022</time>
           <span slot='title'>Le mariage traditionnel japonais</span>
           <span slot='content'>  
