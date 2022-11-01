@@ -72,6 +72,6 @@
   {/if}
 </form>
 <p class="text-xs text-gray-300 mt-2 text-right">
-  * alergie, végétarien, raison religieuse, etc
+  * allergie, végétarien, raison religieuse, etc
 </p>
 
