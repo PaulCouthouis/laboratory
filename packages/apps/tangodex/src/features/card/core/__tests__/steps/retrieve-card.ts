@@ -1,8 +1,8 @@
 import { curry } from 'purify-ts'
 import { AsyncSubject, map } from 'rxjs'
 import { expect } from 'vitest'
-import { decodeOneEntityById } from '../../../../functions/codec'
-import { mapToCodec } from '../../../../functions/map'
+import { decodeOneEntityById } from '../../../../../functions/codec'
+import { mapToCodec } from '../../../../../functions/map'
 import { Card } from '../../domain/card'
 import { CardStore } from '../../store'
 

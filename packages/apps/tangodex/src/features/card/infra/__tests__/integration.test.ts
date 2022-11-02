@@ -1,5 +1,5 @@
 import { expect, test } from 'vitest'
-import { CardDAO } from '..'
+import { CardDAO } from '../dao'
 import { firstValueFrom } from 'rxjs'
 
 test('Get One Card', async () => {

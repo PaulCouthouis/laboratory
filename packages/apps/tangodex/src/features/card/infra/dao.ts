@@ -5,7 +5,7 @@ import {
   retrieveRecordsFromWordCardById,
   toFirstFieldSet,
 } from '../../../db/airtable'
-import { Card, decodeCard } from '../domain/card'
+import { Card, decodeCard } from '../core/domain/card'
 
 export interface CardDAO {
   getById: (id: Card['id']) => Observable<Either<string, Card>>

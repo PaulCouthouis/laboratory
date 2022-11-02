@@ -1,5 +1,5 @@
 import { array, Codec, curry, exactly, GetType, maybe, string } from 'purify-ts'
-import { decode } from '../../../functions/codec'
+import { decode } from '../../../../functions/codec'
 
 export const Card = Codec.interface({
   category: exactly('kandoushi'),

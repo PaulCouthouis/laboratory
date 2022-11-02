@@ -1,5 +1,5 @@
 import type { Component } from 'solid-js'
-import type { Card } from '../domain/card'
+import type { Card } from '../core/domain/card'
 
 import { PlayIcon } from '../../../design/icons/play'
 import { CardCategory } from './children/category'

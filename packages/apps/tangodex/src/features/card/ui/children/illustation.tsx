@@ -1,5 +1,5 @@
 import type { Component } from 'solid-js'
-import type { Card } from '../../domain/card'
+import type { Card } from '../../core/domain/card'
 
 type Props = Pick<Card, 'name'> & {
   src: string

@@ -1,5 +1,5 @@
-import { CardDAO } from './dao'
-import { CardStore } from './store'
+import { CardDAO } from './infra/dao'
+import { CardStore } from './core/store'
 
 const dao = CardDAO()
 export const {
