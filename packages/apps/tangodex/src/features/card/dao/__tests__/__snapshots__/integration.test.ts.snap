@@ -1,0 +1,17 @@
+// Vitest Snapshot v1
+
+exports[`Get One Card 1`] = `
+{
+  "category": "kandoushi",
+  "description": "はい est la version la plus fréquente.
+
+Il existe aussi ええ qui doit être cependant suivi par une phrase.",
+  "id": "KDS-0001",
+  "illustrator": "stampo.fun",
+  "name": "はい",
+  "sentences": "山本：「田中さんですか？」田中：「はい」, 
+山本：「田中さんですか？」田中：「ええ、そうです」",
+  "translation": "Oui",
+  "variant": "ええ",
+}
+`;

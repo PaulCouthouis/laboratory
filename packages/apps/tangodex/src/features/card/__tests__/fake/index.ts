@@ -14,11 +14,12 @@ const createFakeCard = () =>
     id: faker.datatype.uuid(),
     illustrator: faker.name.fullName(),
     name: faker.word.interjection(),
-    sentences: [
+    sentences:
+      faker.lorem.sentence() +
+      '\n' +
+      faker.lorem.sentence() +
+      '\n' +
       faker.lorem.sentence(),
-      faker.lorem.sentence(),
-      faker.lorem.sentence(),
-    ],
     translation: faker.word.interjection(),
     variant: Maybe.fromNullable(
       faker.helpers.maybe(() => faker.word.interjection())

@@ -1,15 +1,31 @@
-import Airtable from 'airtable'
+import Airtable, { FieldSet, Query, Records, Table } from 'airtable'
+import type { QueryParams } from 'airtable/lib/query_params'
+import { curry } from 'purify-ts'
 
-export const AirtableBase = () => {
-  console.log(
-    import.meta.env.VITE_AIRTABLE_API_KEY,
-    import.meta.env.VITE_AIRTABLE_BASE_ID
-  )
+Airtable.configure({
+  endpointUrl: 'https://api.airtable.com',
+  apiKey: import.meta.env.VITE_AIRTABLE_API_KEY,
+})
 
-  Airtable.configure({
-    endpointUrl: 'https://api.airtable.com',
-    apiKey: import.meta.env.VITE_AIRTABLE_API_KEY,
-  })
+const base = Airtable.base(import.meta.env.VITE_AIRTABLE_BASE_ID)
 
-  return Airtable.base(import.meta.env.VITE_AIRTABLE_BASE_ID)
-}
+const byId = (id: string) => ({
+  filterByFormula: `{id}="${id}"`,
+})
+
+const selectByQueryParams = (
+  table: Table<FieldSet>,
+  params: QueryParams<FieldSet>
+) => table.select(params)
+
+const selectById = (table: Table<FieldSet>, id: string) =>
+  selectByQueryParams(table, byId(id))
+
+const selectWordCardById = curry(selectById)(base('Word Cards'))
+
+const retrieveRecords = (query: Query<FieldSet>) => query.all()
+
+export const retrieveRecordsFromWordCardById = (id: string) =>
+  retrieveRecords(selectWordCardById(id))
+
+export const toFirstFieldSet = (records: Records<FieldSet>) => records[0].fields

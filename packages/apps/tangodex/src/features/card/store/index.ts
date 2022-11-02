@@ -1,6 +1,6 @@
 import { Either, Left } from 'purify-ts'
 import { BehaviorSubject } from 'rxjs'
-import type { CardDAO } from '../dao/interface'
+import type { CardDAO } from '../dao'
 import type { Card } from '../domain/card'
 
 export const CardStore = (dao: CardDAO) => {
