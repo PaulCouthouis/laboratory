@@ -1,0 +1,47 @@
+---
+import type { Card } from "../../features/card/domain/card";
+
+import { lastValueFrom, take } from "rxjs";
+import { card$, retrieveCardById } from "../../features/card";
+import { CardUI } from "../../features/card/ui";
+
+const id = Astro.params.id as string;
+
+retrieveCardById(id)
+
+const card = await lastValueFrom(card$.pipe(take(2)))
+
+if(card.isLeft()) {
+  console.error(card.extract())
+
+  return new Response(null, {
+    status: 404,
+    statusText: 'Card Not Found'
+  });
+}
+
+const { category, description, illustrator, name, sentences, translation, variant } = card.extract() as Card
+
+---
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<title>Astro</title>
+	</head>
+	<body class="bg-neutral h-screen flex justify-center items-center">
+		<CardUI
+			category={category}
+			description={description}
+			id={id}
+			illustrator={illustrator}
+			name={name}
+			sentences={sentences}
+			translation={translation}
+			variant={variant}
+		/>
+	</body>
+</html>
