@@ -1,16 +1,4 @@
 import { Codec, curry } from 'purify-ts'
-import { findInArrayById } from './find'
 
-export const decode = <Entity>(codec: Codec<Entity>, entity: unknown) =>
-  codec.decode(entity)
-
-export const decodeOneEntityById = <Entity>(
-  codec: Codec<Entity>,
-  id: string,
-  entities: Array<Entity & { id: string }>
-) => decode(codec, findInArrayById(entities, id))
-
-const encode = <Entity>(codec: Codec<Entity>, entity: Entity) =>
-  codec.encode<Entity>(entity)
-
-export const encodeTo = <Entity>(codec: Codec<Entity>) => curry(encode)(codec)
+export const decodeTo = <Entity>(codec: Codec<Entity>) => curry(codec.decode)
+export const encodeTo = <Entity>(codec: Codec<Entity>) => curry(codec.encode)

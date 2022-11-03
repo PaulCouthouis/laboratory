@@ -6,9 +6,11 @@ import {
   toFirstFieldSet,
 } from '../../../db/airtable'
 import { Card, decodeCard } from '../core/domain/card'
+import type { Pile } from '../core/domain/pile'
 
 export interface CardDAO {
   getById: (id: Card['id']) => Observable<Either<string, Card>>
+  getByIds: (ids: Card['id'][]) => Observable<Either<string, Pile>>
 }
 
 export const CardDAO: () => CardDAO = () => {

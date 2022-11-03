@@ -1,9 +1,9 @@
 import { test } from 'vitest'
-import { createFakeCards } from './fake'
+import { createFakeCards } from './fake/cards'
 import { RetrieveCardSteps } from './steps/retrieve-card'
 
 test('Retrieve card', () => {
-  const fakeCards = createFakeCards()
+  const fakeCards = createFakeCards(3)
   const steps = RetrieveCardSteps()
 
   steps.givenCardCollection(fakeCards)

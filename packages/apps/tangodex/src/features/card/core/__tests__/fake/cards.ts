@@ -26,6 +26,6 @@ const createFakeCard = () =>
     ),
   } as Card)
 
-export const createFakeCards = () => {
-  return [createFakeCard(), createFakeCard(), createFakeCard()]
+export const createFakeCards = (length: number) => {
+  return Array.from({ length }, createFakeCard)
 }

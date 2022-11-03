@@ -8,6 +8,7 @@ Airtable.configure({
 })
 
 const base = Airtable.base(import.meta.env.VITE_AIRTABLE_BASE_ID)
+const WordCardsBase = base('Word Cards')
 
 const byId = (id: string) => ({
   filterByFormula: `{id}="${id}"`,
@@ -21,7 +22,7 @@ const selectByQueryParams = (
 const selectById = (table: Table<FieldSet>, id: string) =>
   selectByQueryParams(table, byId(id))
 
-const selectWordCardById = curry(selectById)(base('Word Cards'))
+const selectWordCardById = curry(selectById)(WordCardsBase)
 
 const retrieveRecords = (query: Query<FieldSet>) => query.all()
 

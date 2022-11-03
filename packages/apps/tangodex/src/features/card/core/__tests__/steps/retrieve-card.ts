@@ -1,10 +1,8 @@
-import { curry } from 'purify-ts'
-import { AsyncSubject, map } from 'rxjs'
+import type { Card } from '../../domain/card'
+
 import { expect } from 'vitest'
-import { decodeOneEntityById } from '../../../../../functions/codec'
-import { mapToCodec } from '../../../../../functions/map'
-import { Card } from '../../domain/card'
 import { CardStore } from '../../store'
+import { FakeCardDAO } from '../fake/dao'
 
 export const RetrieveCardSteps = () => {
   const fakeCardDAO = FakeCardDAO()
@@ -25,20 +23,3 @@ export const RetrieveCardSteps = () => {
 
   return { givenCardCollection, whenRetrieveCard, thenRetrievedCardIs }
 }
-
-const FakeCardDAO = () => {
-  const cardsSubject = new AsyncSubject<Card[]>()
-
-  const init = (initialCards: Card[]) => {
-    cardsSubject.next(mapToCodec(Card, initialCards))
-    cardsSubject.complete()
-  }
-
-  const getById = (id: Card['id']) => {
-    return cardsSubject.pipe(map(decodeOneCardById(id)))
-  }
-
-  return { getById, init }
-}
-
-const decodeOneCardById = curry(decodeOneEntityById<Card>)(Card)
