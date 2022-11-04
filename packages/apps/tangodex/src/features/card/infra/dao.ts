@@ -2,11 +2,13 @@ import type { Either } from 'purify-ts'
 
 import { from, map, Observable, take } from 'rxjs'
 import {
+  ToFieldSetList,
   retrieveRecordsFromWordCardById,
+  retrieveRecordsFromWordCardByIds,
   toFirstFieldSet,
-} from '../../../db/airtable'
+} from '../../../db/airtable/retrieve'
 import { Card, decodeCard } from '../core/domain/card'
-import type { Pile } from '../core/domain/pile'
+import { decodePile, Pile } from '../core/domain/pile'
 
 export interface CardDAO {
   getById: (id: Card['id']) => Observable<Either<string, Card>>
@@ -20,5 +22,11 @@ export const CardDAO: () => CardDAO = () => {
     return from(records).pipe(map(toFirstFieldSet), map(decodeCard), take(1))
   }
 
-  return { getById }
+  const getByIds = (ids: Card['id'][]) => {
+    const records = retrieveRecordsFromWordCardByIds(ids)
+
+    return from(records).pipe(map(ToFieldSetList), map(decodePile), take(1))
+  }
+
+  return { getById, getByIds }
 }
