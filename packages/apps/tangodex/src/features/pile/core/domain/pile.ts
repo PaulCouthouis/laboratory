@@ -1,4 +1,4 @@
-import type { Cards } from '../../card/core/domain/cards'
+import type { Cards } from '../../../card/core/domain/cards'
 
 export const Pile = (cards: Cards, index = 0) => {
   const current = cards[index]

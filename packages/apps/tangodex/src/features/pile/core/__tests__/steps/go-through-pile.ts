@@ -2,37 +2,43 @@ import type { Cards } from '../../../../card/core/domain/cards'
 import type { Card } from '../../../../card/core/domain/card'
 
 import { expect } from 'vitest'
-import { Pile } from '../../../../pile/core/pile'
+import { Pile } from '../../domain/pile'
+import { createSignal, Signal } from 'solid-js'
+import { PileSignal } from '../../signal'
 
 export const GoThroughPileSteps = () => {
-  let pile: Pile
+  const [getPile, setPile] = createSignal<Pile>(Pile([]))
+  const { next, previous, goTo, current, isFirst, isLast } = PileSignal([
+    getPile,
+    setPile,
+  ])
 
   const givenPile = (index: number, initialCards: Cards) => {
-    pile = Pile(initialCards, index)
+    setPile(Pile(initialCards, index))
   }
 
   const whenGoToTheNextCard = () => {
-    pile = pile.next()
+    next()
   }
 
   const whenGoToThePreviousCard = () => {
-    pile = pile.previous()
+    previous()
   }
 
   const whenGoToTheSelectedCard = (index: number) => {
-    pile = pile.goTo(index)
+    goTo(index)
   }
 
   const thenCurrentCardIs = (expectedCard: Card) => {
-    expect(pile.current).toEqual(expectedCard)
+    expect(current()).toEqual(expectedCard)
   }
 
   const thenCurrentCardIsLast = () => {
-    expect(pile.isLast).toEqual(true)
+    expect(isLast()).toEqual(true)
   }
 
   const thenCurrentCardIsNotFirst = () => {
-    expect(pile.isFirst).toEqual(false)
+    expect(isFirst()).toEqual(false)
   }
 
   return {

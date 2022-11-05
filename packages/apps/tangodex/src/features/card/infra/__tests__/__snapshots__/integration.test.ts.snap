@@ -4,12 +4,14 @@ exports[`Get Card Pile 1`] = `
 [
   {
     "category": "kandoushi",
-    "description": "Utilisable seulement l'après-midi",
-    "id": "KDS-0004",
+    "description": "Il faut le connaitre mais éviter de l'utiliser car dire \\"non\\" en japonais peut paraitre très froid.
+
+Utilisable cependant après que quelqu'un vous complimente pour le refuter et paraitre plus modeste.",
+    "id": "KDS-0002",
     "illustrator": "??",
-    "name": "こんにちは",
-    "sentences": "こんにちは！もう食べましたか？",
-    "translation": "Bonjour (après-midi)",
+    "name": "いいえ",
+    "sentences": "山本：「田中さんですか？」山田：「いいえ。」",
+    "translation": "Non",
     "variant": undefined,
   },
   {
@@ -24,14 +26,12 @@ exports[`Get Card Pile 1`] = `
   },
   {
     "category": "kandoushi",
-    "description": "Il faut le connaitre mais éviter de l'utiliser car dire \\"non\\" en japonais peut paraitre très froid.
-
-Utilisable cependant après que quelqu'un vous complimente pour le refuter et paraitre plus modeste.",
-    "id": "KDS-0002",
+    "description": "Utilisable seulement l'après-midi",
+    "id": "KDS-0004",
     "illustrator": "??",
-    "name": "いいえ",
-    "sentences": "山本：「田中さんですか？」山田：「いいえ。」",
-    "translation": "Non",
+    "name": "こんにちは",
+    "sentences": "こんにちは！もう食べましたか？",
+    "translation": "Bonjour (après-midi)",
     "variant": undefined,
   },
 ]

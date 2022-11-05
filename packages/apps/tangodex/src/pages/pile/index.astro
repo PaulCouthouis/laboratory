@@ -1,0 +1,35 @@
+---
+  import type { Cards } from "../../features/card/core/domain/cards";
+  
+  import { lastValueFrom, take } from "rxjs";
+  import { retrieveCardsByIds, cards$ } from "../../features/card";
+  import { PileUI } from "../../features/pile/ui";
+
+  retrieveCardsByIds(['KDS-0001', 'KDS-0002', 'KDS-0003'])
+
+  const response = await lastValueFrom(cards$.pipe(take(2)))
+
+  if(response.isLeft()) {
+    console.error(response.extract())
+
+    return new Response(null, {
+      status: 404,
+      statusText: 'Cards Not Found'
+    });
+  }
+
+  const cards = response.extract() as Cards
+---
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<title>Astro</title>
+	</head>
+	<body class="bg-neutral h-screen flex justify-center items-center">
+		<PileUI cards={cards} />
+	</body>
+</html>

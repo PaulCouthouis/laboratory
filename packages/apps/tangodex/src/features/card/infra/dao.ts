@@ -1,4 +1,4 @@
-import type { Either } from 'purify-ts'
+import { curry, Either } from 'purify-ts'
 
 import { from, map, Observable, take } from 'rxjs'
 import {
@@ -7,6 +7,8 @@ import {
   retrieveRecordsFromWordCardByIds,
   toFirstFieldSet,
 } from '../../../db/airtable/retrieve'
+import { mapEither } from '../../../functions/either'
+import { sortById } from '../../../functions/sort'
 import { Card, decodeCard } from '../core/domain/card'
 import { decodeCards, Cards } from '../core/domain/cards'
 
@@ -25,8 +27,15 @@ export const CardDAO: () => CardDAO = () => {
   const getByIds = (ids: Card['id'][]) => {
     const records = retrieveRecordsFromWordCardByIds(ids)
 
-    return from(records).pipe(map(ToFieldSetList), map(decodeCards), take(1))
+    return from(records).pipe(
+      map(ToFieldSetList),
+      map(decodeCards),
+      map(sortCardsById),
+      take(1)
+    )
   }
 
   return { getById, getByIds }
 }
+
+export const sortCardsById = curry(mapEither<string, Cards, Cards>)(sortById)

@@ -3,6 +3,6 @@ import { CardStore } from './core/store'
 
 const dao = CardDAO()
 export const {
-  state: { card$ },
-  actions: { retrieveCardById },
+  state: { card$, cards$ },
+  actions: { retrieveCardById, retrieveCardsByIds },
 } = CardStore(dao)
