@@ -13,11 +13,11 @@ export const RetrieveCardPileSteps = () => {
   }
 
   const whenRetrievePile = (ids: Card['id'][]) => {
-    actions.retrievePileByIds(ids)
+    actions.retrieveCardsByIds(ids)
   }
 
   const thenRetrievedPileIs = (expectedFakeCards: Card[]) => {
-    const receivedCard = state.pile$.value.extract()
+    const receivedCard = state.cards$.value.extract()
     expect(receivedCard).toEqual(expectedFakeCards)
   }
 

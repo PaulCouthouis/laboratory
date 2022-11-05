@@ -13,9 +13,10 @@ export const Pile = (cards: Cards, index = 0) => {
   const isFirst = 0 === index
   const isLast = lastIndex === index
 
+  const goTo = (index: number) => Pile(cards, index)
   const next = () => Pile(cards, index + 1)
   const previous = () => Pile(cards, index - 1)
 
-  return { current, isFirst, isLast, next, previous }
+  return { current, isFirst, isLast, goTo, next, previous }
 }
 export type Pile = ReturnType<typeof Pile>

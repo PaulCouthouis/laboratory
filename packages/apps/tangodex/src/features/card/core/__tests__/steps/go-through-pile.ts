@@ -18,6 +18,10 @@ export const GoThroughPileSteps = () => {
     pile = pile.previous()
   }
 
+  const whenGoToTheSelectedCard = (index: number) => {
+    pile = pile.goTo(index)
+  }
+
   const thenCurrentCardIs = (expectedCard: Card) => {
     expect(pile.current).toEqual(expectedCard)
   }
@@ -34,6 +38,7 @@ export const GoThroughPileSteps = () => {
     givenPileDisplayingThisCardIndex: givenPile,
     whenGoToTheNextCard,
     whenGoToThePreviousCard,
+    whenGoToTheSelectedCard,
     thenCurrentCardIs,
     thenCurrentCardIsLast,
     thenCurrentCardIsNotFirst,

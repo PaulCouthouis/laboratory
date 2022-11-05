@@ -26,4 +26,15 @@ describe('Go Through Pile', () => {
     steps.thenCurrentCardIs(fakeCards[1])
     steps.thenCurrentCardIsNotFirst()
   })
+  
+  it('Go from the first to the 3rd card', () => {
+    const fakeCards = createFakeCards(3)
+    const steps = GoThroughPileSteps()
+
+    steps.givenPileDisplayingThisCardIndex(0, fakeCards)
+
+    steps.whenGoToTheSelectedCard(2)
+
+    steps.thenCurrentCardIs(fakeCards[2])
+  })
 })

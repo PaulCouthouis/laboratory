@@ -20,7 +20,7 @@ export const CardStore = (dao: CardDAO) => {
     })
   }
 
-  const retrievePileByIds = (ids: Card['id'][]) => {
+  const retrieveCardsByIds = (ids: Card['id'][]) => {
     card$.next(Left('Loading'))
     dao.getByIds(ids).subscribe((cards) => {
       cards$.next(cards)
@@ -30,11 +30,11 @@ export const CardStore = (dao: CardDAO) => {
   return {
     actions: {
       retrieveCardById,
-      retrievePileByIds,
+      retrieveCardsByIds,
     },
     state: {
       card$,
-      pile$: cards$,
+      cards$,
     },
   }
 }
