@@ -8,11 +8,11 @@ import {
   toFirstFieldSet,
 } from '../../../db/airtable/retrieve'
 import { Card, decodeCard } from '../core/domain/card'
-import { decodePile, Pile } from '../core/domain/pile'
+import { decodeCards, Cards } from '../core/domain/pile'
 
 export interface CardDAO {
   getById: (id: Card['id']) => Observable<Either<string, Card>>
-  getByIds: (ids: Card['id'][]) => Observable<Either<string, Pile>>
+  getByIds: (ids: Card['id'][]) => Observable<Either<string, Cards>>
 }
 
 export const CardDAO: () => CardDAO = () => {
@@ -25,7 +25,7 @@ export const CardDAO: () => CardDAO = () => {
   const getByIds = (ids: Card['id'][]) => {
     const records = retrieveRecordsFromWordCardByIds(ids)
 
-    return from(records).pipe(map(ToFieldSetList), map(decodePile), take(1))
+    return from(records).pipe(map(ToFieldSetList), map(decodeCards), take(1))
   }
 
   return { getById, getByIds }

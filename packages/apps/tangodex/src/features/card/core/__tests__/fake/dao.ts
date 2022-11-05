@@ -4,7 +4,7 @@ import { filterByIds } from '../../../../../functions/filter'
 import { findById } from '../../../../../functions/find'
 import { mapToCodec } from '../../../../../functions/map'
 import { Card, decodeCard } from '../../domain/card'
-import { decodePile } from '../../domain/pile'
+import { decodeCards } from '../../domain/pile'
 
 export const FakeCardDAO = () => {
   const cardsSubject = new AsyncSubject<Card[]>()
@@ -19,7 +19,10 @@ export const FakeCardDAO = () => {
   }
 
   const getByIds = (ids: Card['id'][]) => {
-    return cardsSubject.pipe(map(filterInCollectionByIds(ids)), map(decodePile))
+    return cardsSubject.pipe(
+      map(filterInCollectionByIds(ids)),
+      map(decodeCards)
+    )
   }
 
   return { getById, getByIds, init }
