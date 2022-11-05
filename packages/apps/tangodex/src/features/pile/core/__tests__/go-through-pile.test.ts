@@ -1,5 +1,5 @@
 import { describe, it } from 'vitest'
-import { createFakeCards } from './fake/cards'
+import { createFakeCards } from '../../../card/core/__tests__/fake/cards'
 import { GoThroughPileSteps } from './steps/go-through-pile'
 
 describe('Go Through Pile', () => {
@@ -26,7 +26,7 @@ describe('Go Through Pile', () => {
     steps.thenCurrentCardIs(fakeCards[1])
     steps.thenCurrentCardIsNotFirst()
   })
-  
+
   it('Go from the first to the 3rd card', () => {
     const fakeCards = createFakeCards(3)
     const steps = GoThroughPileSteps()

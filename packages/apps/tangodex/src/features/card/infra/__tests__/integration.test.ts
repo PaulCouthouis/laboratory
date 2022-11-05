@@ -14,8 +14,8 @@ test('Get One Card', async () => {
 test('Get Card Pile', async () => {
   const dao = CardDAO()
 
-  const pile$ = dao.getByIds(['KDS-0002', 'KDS-0003', 'KDS-0004'])
-  const pile = await firstValueFrom(pile$)
+  const cards$ = dao.getByIds(['KDS-0002', 'KDS-0003', 'KDS-0004'])
+  const cards = await firstValueFrom(cards$)
 
-  expect(pile.extract()).toMatchSnapshot()
+  expect(cards.extract()).toMatchSnapshot()
 })

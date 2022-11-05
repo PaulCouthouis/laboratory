@@ -1,7 +1,8 @@
-import type { Card } from '../../domain/card'
+import type { Cards } from '../../../../card/core/domain/cards'
+import type { Card } from '../../../../card/core/domain/card'
 
 import { expect } from 'vitest'
-import { Cards, Pile } from '../../domain/pile'
+import { Pile } from '../../../../pile/core/pile'
 
 export const GoThroughPileSteps = () => {
   let pile: Pile

@@ -1,8 +1,9 @@
-import { Either, Left } from 'purify-ts'
-import { BehaviorSubject } from 'rxjs'
 import type { CardDAO } from '../../infra/dao'
 import type { Card } from '../domain/card'
-import type { Cards } from '../domain/pile'
+import type { Cards } from '../domain/cards'
+
+import { Either, Left } from 'purify-ts'
+import { BehaviorSubject } from 'rxjs'
 
 export const CardStore = (dao: CardDAO) => {
   const card$ = new BehaviorSubject<Either<string, Card>>(

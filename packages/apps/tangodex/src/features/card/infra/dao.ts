@@ -8,7 +8,7 @@ import {
   toFirstFieldSet,
 } from '../../../db/airtable/retrieve'
 import { Card, decodeCard } from '../core/domain/card'
-import { decodeCards, Cards } from '../core/domain/pile'
+import { decodeCards, Cards } from '../core/domain/cards'
 
 export interface CardDAO {
   getById: (id: Card['id']) => Observable<Either<string, Card>>

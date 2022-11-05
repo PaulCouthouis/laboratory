@@ -1,10 +1,4 @@
-import { array, GetType } from 'purify-ts'
-import { decodeTo } from '../../../../functions/codec'
-import { Card } from './card'
-
-export const Cards = array(Card)
-export type Cards = GetType<typeof Cards>
-export const decodeCards = decodeTo(Cards)
+import type { Cards } from '../../card/core/domain/cards'
 
 export const Pile = (cards: Cards, index = 0) => {
   const current = cards[index]
