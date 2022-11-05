@@ -1,17 +1,17 @@
 import { test } from 'vitest'
 import { createFakeCards } from './fake/cards'
-import { RetrieveCardPileSteps } from './steps/retrieve-card-pile'
+import { RetrieveCards } from './steps/retrieve-cards'
 
-test('Retrieve card pile', () => {
+test('Retrieve cards', () => {
   const fakeCards = createFakeCards(10)
   const expectedPile = [fakeCards[1], fakeCards[2], fakeCards[4], fakeCards[8]]
   const requestIds = expectedPile.map(({ id }) => id)
 
-  const steps = RetrieveCardPileSteps()
+  const steps = RetrieveCards()
 
   steps.givenCardCollection(fakeCards)
 
-  steps.whenRetrievePile(requestIds)
+  steps.whenRetrieveCardsByIds(requestIds)
 
-  steps.thenRetrievedPileIs(expectedPile)
+  steps.thenRetrievedCardsIs(expectedPile)
 })

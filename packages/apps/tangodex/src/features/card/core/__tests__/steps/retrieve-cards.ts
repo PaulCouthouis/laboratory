@@ -4,7 +4,7 @@ import { expect } from 'vitest'
 import { FakeCardDAO } from '../fake/dao'
 import { CardStore } from '../../store'
 
-export const RetrieveCardPileSteps = () => {
+export const RetrieveCards = () => {
   const fakeCardDAO = FakeCardDAO()
   const { actions, state } = CardStore(fakeCardDAO)
 
@@ -12,18 +12,18 @@ export const RetrieveCardPileSteps = () => {
     fakeCardDAO.init(initialCards)
   }
 
-  const whenRetrievePile = (ids: Card['id'][]) => {
+  const whenRetrieveCardsByIds = (ids: Card['id'][]) => {
     actions.retrieveCardsByIds(ids)
   }
 
-  const thenRetrievedPileIs = (expectedFakeCards: Card[]) => {
+  const thenRetrievedCardsIs = (expectedFakeCards: Card[]) => {
     const receivedCard = state.cards$.value.extract()
     expect(receivedCard).toEqual(expectedFakeCards)
   }
 
   return {
     givenCardCollection,
-    whenRetrievePile,
-    thenRetrievedPileIs: thenRetrievedPileIs,
+    whenRetrieveCardsByIds,
+    thenRetrievedCardsIs,
   }
 }
