@@ -4,6 +4,8 @@ import { Component, createSignal } from 'solid-js'
 import { Pile } from '../core/domain/pile'
 import { PileSignal } from '../core/signal'
 import { CardUI } from '../../card/ui'
+import { PreviousButton } from '../../../design/buttons/previous'
+import { NextButton } from '../../../design/buttons/next'
 
 export const PileUI: Component<{ cards: Cards }> = ({ cards }) => {
   const signal = createSignal(Pile(cards))
@@ -11,5 +13,15 @@ export const PileUI: Component<{ cards: Cards }> = ({ cards }) => {
 
   const currentCard = current()
 
-  return <CardUI {...currentCard} />
+  console.log(next)
+
+  return (
+    <div class="grid grid-cols-8">
+      <PreviousButton onClick={previous} />
+      <div class="col-span-6">
+        <CardUI {...currentCard} />
+      </div>
+      <NextButton onClick={next} />
+    </div>
+  )
 }
