@@ -13,8 +13,6 @@ export const PileUI: Component<{ cards: Cards }> = ({ cards }) => {
 
   const currentCard = current()
 
-  console.log(next)
-
   return (
     <div class="grid grid-cols-8">
       <PreviousButton onClick={previous} />

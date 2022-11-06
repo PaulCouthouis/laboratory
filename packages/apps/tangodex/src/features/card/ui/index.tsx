@@ -24,8 +24,6 @@ export const CardUI: Component<Card> = ({
   sentences,
   variant,
 }) => {
-  console.log(variant)
-
   return (
     <article class="bg-white rounded-2xl p-2 max-w-[600px] max-h-[800px]">
       <div class="border border-black border-opacity-40 rounded-2xl h-full flex flex-col justify-between">
