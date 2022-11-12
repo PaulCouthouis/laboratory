@@ -1,25 +1,43 @@
 import type { Cards } from '../../card/core/domain/cards'
+import type { Component, JSXElement } from 'solid-js'
 
-import { Component, createSignal } from 'solid-js'
 import { Pile } from '../core/domain/pile'
-import { PileSignal } from '../core/signal'
 import { CardUI } from '../../card/ui'
 import { PreviousButton } from '../../../design/buttons/previous'
 import { NextButton } from '../../../design/buttons/next'
+import { PileStore } from '../core/store'
 
 export const PileUI: Component<{ cards: Cards }> = ({ cards }) => {
-  const signal = createSignal(Pile(cards))
-  const { next, previous, goTo, current, isFirst, isLast } = PileSignal(signal)
+  const pile = Pile(cards)
+  const store = PileStore(pile)
 
-  const currentCard = current()
+  const { current, isFirst, isLast } = store.state
 
   return (
     <div class="grid grid-cols-8">
-      <PreviousButton onClick={previous} />
+      <NavBox>
+        {!isFirst() && <PreviousButton onClick={store.actions.previous} />}
+      </NavBox>
       <div class="col-span-6">
-        <CardUI {...currentCard} />
+        <CardUI
+          category={current().category}
+          description={current().description}
+          id={current().id}
+          illustrator={current().illustrator}
+          name={current().name}
+          sentences={current().sentences}
+          translation={current().translation}
+          variant={current().variant}
+        />
       </div>
-      <NextButton onClick={next} />
+      <NavBox>
+        {!isLast() && <NextButton onClick={store.actions.next} />}
+      </NavBox>
     </div>
   )
 }
+
+const NavBox: Component<{ children: JSXElement }> = (p) => (
+  <div class="flex justify-center items-center">{p.children}</div>
+)
+

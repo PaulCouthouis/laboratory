@@ -14,35 +14,29 @@ import { CardVariant } from './children/variant'
 
 import src from './KDS-0001.png'
 
-export const CardUI: Component<Card> = ({
-  category,
-  description,
-  id,
-  illustrator,
-  name,
-  translation,
-  sentences,
-  variant,
-}) => {
+export const CardUI: Component<Card> = (p) => {
   return (
-    <article class="bg-white rounded-2xl p-2 max-w-[600px] max-h-[800px]">
+    <article class="bg-white rounded-2xl p-2 max-w-full max-h-full lg:h-[800px] lg:w-[600px]">
       <div class="border border-black border-opacity-40 rounded-2xl h-full flex flex-col justify-between">
         <header class="p-2 flex justify-between">
-          <CardCategory category={category} />
-          <CardIllustrator illustrator={illustrator} />
+          <CardCategory category={p.category} />
+          <CardIllustrator illustrator={p.illustrator} />
         </header>
-        <div class="py-2 flex-1 flex flex-col items-center">
+        <div class="lg:py-2 flex-1 flex flex-col items-center">
           <aside class="w-2/3 h-2/5 flex justify-center items-center border border-black border-opacity-40 rounded-2xl bg-neutral">
-            <CardIllustration name={name} src={src} />
+            <CardIllustration
+              name={p.name}
+              src={`illustrations/for-cards/${p.id}.png`}
+            />
           </aside>
-          <CardName name={name} />
-          <CardVariant variant={variant} />
-          <CardDescription description={description} />
-          <CardSentences sentences={sentences} />
+          <CardName name={p.name} />
+          <CardVariant variant={p.variant} />
+          <CardDescription description={p.description} />
+          <CardSentences sentences={p.sentences} />
         </div>
         <footer class="p-2 grid grid-cols-3 items-end">
-          <CardId id={id} />
-          <CardTranslation translation={translation} />
+          <CardId id={p.id} />
+          <CardTranslation translation={p.translation} />
         </footer>
       </div>
       <div class="relative">
