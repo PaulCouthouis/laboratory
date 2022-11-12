@@ -12,8 +12,6 @@ import { CardSentences } from './children/sentences'
 import { CardTranslation } from './children/translation'
 import { CardVariant } from './children/variant'
 
-import src from './KDS-0001.png'
-
 export const CardUI: Component<Card> = (p) => {
   return (
     <article class="bg-white rounded-2xl p-2 max-w-full max-h-full lg:h-[800px] lg:w-[600px]">
