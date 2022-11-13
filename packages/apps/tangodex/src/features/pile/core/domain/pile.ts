@@ -11,6 +11,8 @@ export const Pile = (cards: Cards, index = 0) => {
   const next = () => Pile(cards, index + 1)
   const previous = () => Pile(cards, index - 1)
 
-  return { current, isFirst, isLast, goTo, next, previous }
+  const toStringify = () => JSON.stringify(Pile(cards, index))
+
+  return { current, isFirst, isLast, goTo, next, previous, toStringify }
 }
 export type Pile = ReturnType<typeof Pile>

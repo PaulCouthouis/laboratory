@@ -5,12 +5,11 @@ exports[`Get Card Pile 1`] = `
   {
     "category": "kandoushi",
     "description": "Il faut le connaitre mais éviter de l'utiliser car dire \\"non\\" en japonais peut paraitre très froid.
-
 Utilisable cependant après que quelqu'un vous complimente pour le refuter et paraitre plus modeste.",
     "id": "KDS-0002",
-    "illustrator": "??",
+    "illustrator": "stampo.fun",
     "name": "いいえ",
-    "sentences": "山本：「田中さんですか？」山田：「いいえ。」",
+    "sentences": "山本：「ポールさんの日本語が上手ですね。」ポール：「いいえ。」",
     "translation": "Non",
     "variant": undefined,
   },
@@ -18,7 +17,7 @@ Utilisable cependant après que quelqu'un vous complimente pour le refuter et pa
     "category": "kandoushi",
     "description": "Se dit uniquement le matin. L'ajout de ございます permet d'être plus formel",
     "id": "KDS-0003",
-    "illustrator": "??",
+    "illustrator": "illustrain.com",
     "name": "おはよう",
     "sentences": "先生！おはようございます。",
     "translation": "Bonjour (matin)",
